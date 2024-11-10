@@ -44,18 +44,33 @@ public class BalatroTest {
 
     @Test
     public void alJugarUnaManoSeAplicaValorCorrespondiente(){
-        Mazo mazo = new Mazo();
 
         EvaluadorMano evaluadorMano = new EvaluadorMano();
-        Jugador jugador = new Jugador(mazo);
-        ArrayList<Carta> mano = new ArrayList<Carta>();
-        jugador.iniciarTurno();
+        ArrayList<Carta> manoEscaleraBajaAS = new ArrayList<>();
+        ArrayList<Carta> manoEscaleraColor = new ArrayList<>();
+        ArrayList<Carta> manoEscaleraReal = new ArrayList<>();
 
-        mano.add(new Carta("PICA", "AS"));
-        mano.add(new Carta("CORAZON", "AS"));
+        manoEscaleraBajaAS.add(new Carta("PICA", "AS"));
+        manoEscaleraBajaAS.add(new Carta("CORAZON", "DOS"));
+        manoEscaleraBajaAS.add(new Carta("DIAMANTE", "TRES"));
+        manoEscaleraBajaAS.add(new Carta("TREBOL", "CUATRO"));
+        manoEscaleraBajaAS.add(new Carta("PICA", "CINCO"));
 
+        manoEscaleraColor.add(new Carta("PICA", "NUEVE"));
+        manoEscaleraColor.add(new Carta("PICA", "DIEZ"));
+        manoEscaleraColor.add(new Carta("PICA", "JOTA"));
+        manoEscaleraColor.add(new Carta("PICA", "REINA"));
+        manoEscaleraColor.add(new Carta("PICA", "REY"));
 
-        assertEquals(22, evaluadorMano.evaluar(mano));
+        manoEscaleraReal.add(new Carta("PICA", "DIEZ"));
+        manoEscaleraReal.add(new Carta("PICA", "JOTA"));
+        manoEscaleraReal.add(new Carta("PICA", "REINA"));
+        manoEscaleraReal.add(new Carta("PICA", "REY"));
+        manoEscaleraReal.add(new Carta("PICA", "AS"));
+
+        assertEquals(220, evaluadorMano.evaluar(manoEscaleraBajaAS));
+        assertEquals(1192, evaluadorMano.evaluar(manoEscaleraColor));
+        assertEquals(1208, evaluadorMano.evaluar(manoEscaleraReal));
     }
 
     @Test
