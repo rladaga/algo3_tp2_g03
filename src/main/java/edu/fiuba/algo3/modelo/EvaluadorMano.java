@@ -2,6 +2,8 @@ package edu.fiuba.algo3.modelo;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import edu.fiuba.algo3.modelo.Joker.*;
 import edu.fiuba.algo3.modelo.tipo_de_mano.*;
 
 
@@ -22,38 +24,37 @@ public class EvaluadorMano {
         tiposDeMano.add(new CartaAlta());
     }
 
-    private int calcularValorCartas(ArrayList<Carta> mano) {
-        int valorBase = 0;
-
+    private void aplicarValorCartas(ArrayList<Carta> mano, PuntuacionTirada puntuacion) {
         for (Carta carta : mano) {
-            valorBase += carta.obtenerPuntuacion();
+            carta.modificarPuntuacion(puntuacion);
         }
-
-        return valorBase;
     }
 
-    private int calcularPuntuacionTotal(int valorBase, TipoDeMano tipo) {
-        int puntosPorMano = tipo.calcularPuntos();
-        int multiplicador = tipo.calcularMultiplicador();
-        return (valorBase + puntosPorMano) * multiplicador;
+    private void aplicarJokers(ArrayList<Joker> Jokers, TipoDeMano tipo, PuntuacionTirada puntuacion) {
+        for (Joker joker : Jokers) {
+            joker.modificarPuntuacion(puntuacion, tipo);
+        }
     }
 
-    public int evaluar(ArrayList<Carta> mano) {
+    private int calcularPuntuacionTotal(ArrayList<Carta> mano, TipoDeMano tipo, ArrayList<Joker> jokers) {
 
-        int valorBase = calcularValorCartas(mano);
+        PuntuacionTirada puntuacion = new PuntuacionTirada(tipo.calcularPuntos(), tipo.calcularMultiplicador());
+
+        aplicarValorCartas(mano, puntuacion);
+
+        aplicarJokers(jokers, tipo, puntuacion);
+
+        return puntuacion.obtenerPuntuacion();
+    }
+
+    public int evaluar(ArrayList<Carta> mano, ArrayList<Joker> jokers) {
 
         for (TipoDeMano tipo : tiposDeMano) {
             if (tipo.esValida(mano)) {
-                return calcularPuntuacionTotal(valorBase, tipo);
+                return calcularPuntuacionTotal(mano, tipo, jokers);
             }
         }
+
         return 0;
     }
 }
-
-
-
-
-
-
-

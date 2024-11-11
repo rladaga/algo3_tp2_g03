@@ -1,6 +1,8 @@
 package edu.fiuba.algo3.entrega_1;
 
 import edu.fiuba.algo3.modelo.*;
+import edu.fiuba.algo3.modelo.Joker.*;
+import edu.fiuba.algo3.modelo.tipo_de_mano.Escalera;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
@@ -68,14 +70,34 @@ public class BalatroTest {
         manoEscaleraReal.add(new Carta("PICA", "REY"));
         manoEscaleraReal.add(new Carta("PICA", "AS"));
 
-        assertEquals(220, evaluadorMano.evaluar(manoEscaleraBajaAS));
-        assertEquals(1192, evaluadorMano.evaluar(manoEscaleraColor));
-        assertEquals(1208, evaluadorMano.evaluar(manoEscaleraReal));
+        ArrayList<Joker> jokers = new ArrayList<>();
+
+        assertEquals(220, evaluadorMano.evaluar(manoEscaleraBajaAS, jokers ));
+        assertEquals(1192, evaluadorMano.evaluar(manoEscaleraColor, jokers));
+        assertEquals(1208, evaluadorMano.evaluar(manoEscaleraReal, jokers));
     }
 
     @Test
     public void importanciaOrdenDePuntuacionDeCartas(){
+        EvaluadorMano evaluadorMano = new EvaluadorMano();
+        ArrayList<Carta> manoEscaleraBajaAS = new ArrayList<>();
+        ArrayList<Joker> orden1 = new ArrayList<>();
+        ArrayList<Joker> orden2 = new ArrayList<>();
 
+        manoEscaleraBajaAS.add(new Carta("PICA", "AS"));
+        manoEscaleraBajaAS.add(new Carta("CORAZON", "DOS"));
+        manoEscaleraBajaAS.add(new Carta("DIAMANTE", "TRES"));
+        manoEscaleraBajaAS.add(new Carta("TREBOL", "CUATRO"));
+        manoEscaleraBajaAS.add(new Carta("PICA", "CINCO"));
+
+        orden1.add(new JokerManoSumador("MULTIPLICADOR", 10, new Escalera()));
+        orden1.add(new JokerManoMultiplicador("MULTIPLICADOR", 2, new Escalera()));
+
+        orden2.add(new JokerManoMultiplicador("MULTIPLICADOR", 2, new Escalera()));
+        orden2.add(new JokerManoSumador("MULTIPLICADOR", 10, new Escalera()));
+
+        assertEquals(evaluadorMano.evaluar(manoEscaleraBajaAS, orden1), 1540);
+        assertEquals(evaluadorMano.evaluar(manoEscaleraBajaAS, orden2), 990);
     }
 
     @Test

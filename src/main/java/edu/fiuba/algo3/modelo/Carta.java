@@ -33,6 +33,10 @@ public class Carta {
         return this.valor;
     }
 
+    public void modificarPuntuacion(PuntuacionTirada puntuacion){
+        puntuacion.agregarPuntos(this.obtenerPuntuacion());
+    }
+
 
    /* public void imprimir(){
         System.out.println(this.valor.getNumero());
