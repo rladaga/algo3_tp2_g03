@@ -2,7 +2,10 @@ package edu.fiuba.algo3.entrega_1;
 
 import edu.fiuba.algo3.modelo.*;
 import edu.fiuba.algo3.modelo.Joker.*;
+import edu.fiuba.algo3.modelo.Tarot.TarotCambiarMultiplicador;
+import edu.fiuba.algo3.modelo.Tarot.TarotCambiarPuntos;
 import edu.fiuba.algo3.modelo.tipo_de_mano.Escalera;
+import edu.fiuba.algo3.modelo.tipo_de_mano.TipoDeMano;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
@@ -102,11 +105,22 @@ public class BalatroTest {
 
     @Test
     public void modificarUnaCartaConTarotYCambiaSusPuntosPor10(){
+        Carta carta = new Carta("PICA", "AS");
+        TarotCambiarPuntos tarot = new TarotCambiarPuntos(10);
 
+        carta = tarot.aplicarEfecto(carta);
+
+        assertEquals(10, carta.obtenerPuntuacion());
     }
 
     @Test
-    public void ModificarUnaCartaConTarotYCambiaSuMultiplicadorPor6(){
+    public void ModificarUnaManoConTarotYCambiaSuMultiplicadorPor6(){
+        TipoDeMano tipoDeMano = new Escalera();
+        TarotCambiarMultiplicador tarot = new TarotCambiarMultiplicador(6);
+
+        tipoDeMano = tarot.aplicarEfecto(tipoDeMano);
+
+        assertEquals(6, tipoDeMano.calcularMultiplicador());
 
     }
 }
