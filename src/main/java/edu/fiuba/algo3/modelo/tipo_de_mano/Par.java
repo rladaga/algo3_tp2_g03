@@ -18,4 +18,11 @@ public class Par implements TipoDeMano {
     public int calcularMultiplicador() {
         return 2;
     }
+
+    @Override
+    public TipoDeManoModificada aplicarMultiplicador(int multiplicador){
+        TipoDeManoModificada tipoDeMano = new TipoDeManoModificada(this, multiplicador);
+        return tipoDeMano;
+    }
+
 }

@@ -25,4 +25,6 @@ public interface TipoDeMano {
         }
         return contador / repeticionesDeseadas;  // Ajuste para contar solo los grupos únicos
     }
+
+    TipoDeMano aplicarMultiplicador(int multiplicador);
 }

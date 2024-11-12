@@ -19,4 +19,10 @@ public class EscaleraColor implements TipoDeMano {
         return 8;
     }
 
+    @Override
+    public TipoDeManoModificada aplicarMultiplicador(int multiplicador){
+        TipoDeManoModificada tipoDeMano = new TipoDeManoModificada(this, multiplicador);
+        return tipoDeMano;
+    }
+
 }

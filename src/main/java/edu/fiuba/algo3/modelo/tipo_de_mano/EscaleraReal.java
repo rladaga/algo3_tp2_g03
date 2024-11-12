@@ -32,4 +32,10 @@ public class EscaleraReal implements TipoDeMano {
         Collections.sort(valoresOrdenados);
         return valoresOrdenados.get(0) == 8;  // Inicia en 10(ordinal 8) para ser Escalera Real
     }
+
+    @Override
+    public TipoDeManoModificada aplicarMultiplicador(int multiplicador){
+        TipoDeManoModificada tipoDeMano = new TipoDeManoModificada(this, multiplicador);
+        return tipoDeMano;
+    }
 }

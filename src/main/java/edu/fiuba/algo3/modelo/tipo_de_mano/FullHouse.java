@@ -18,4 +18,10 @@ public class FullHouse implements TipoDeMano {
     public int calcularMultiplicador() {
         return 4;
     }
+
+    @Override
+    public TipoDeManoModificada aplicarMultiplicador(int multiplicador){
+        TipoDeManoModificada tipoDeMano = new TipoDeManoModificada(this, multiplicador);
+        return tipoDeMano;
+    }
 }
