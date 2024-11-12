@@ -37,6 +37,13 @@ public class Carta {
         puntuacion.agregarPuntos(this.obtenerPuntuacion());
     }
 
+    public CartaModificada aplicarPuntos(int puntos) {
+       CartaModificada carta = new CartaModificada(this, puntos);
+       return carta;
+    }
+
+
+
 
    /* public void imprimir(){
         System.out.println(this.valor.getNumero());
