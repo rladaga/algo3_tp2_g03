@@ -1,6 +1,8 @@
 package edu.fiuba.algo3.modelo;
 
-public class CartaModificada extends Carta{
+import edu.fiuba.algo3.modelo.Carta.Carta;
+
+public class CartaModificada extends Carta {
     private int puntosExtra;
 
     public CartaModificada(Carta carta, int puntosExtra) {
@@ -14,7 +16,7 @@ public class CartaModificada extends Carta{
     }
 
     @Override
-    public int obtenerPuntuacion() {
+    public int puntosBase() {
         return this.puntosExtra;
     }
 }

@@ -1,7 +1,6 @@
 package edu.fiuba.algo3.modelo.Tarot;
 
-import edu.fiuba.algo3.modelo.tipo_de_mano.TipoDeMano;
-import edu.fiuba.algo3.modelo.tipo_de_mano.TipoDeManoModificada;
+import edu.fiuba.algo3.modelo.ManoDePoker.ManoDePoker;
 
 public class TarotCambiarMultiplicador extends Tarot {
     private int multiplicador;
@@ -11,7 +10,7 @@ public class TarotCambiarMultiplicador extends Tarot {
     }
 
     @Override
-    public TipoDeMano aplicarEfecto(TipoDeMano tipoDeMano){
-        return tipoDeMano.aplicarMultiplicador(multiplicador);
+    public ManoDePoker aplicarEfecto(ManoDePoker manoDePoker){
+        return manoDePoker.aplicarMultiplicador(multiplicador);
     }
 }

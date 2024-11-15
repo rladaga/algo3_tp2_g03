@@ -1,5 +1,9 @@
 package edu.fiuba.algo3.modelo;
 
+import edu.fiuba.algo3.modelo.Carta.Carta;
+import edu.fiuba.algo3.modelo.Carta.Palo.*;
+import edu.fiuba.algo3.modelo.Carta.Valor.*;
+
 import java.util.ArrayList;
 import java.util.Collections;
 
@@ -16,8 +20,10 @@ public class Mazo {
 
     private void inicializarMazo(){
         cartas = new ArrayList<>();
-        for(Palo palo : Palo.values()){
-            for(Valor valor : Valor.values()){
+        Palo[] palos = {new Trebol(), new Picas(), new Diamante(), new Corazon()};
+        Valor[] valores = {new As(), new Dos(), new Tres(), new Cuatro(), new Cinco(), new Seis(), new Siete(), new Ocho(), new Nueve(), new Diez(), new Jota(), new Reina(), new Rey()};
+        for(Palo palo : palos){
+            for(Valor valor : valores){
                 cartas.add(new Carta(palo, valor));
             }
         }

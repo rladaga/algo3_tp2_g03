@@ -1,5 +1,5 @@
 package edu.fiuba.algo3.modelo.Tarot;
-import edu.fiuba.algo3.modelo.Carta;
+import edu.fiuba.algo3.modelo.Carta.Carta;
 
 public class TarotCambiarPuntos extends Tarot {
     private int puntos;

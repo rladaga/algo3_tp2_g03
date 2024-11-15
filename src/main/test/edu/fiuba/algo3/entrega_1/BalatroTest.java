@@ -1,11 +1,14 @@
 package edu.fiuba.algo3.entrega_1;
 
 import edu.fiuba.algo3.modelo.*;
+import edu.fiuba.algo3.modelo.Carta.Carta;
+import edu.fiuba.algo3.modelo.Carta.Palo.*;
+import edu.fiuba.algo3.modelo.Carta.Valor.*;
 import edu.fiuba.algo3.modelo.Joker.*;
 import edu.fiuba.algo3.modelo.Tarot.TarotCambiarMultiplicador;
 import edu.fiuba.algo3.modelo.Tarot.TarotCambiarPuntos;
-import edu.fiuba.algo3.modelo.tipo_de_mano.Escalera;
-import edu.fiuba.algo3.modelo.tipo_de_mano.TipoDeMano;
+import edu.fiuba.algo3.modelo.ManoDePoker.Escalera;
+import edu.fiuba.algo3.modelo.ManoDePoker.ManoDePoker;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
@@ -54,24 +57,26 @@ public class BalatroTest {
         ArrayList<Carta> manoEscaleraBajaAS = new ArrayList<>();
         ArrayList<Carta> manoEscaleraColor = new ArrayList<>();
         ArrayList<Carta> manoEscaleraReal = new ArrayList<>();
+        Palo[] palos = {new Trebol(), new Picas(), new Diamante(), new Corazon()};
+        Valor[] valores = {new As(), new Dos(), new Tres(), new Cuatro(), new Cinco(), new Seis(), new Siete(), new Ocho(), new Nueve(), new Diez(), new Jota(), new Reina(), new Rey()};
 
-        manoEscaleraBajaAS.add(new Carta("PICA", "AS"));
-        manoEscaleraBajaAS.add(new Carta("CORAZON", "DOS"));
-        manoEscaleraBajaAS.add(new Carta("DIAMANTE", "TRES"));
-        manoEscaleraBajaAS.add(new Carta("TREBOL", "CUATRO"));
-        manoEscaleraBajaAS.add(new Carta("PICA", "CINCO"));
+        manoEscaleraBajaAS.add(new Carta(palos[1], valores[0]));
+        manoEscaleraBajaAS.add(new Carta(palos[3], valores[1]));
+        manoEscaleraBajaAS.add(new Carta(palos[2], valores[2]));
+        manoEscaleraBajaAS.add(new Carta(palos[0], valores[3]));
+        manoEscaleraBajaAS.add(new Carta(palos[1], valores[4]));
 
-        manoEscaleraColor.add(new Carta("PICA", "NUEVE"));
-        manoEscaleraColor.add(new Carta("PICA", "DIEZ"));
-        manoEscaleraColor.add(new Carta("PICA", "JOTA"));
-        manoEscaleraColor.add(new Carta("PICA", "REINA"));
-        manoEscaleraColor.add(new Carta("PICA", "REY"));
+        manoEscaleraColor.add(new Carta(palos[1], valores[8]));
+        manoEscaleraColor.add(new Carta(palos[1],  valores[9]));
+        manoEscaleraColor.add(new Carta(palos[1],  valores[10]));
+        manoEscaleraColor.add(new Carta(palos[1],  valores[11]));
+        manoEscaleraColor.add(new Carta(palos[1],  valores[12]));
 
-        manoEscaleraReal.add(new Carta("PICA", "DIEZ"));
-        manoEscaleraReal.add(new Carta("PICA", "JOTA"));
-        manoEscaleraReal.add(new Carta("PICA", "REINA"));
-        manoEscaleraReal.add(new Carta("PICA", "REY"));
-        manoEscaleraReal.add(new Carta("PICA", "AS"));
+        manoEscaleraReal.add(new Carta(palos[1],  valores[9]));
+        manoEscaleraReal.add(new Carta(palos[1],  valores[10]));
+        manoEscaleraReal.add(new Carta(palos[1], valores[11]));
+        manoEscaleraReal.add(new Carta(palos[1],  valores[12]));
+        manoEscaleraReal.add(new Carta(palos[1],  valores[0]));
 
         ArrayList<Joker> jokers = new ArrayList<>();
 
@@ -81,17 +86,17 @@ public class BalatroTest {
     }
 
     @Test
-    public void importanciaOrdenDePuntuacionDeCartas(){
+   public void importanciaOrdenDePuntuacionDeCartas(){
         EvaluadorMano evaluadorMano = new EvaluadorMano();
         ArrayList<Carta> manoEscaleraBajaAS = new ArrayList<>();
         ArrayList<Joker> orden1 = new ArrayList<>();
         ArrayList<Joker> orden2 = new ArrayList<>();
 
-        manoEscaleraBajaAS.add(new Carta("PICA", "AS"));
-        manoEscaleraBajaAS.add(new Carta("CORAZON", "DOS"));
-        manoEscaleraBajaAS.add(new Carta("DIAMANTE", "TRES"));
-        manoEscaleraBajaAS.add(new Carta("TREBOL", "CUATRO"));
-        manoEscaleraBajaAS.add(new Carta("PICA", "CINCO"));
+        manoEscaleraBajaAS.add(new Carta(new Picas(), new As()));
+        manoEscaleraBajaAS.add(new Carta(new Corazon(), new Dos()));
+        manoEscaleraBajaAS.add(new Carta(new Diamante(), new Tres()));
+        manoEscaleraBajaAS.add(new Carta(new Trebol(), new Cuatro()));
+        manoEscaleraBajaAS.add(new Carta(new Picas(), new Cinco()));
 
         orden1.add(new JokerManoSumador("MULTIPLICADOR", 10, new Escalera()));
         orden1.add(new JokerManoMultiplicador("MULTIPLICADOR", 2, new Escalera()));
@@ -105,22 +110,22 @@ public class BalatroTest {
 
     @Test
     public void modificarUnaCartaConTarotYCambiaSusPuntosPor10(){
-        Carta carta = new Carta("PICA", "AS");
+        Carta carta = new Carta(new Picas(), new As());
         TarotCambiarPuntos tarot = new TarotCambiarPuntos(10);
 
         carta = tarot.aplicarEfecto(carta);
 
-        assertEquals(10, carta.obtenerPuntuacion());
+        assertEquals(10, carta.puntosBase());
     }
 
     @Test
     public void ModificarUnaManoConTarotYCambiaSuMultiplicadorPor6(){
-        TipoDeMano tipoDeMano = new Escalera();
+        ManoDePoker manoDePoker = new Escalera();
         TarotCambiarMultiplicador tarot = new TarotCambiarMultiplicador(6);
 
-        tipoDeMano = tarot.aplicarEfecto(tipoDeMano);
+        manoDePoker = tarot.aplicarEfecto(manoDePoker);
 
-        assertEquals(6, tipoDeMano.calcularMultiplicador());
+        assertEquals(6, manoDePoker.calcularMultiplicador());
 
     }
 }
