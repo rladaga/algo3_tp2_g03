@@ -28,7 +28,7 @@ public class EscaleraReal extends ManoDePoker {
         for (Carta carta : mano) {
             indices.add(carta.obtenerIndice());
         }
-        return indices.contains(1) && indices.contains(10) && indices.contains(11) && indices.contains(12) && indices.contains(13);  // Inicia en 10(ordinal 8) para ser Escalera Real
+        return new Escalera().esEscaleraSuperiorConAs(indices);
     }
 
     @Override

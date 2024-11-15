@@ -9,7 +9,7 @@ public class TarotCambiarPuntos extends Tarot {
     }
 
     @Override
-    public Carta aplicarEfecto(Carta carta){
-        return carta.aplicarPuntos(puntos);
+    public void aplicarEfecto(Carta carta){
+        carta.aplicarTarot(puntos);
     }
 }

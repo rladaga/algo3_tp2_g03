@@ -24,11 +24,10 @@ public class PuntuacionTirada {
         }
     }
 
-    public void multiplicar(String valorAModificar, int valor){
-        if(valorAModificar == "PUNTOS"){
+    public void multiplicar(String valorAModificar, int valor) {
+        if (valorAModificar == "PUNTOS") {
             this.puntuacion *= valor;
-        }
-        else if(valorAModificar == "MULTIPLICADOR"){
+        } else if (valorAModificar == "MULTIPLICADOR") {
             this.multiplicador *= valor;
         }
     }

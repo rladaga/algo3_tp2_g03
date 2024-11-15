@@ -5,9 +5,9 @@ import edu.fiuba.algo3.modelo.ManoDePoker.ManoDePoker;
 
 
 public abstract class Tarot {
-    public Carta aplicarEfecto(Carta carta){
-        return carta;
-    };
+    public void aplicarEfecto(Carta carta){
+
+    }
     public ManoDePoker aplicarEfecto(ManoDePoker manoDePoker){
         return manoDePoker;
     };

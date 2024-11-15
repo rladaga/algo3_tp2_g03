@@ -19,7 +19,7 @@ public class Escalera extends ManoDePoker {
         // Ordenar los índices en orden ascendente
         Collections.sort(indices);
 
-        return esEscalera(indices);
+        return esEscalera(indices) || esEscaleraSuperiorConAs(indices);
     }
 
     private boolean esEscalera(ArrayList<Integer> indices) {
@@ -32,17 +32,16 @@ public class Escalera extends ManoDePoker {
         }
         return true;
     }
-/*
-    private boolean esEscaleraConAs(ArrayList<Integer> indices) {
-        // Verifica si contiene exactamente [0,1,2,3,12] (2,3,4,5,A)
+
+    public boolean esEscaleraSuperiorConAs(ArrayList<Integer> indices) {
         return indices.size() == 5 &&
-                indices.contains(0) && // 2
-                indices.contains(1) && // 3
-                indices.contains(2) && // 4
-                indices.contains(3) && // 5
-                indices.contains(12);  // As
+                indices.contains(1) && // AS
+                indices.contains(10) && // 10
+                indices.contains(11) && // Jota
+                indices.contains(12) && // Reina
+                indices.contains(13);  // Rey
     }
-*/
+
 
     @Override
     public int calcularPuntos() {

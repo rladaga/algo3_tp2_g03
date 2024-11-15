@@ -110,10 +110,11 @@ public class BalatroTest {
 
     @Test
     public void modificarUnaCartaConTarotYCambiaSusPuntosPor10(){
+
         Carta carta = new Carta(new Picas(), new As());
         TarotCambiarPuntos tarot = new TarotCambiarPuntos(10);
 
-        carta = tarot.aplicarEfecto(carta);
+        tarot.aplicarEfecto(carta);
 
         assertEquals(10, carta.puntosBase());
     }
