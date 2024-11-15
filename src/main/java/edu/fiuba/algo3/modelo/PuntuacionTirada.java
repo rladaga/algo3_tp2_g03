@@ -34,22 +34,22 @@ public class PuntuacionTirada {
     }
 
     public void agregarPuntos(int puntos){
-        puntuacion += puntos;
+        this.puntuacion += puntos;
     }
 
     public void agregarMultiplicador(int multiplicador){
-        puntuacion += multiplicador;
+        this.multiplicador += multiplicador;
     }
 
     public void multiplicarPuntos(int factor){
-        puntuacion *= factor;
+        this.puntuacion *= factor;
     }
 
     public void multiplicarMultiplicador(int factor){
-        puntuacion *= factor;
+        this.multiplicador *= factor;
     }
 
     public int obtenerPuntuacion(){
-        return puntuacion*multiplicador;
+        return this.puntuacion*this.multiplicador;
     }
 }
