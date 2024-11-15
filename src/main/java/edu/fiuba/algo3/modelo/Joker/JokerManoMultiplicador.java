@@ -16,7 +16,7 @@ public class JokerManoMultiplicador implements Joker{
     }
     @Override
     public void modificarPuntuacion(PuntuacionTirada puntuacion, ManoDePoker tipo) {
-        if(this.tipo.getClass().equals(tipo.getClass())){
+        if(this.tipo.esIgual(tipo)){
             puntuacion.multiplicar(modificacion, factorModificacion);
         }
     }

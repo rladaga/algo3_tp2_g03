@@ -25,4 +25,8 @@ public class Par extends ManoDePoker {
         return tipoDeMano;
     }
 
+    @Override
+    public boolean esIgual(ManoDePoker mano) {
+        return mano instanceof Par;
+    }
 }

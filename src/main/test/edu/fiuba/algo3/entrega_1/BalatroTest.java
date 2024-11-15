@@ -5,11 +5,12 @@ import edu.fiuba.algo3.modelo.Carta.Carta;
 import edu.fiuba.algo3.modelo.Carta.Palo.*;
 import edu.fiuba.algo3.modelo.Carta.Valor.*;
 import edu.fiuba.algo3.modelo.Joker.*;
-import edu.fiuba.algo3.modelo.Tarot.TarotCambiarMultiplicador;
-import edu.fiuba.algo3.modelo.Tarot.TarotCambiarPuntos;
+import edu.fiuba.algo3.modelo.Tarot.*;
+import edu.fiuba.algo3.modelo.Tarot.TarotManoPoker;
 import edu.fiuba.algo3.modelo.ManoDePoker.Escalera;
 import edu.fiuba.algo3.modelo.ManoDePoker.ManoDePoker;
 import org.junit.jupiter.api.Test;
+import edu.fiuba.algo3.modelo.Modificador.*;
 
 import java.util.ArrayList;
 
@@ -57,6 +58,8 @@ public class BalatroTest {
         ArrayList<Carta> manoEscaleraBajaAS = new ArrayList<>();
         ArrayList<Carta> manoEscaleraColor = new ArrayList<>();
         ArrayList<Carta> manoEscaleraReal = new ArrayList<>();
+        ArrayList<Carta> manoPoker = new ArrayList<>();
+        ArrayList<Carta> manoFullHouse = new ArrayList<>();
         Palo[] palos = {new Trebol(), new Picas(), new Diamante(), new Corazon()};
         Valor[] valores = {new As(), new Dos(), new Tres(), new Cuatro(), new Cinco(), new Seis(), new Siete(), new Ocho(), new Nueve(), new Diez(), new Jota(), new Reina(), new Rey()};
 
@@ -78,11 +81,25 @@ public class BalatroTest {
         manoEscaleraReal.add(new Carta(palos[1],  valores[12]));
         manoEscaleraReal.add(new Carta(palos[1],  valores[0]));
 
+        manoPoker.add(new Carta(palos[0], valores[1]));
+        manoPoker.add(new Carta(palos[1], valores[1]));
+        manoPoker.add(new Carta(palos[2], valores[1]));
+        manoPoker.add(new Carta(palos[3], valores[1]));
+        manoPoker.add(new Carta(palos[3], valores[2]));
+
+        manoFullHouse.add(new Carta(palos[0], valores[1]));
+        manoFullHouse.add(new Carta(palos[1], valores[1]));
+        manoFullHouse.add(new Carta(palos[2], valores[1]));
+        manoFullHouse.add(new Carta(palos[2], valores[2]));
+        manoFullHouse.add(new Carta(palos[3], valores[2]));
+
         ArrayList<Joker> jokers = new ArrayList<>();
 
         assertEquals(220, evaluadorMano.evaluar(manoEscaleraBajaAS, jokers ));
         assertEquals(1192, evaluadorMano.evaluar(manoEscaleraColor, jokers));
         assertEquals(1208, evaluadorMano.evaluar(manoEscaleraReal, jokers));
+        assertEquals(497, evaluadorMano.evaluar(manoPoker, jokers));
+        assertEquals(208, evaluadorMano.evaluar(manoFullHouse, jokers));
     }
 
     @Test
@@ -112,7 +129,7 @@ public class BalatroTest {
     public void modificarUnaCartaConTarotYCambiaSusPuntosPor10(){
 
         Carta carta = new Carta(new Picas(), new As());
-        TarotCambiarPuntos tarot = new TarotCambiarPuntos(10);
+        TarotCarta tarot = new TarotCarta(10, new ModificadorPuntos());
 
         tarot.aplicarEfecto(carta);
 
@@ -122,7 +139,7 @@ public class BalatroTest {
     @Test
     public void ModificarUnaManoConTarotYCambiaSuMultiplicadorPor6(){
         ManoDePoker manoDePoker = new Escalera();
-        TarotCambiarMultiplicador tarot = new TarotCambiarMultiplicador(6);
+        TarotManoPoker tarot = new TarotManoPoker(6);
 
         manoDePoker = tarot.aplicarEfecto(manoDePoker);
 

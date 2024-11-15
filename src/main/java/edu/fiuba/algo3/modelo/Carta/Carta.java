@@ -4,6 +4,7 @@ import edu.fiuba.algo3.modelo.Carta.Palo.*;
 import edu.fiuba.algo3.modelo.Carta.Valor.*;
 import edu.fiuba.algo3.modelo.Carta.Estado.*;
 import edu.fiuba.algo3.modelo.PuntuacionTirada;
+import edu.fiuba.algo3.modelo.Modificador.Modificador;
 
 public class Carta {
     private final Valor valor;
@@ -33,8 +34,8 @@ public class Carta {
         estado.modificarPuntuacion(puntuacion, valor.puntosBase());
     }
 
-    public void aplicarTarot(int puntuacionNueva) {
-        this.estado = new Modificado(puntuacionNueva);
+    public void aplicarTarot(int puntuacionNueva, Modificador modificador) {
+        this.estado = new Modificado(puntuacionNueva, modificador);
     }
 
 
@@ -46,15 +47,8 @@ public class Carta {
         return this.valor.compararCon(otraCarta.getValor());
     }
 
-    public boolean compararPalo(Palo unPalo) {
-        return this.palo.compararCon(unPalo);
+    public boolean compararPalo(Carta unaCarta) {
+        return this.palo.compararCon(unaCarta.getPalo());
     }
 
-
-
-   /* public void imprimir(){
-        System.out.println(this.valor.getNumero());
-        System.out.println(this.valor.getPuntoBase());
-        System.out.println(this.palo);
-    }*/
 }

@@ -15,6 +15,7 @@ public class PuntuacionTirada {
         this.multiplicador = 0;
     }
 
+    //TODO: arreglar esto (volarlo)
     public void agregar(String valorAModificar, int valor){
         if(valorAModificar == "PUNTOS"){
             this.puntuacion += valor;
@@ -23,7 +24,7 @@ public class PuntuacionTirada {
             this.multiplicador += valor;
         }
     }
-
+    //TODO: arreglar esto (volarlo)
     public void multiplicar(String valorAModificar, int valor) {
         if (valorAModificar == "PUNTOS") {
             this.puntuacion *= valor;

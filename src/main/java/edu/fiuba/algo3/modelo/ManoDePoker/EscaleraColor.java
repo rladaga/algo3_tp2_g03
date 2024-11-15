@@ -25,4 +25,9 @@ public class EscaleraColor extends ManoDePoker {
         return tipoDeMano;
     }
 
+    @Override
+    public boolean esIgual(ManoDePoker mano) {
+        return mano instanceof EscaleraColor;
+    }
+
 }

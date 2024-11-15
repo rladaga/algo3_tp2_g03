@@ -36,4 +36,9 @@ public class EscaleraReal extends ManoDePoker {
         ManoDePokerModificada tipoDeMano = new ManoDePokerModificada(this, multiplicador);
         return tipoDeMano;
     }
+
+    @Override
+    public boolean esIgual(ManoDePoker mano) {
+        return mano instanceof EscaleraReal;
+    }
 }

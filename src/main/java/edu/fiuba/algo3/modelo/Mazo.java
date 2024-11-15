@@ -5,12 +5,14 @@ import edu.fiuba.algo3.modelo.Carta.Palo.*;
 import edu.fiuba.algo3.modelo.Carta.Valor.*;
 
 import java.util.ArrayList;
-import java.util.Collections;
+
 
 public class Mazo {
     private ArrayList<Carta> cartas;
+    private MezcladorMazo mezcladorMazo;
 
     public Mazo(){
+        mezcladorMazo = new MezcladorMazo();
         inicializarMazo();
     }
 
@@ -41,6 +43,6 @@ public class Mazo {
     }
 
     public void mezclarCartas(){
-        Collections.shuffle(cartas);
+        mezcladorMazo.mezclar(cartas);
     }
 }

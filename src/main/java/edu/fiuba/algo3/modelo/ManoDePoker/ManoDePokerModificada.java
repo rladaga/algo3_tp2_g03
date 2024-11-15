@@ -33,5 +33,10 @@ public class ManoDePokerModificada extends ManoDePoker {
         return this;
     }
 
+    @Override
+    public boolean esIgual(ManoDePoker mano) {
+        return manoDePoker.esIgual(mano);
+    }
+
 
 }

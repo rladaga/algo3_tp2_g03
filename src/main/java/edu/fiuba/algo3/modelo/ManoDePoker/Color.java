@@ -1,7 +1,6 @@
 package edu.fiuba.algo3.modelo.ManoDePoker;
 
 import edu.fiuba.algo3.modelo.Carta.Carta;
-import edu.fiuba.algo3.modelo.Carta.Palo.Palo;
 
 import java.util.ArrayList;
 
@@ -9,9 +8,10 @@ import java.util.ArrayList;
 public class Color extends ManoDePoker {
     @Override
     public boolean esValida(ArrayList<Carta> mano) {
-        Palo paloInicial = mano.get(0).getPalo();
+        Carta cartaInicial = mano.get(0);
+
         for (Carta carta : mano) {
-            if (!carta.compararPalo(paloInicial)) {
+            if (!carta.compararPalo(cartaInicial)) {
                 return false;
             }
         }
@@ -32,5 +32,10 @@ public class Color extends ManoDePoker {
     public ManoDePokerModificada aplicarMultiplicador(int multiplicador){
         ManoDePokerModificada tipoDeMano = new ManoDePokerModificada(this, multiplicador);
         return tipoDeMano;
+    }
+
+    @Override
+    public boolean esIgual(ManoDePoker mano) {
+        return mano instanceof Color;
     }
 }

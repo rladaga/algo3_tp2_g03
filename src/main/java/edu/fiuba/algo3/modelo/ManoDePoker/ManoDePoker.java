@@ -11,20 +11,24 @@ public abstract class ManoDePoker {
 
 
     protected int cuentaRepeticiones(ArrayList<Carta> mano, int repeticionesDeseadas) {
-        int contador = 0; // Contador para los grupos encontrados
-        for (Carta carta : mano) { // Itera sobre cada carta en la mano
-            int ocurrencias = 0; // Contador para las repeticiones de una carta específica
-            for (Carta otraCarta : mano) { // Compara la carta actual con cada otra carta en la mano
-                if (carta.compararValor(otraCarta)) { // Si el valor de las cartas es igual
-                    ocurrencias++; // Se incrementa el contador de repeticiones
+        int gruposEncontrados = 0;
+        for (Carta carta : mano) {
+            int cartaRepetida = 0;
+
+            for (Carta otraCarta : mano) { 
+                if (carta.compararValor(otraCarta)) { 
+                    cartaRepetida++; 
                 }
             }
-            if (ocurrencias == repeticionesDeseadas) { // Si se encuentra la cantidad deseada de repeticiones
-                contador++; // Incrementa el contador de grupos encontrados
+
+            if (cartaRepetida == repeticionesDeseadas) {
+                gruposEncontrados++;
             }
         }
-        return contador / repeticionesDeseadas;  // Ajuste para contar solo los grupos únicos
+        
+        return gruposEncontrados / repeticionesDeseadas;
     }
 
     public abstract ManoDePoker aplicarMultiplicador(int multiplicador);
+    public abstract boolean esIgual(ManoDePoker mano);
 }
