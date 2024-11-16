@@ -11,7 +11,7 @@ public class Aleatorio implements CondicionActivacion {
     }
 
     @Override
-    public boolean realizarValidacion(ManoDePoker manoDePoker) {
+    public boolean realizarValidacion(ManoDePoker manoDePoker, int cantidadDescartes) {
         return generador.validar();
     }
 }

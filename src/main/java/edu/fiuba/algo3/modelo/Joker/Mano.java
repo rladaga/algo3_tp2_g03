@@ -13,7 +13,7 @@ public class Mano implements CondicionActivacion{
     }
 
     @Override
-    public boolean realizarValidacion(ManoDePoker manoDePoker){
+    public boolean realizarValidacion(ManoDePoker manoDePoker, int cantidadDescartes){
         return manoObjetivo.esIgual(manoDePoker);
     }
 

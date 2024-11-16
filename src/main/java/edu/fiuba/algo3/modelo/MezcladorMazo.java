@@ -6,7 +6,6 @@ import java.util.ArrayList;
 
 public class MezcladorMazo {
 
-    public void mezclar(ArrayList<Carta> cartas){
-        Collections.shuffle(cartas);
+    public void mezclar(ArrayList<Carta> cartas){ Collections.shuffle(cartas);
     }   
 }

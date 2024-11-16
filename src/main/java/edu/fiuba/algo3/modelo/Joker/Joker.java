@@ -32,11 +32,11 @@ public class Joker {
         this.condicionActivacion.add(condicionActivacion);
     }
 
-    public void modificarPuntuacion(PuntuacionTirada puntuacion, ManoDePoker manoJugada){
+    public void modificarPuntuacion(PuntuacionTirada puntuacion, ManoDePoker manoJugada, int cantidadDescartes){
         boolean valido = true;
 
         for (CondicionActivacion condicionActivacion : condicionActivacion) {
-            if (!condicionActivacion.realizarValidacion(manoJugada)){
+            if (!condicionActivacion.realizarValidacion(manoJugada, cantidadDescartes)){
                 valido = false;
             }
         }

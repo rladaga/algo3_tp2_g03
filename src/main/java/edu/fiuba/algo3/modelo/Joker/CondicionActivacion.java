@@ -4,5 +4,5 @@ import edu.fiuba.algo3.modelo.ManoDePoker.ManoDePoker;
 
 public interface CondicionActivacion {
 
-    boolean realizarValidacion(ManoDePoker manoDePoker);
+    boolean realizarValidacion(ManoDePoker manoDePoker, int cantidadDescartes);
 }
