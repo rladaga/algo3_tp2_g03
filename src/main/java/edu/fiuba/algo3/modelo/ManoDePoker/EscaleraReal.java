@@ -4,6 +4,10 @@ import edu.fiuba.algo3.modelo.Carta.Carta;
 import java.util.ArrayList;
 
 public class EscaleraReal extends ManoDePoker {
+    public EscaleraReal() {
+        this.mejoraMano = new MejoraMano();
+    }
+
     @Override
     public boolean esValida(ArrayList<Carta> mano) {
         return esColor(mano) && esEscaleraReal(mano);
@@ -11,12 +15,12 @@ public class EscaleraReal extends ManoDePoker {
 
     @Override
     public int calcularPuntos() {
-        return 100;
+        return mejoraMano.agregarPuntuacionBase(100);
     }
 
     @Override
     public int calcularMultiplicador() {
-        return 8;
+        return mejoraMano.agregarMultiplicadorBase(8);
     }
 
     private boolean esColor(ArrayList<Carta> mano) {
@@ -29,12 +33,6 @@ public class EscaleraReal extends ManoDePoker {
             indices.add(carta.obtenerIndice());
         }
         return new Escalera().esEscaleraSuperiorConAs(indices);
-    }
-
-    @Override
-    public ManoDePokerModificada aplicarMultiplicador(int multiplicador){
-        ManoDePokerModificada tipoDeMano = new ManoDePokerModificada(this, multiplicador);
-        return tipoDeMano;
     }
 
     @Override

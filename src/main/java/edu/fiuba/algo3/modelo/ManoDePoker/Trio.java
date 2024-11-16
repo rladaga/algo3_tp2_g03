@@ -4,6 +4,11 @@ import edu.fiuba.algo3.modelo.Carta.Carta;
 import java.util.ArrayList;
 
 public class Trio extends ManoDePoker {
+    public Trio() {
+        this.mejoraMano = new MejoraMano();
+    }
+
+
     @Override
     public boolean esValida(ArrayList<Carta> mano) {
         return cuentaRepeticiones(mano, 3) == 1;
@@ -11,18 +16,12 @@ public class Trio extends ManoDePoker {
 
     @Override
     public int calcularPuntos() {
-        return 30;
+        return mejoraMano.agregarPuntuacionBase(30);
     }
 
     @Override
     public int calcularMultiplicador() {
-        return 3;
-    }
-
-    @Override
-    public ManoDePokerModificada aplicarMultiplicador(int multiplicador){
-        ManoDePokerModificada tipoDeMano = new ManoDePokerModificada(this, multiplicador);
-        return tipoDeMano;
+        return mejoraMano.agregarMultiplicadorBase(3);
     }
 
     @Override

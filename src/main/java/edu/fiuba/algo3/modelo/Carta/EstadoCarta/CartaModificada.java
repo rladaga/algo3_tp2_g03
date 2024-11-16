@@ -1,15 +1,15 @@
-package edu.fiuba.algo3.modelo.Carta.Estado;
+package edu.fiuba.algo3.modelo.Carta.EstadoCarta;
 
 import edu.fiuba.algo3.modelo.PuntuacionTirada;
-import edu.fiuba.algo3.modelo.Modificador.Modificador;
+import edu.fiuba.algo3.modelo.Carta.ModificadorCarta.ModificadorCarta;
 
-public class Modificado implements Estado{
+public class CartaModificada implements EstadoCarta {
 
     private final int puntuacion;
-    private Modificador modificador;
+    private ModificadorCarta modificador;
 
 
-    public Modificado(int puntuacion, Modificador modificador){
+    public CartaModificada(int puntuacion, ModificadorCarta modificador){
         this.puntuacion = puntuacion;
         this.modificador = modificador;
     }

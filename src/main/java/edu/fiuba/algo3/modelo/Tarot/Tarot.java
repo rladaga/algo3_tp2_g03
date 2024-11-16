@@ -8,7 +8,5 @@ public abstract class Tarot {
     
     public void aplicarEfecto(Carta carta){}
 
-    public ManoDePoker aplicarEfecto(ManoDePoker manoDePoker){
-        return manoDePoker;
-    };
+    public void aplicarEfecto(ManoDePoker manoDePoker){};
 }

@@ -2,6 +2,7 @@ package edu.fiuba.algo3.entrega_1;
 
 import edu.fiuba.algo3.modelo.*;
 import edu.fiuba.algo3.modelo.Carta.Carta;
+import edu.fiuba.algo3.modelo.Carta.ModificadorCarta.ModificadorPuntos;
 import edu.fiuba.algo3.modelo.Carta.Palo.*;
 import edu.fiuba.algo3.modelo.Carta.Valor.*;
 import edu.fiuba.algo3.modelo.Joker.*;
@@ -10,7 +11,6 @@ import edu.fiuba.algo3.modelo.Tarot.TarotManoPoker;
 import edu.fiuba.algo3.modelo.ManoDePoker.Escalera;
 import edu.fiuba.algo3.modelo.ManoDePoker.ManoDePoker;
 import org.junit.jupiter.api.Test;
-import edu.fiuba.algo3.modelo.Modificador.*;
 
 import java.util.ArrayList;
 
@@ -139,9 +139,9 @@ public class BalatroTest {
     @Test
     public void ModificarUnaManoConTarotYCambiaSuMultiplicadorPor6(){
         ManoDePoker manoDePoker = new Escalera();
-        TarotManoPoker tarot = new TarotManoPoker(6);
+        TarotManoPoker tarot = new TarotManoPoker(new Escalera() , 15, 2);
 
-        manoDePoker = tarot.aplicarEfecto(manoDePoker);
+        tarot.aplicarEfecto(manoDePoker);
 
         assertEquals(6, manoDePoker.calcularMultiplicador());
 

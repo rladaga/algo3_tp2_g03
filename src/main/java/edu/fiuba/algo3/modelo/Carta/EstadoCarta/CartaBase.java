@@ -1,8 +1,8 @@
-package edu.fiuba.algo3.modelo.Carta.Estado;
+package edu.fiuba.algo3.modelo.Carta.EstadoCarta;
 
 import edu.fiuba.algo3.modelo.PuntuacionTirada;
 
-public class Base implements Estado {
+public class CartaBase implements EstadoCarta {
 
     @Override
     public void modificarPuntuacion (PuntuacionTirada puntuacionTirada, int puntuacionCarta){

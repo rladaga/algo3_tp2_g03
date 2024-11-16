@@ -5,6 +5,10 @@ import java.util.ArrayList;
 import java.util.Collections;
 
 public class Escalera extends ManoDePoker {
+    public Escalera() {
+        this.mejoraMano = new MejoraMano();
+    }
+
     @Override
     public boolean esValida(ArrayList<Carta> mano) {
        
@@ -44,18 +48,12 @@ public class Escalera extends ManoDePoker {
 
     @Override
     public int calcularPuntos() {
-        return 30;
+        return mejoraMano.agregarPuntuacionBase(30);
     }
 
     @Override
     public int calcularMultiplicador() {
-        return 4;
-    }
-
-    @Override
-    public ManoDePokerModificada aplicarMultiplicador(int multiplicador){
-        ManoDePokerModificada tipoDeMano = new ManoDePokerModificada(this, multiplicador);
-        return tipoDeMano;
+        return mejoraMano.agregarMultiplicadorBase(4);
     }
 
     @Override
