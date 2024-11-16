@@ -1,7 +1,5 @@
 package edu.fiuba.algo3.modelo.ManoDePoker;
 
-import edu.fiuba.algo3.modelo.PuntuacionTirada;
-
 public class MejoraMano {
 
     private int puntuacionAgregada;

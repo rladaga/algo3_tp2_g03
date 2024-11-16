@@ -6,6 +6,7 @@ import java.util.List;
 import edu.fiuba.algo3.modelo.Carta.Carta;
 import edu.fiuba.algo3.modelo.Joker.*;
 import edu.fiuba.algo3.modelo.ManoDePoker.*;
+import edu.fiuba.algo3.modelo.PuntuacionTirada.PuntuacionTirada;
 
 
 public class EvaluadorMano {

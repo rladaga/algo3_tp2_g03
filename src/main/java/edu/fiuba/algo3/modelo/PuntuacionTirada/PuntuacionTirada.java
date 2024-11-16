@@ -1,4 +1,4 @@
-package edu.fiuba.algo3.modelo;
+package edu.fiuba.algo3.modelo.PuntuacionTirada;
 
 public class PuntuacionTirada {
 
@@ -15,29 +15,11 @@ public class PuntuacionTirada {
         this.multiplicador = 0;
     }
 
-    //TODO: arreglar esto (volarlo)
-    public void agregar(String valorAModificar, int valor){
-        if(valorAModificar == "PUNTOS"){
-            this.puntuacion += valor;
-        }
-        else if(valorAModificar == "MULTIPLICADOR"){
-            this.multiplicador += valor;
-        }
-    }
-    //TODO: arreglar esto (volarlo)
-    public void multiplicar(String valorAModificar, int valor) {
-        if (valorAModificar == "PUNTOS") {
-            this.puntuacion *= valor;
-        } else if (valorAModificar == "MULTIPLICADOR") {
-            this.multiplicador *= valor;
-        }
-    }
-
-    public void agregarPuntos(int puntos){
+    public void sumarPuntos(int puntos){
         this.puntuacion += puntos;
     }
 
-    public void agregarMultiplicador(int multiplicador){
+    public void sumarMultiplicador(int multiplicador){
         this.multiplicador += multiplicador;
     }
 

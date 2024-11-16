@@ -2,7 +2,9 @@ package edu.fiuba.algo3.entrega_1;
 
 import edu.fiuba.algo3.modelo.*;
 import edu.fiuba.algo3.modelo.Carta.Carta;
-import edu.fiuba.algo3.modelo.Carta.ModificadorCarta.ModificadorPuntos;
+import edu.fiuba.algo3.modelo.PuntuacionTirada.EstrategiaModificacion.MultiplicarMultiplicador;
+import edu.fiuba.algo3.modelo.PuntuacionTirada.EstrategiaModificacion.SumarMultiplicador;
+import edu.fiuba.algo3.modelo.PuntuacionTirada.EstrategiaModificacion.SumarPuntos;
 import edu.fiuba.algo3.modelo.Carta.Palo.*;
 import edu.fiuba.algo3.modelo.Carta.Valor.*;
 import edu.fiuba.algo3.modelo.Joker.*;
@@ -17,7 +19,7 @@ import java.util.ArrayList;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-public class BalatroTest {
+public class BalatroTest{
 
     @Test
     public void jugadorPoseeCartasSuficientesParaEmpezarElJuego() {
@@ -115,11 +117,11 @@ public class BalatroTest {
         manoEscaleraBajaAS.add(new Carta(new Trebol(), new Cuatro()));
         manoEscaleraBajaAS.add(new Carta(new Picas(), new Cinco()));
 
-        orden1.add(new JokerManoSumador("MULTIPLICADOR", 10, new Escalera()));
-        orden1.add(new JokerManoMultiplicador("MULTIPLICADOR", 2, new Escalera()));
+        orden1.add(new JokerMano(new SumarMultiplicador(), 10, new Escalera()));
+        orden1.add(new JokerMano(new MultiplicarMultiplicador(), 2, new Escalera()));
 
-        orden2.add(new JokerManoMultiplicador("MULTIPLICADOR", 2, new Escalera()));
-        orden2.add(new JokerManoSumador("MULTIPLICADOR", 10, new Escalera()));
+        orden2.add(new JokerMano(new MultiplicarMultiplicador(), 2, new Escalera()));
+        orden2.add(new JokerMano(new SumarMultiplicador(), 10, new Escalera()));
 
         assertEquals(evaluadorMano.evaluar(manoEscaleraBajaAS, orden1), 1540);
         assertEquals(evaluadorMano.evaluar(manoEscaleraBajaAS, orden2), 990);
@@ -129,7 +131,7 @@ public class BalatroTest {
     public void modificarUnaCartaConTarotYCambiaSusPuntosPor10(){
 
         Carta carta = new Carta(new Picas(), new As());
-        TarotCarta tarot = new TarotCarta(10, new ModificadorPuntos());
+        TarotCarta tarot = new TarotCarta(10, new SumarPuntos());
 
         tarot.aplicarEfecto(carta);
 

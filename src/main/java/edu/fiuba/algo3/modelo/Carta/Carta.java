@@ -3,18 +3,18 @@ package edu.fiuba.algo3.modelo.Carta;
 import edu.fiuba.algo3.modelo.Carta.Palo.*;
 import edu.fiuba.algo3.modelo.Carta.Valor.*;
 import edu.fiuba.algo3.modelo.Carta.EstadoCarta.*;
-import edu.fiuba.algo3.modelo.PuntuacionTirada;
-import edu.fiuba.algo3.modelo.Carta.ModificadorCarta.ModificadorCarta;
+import edu.fiuba.algo3.modelo.PuntuacionTirada.PuntuacionTirada;
+import edu.fiuba.algo3.modelo.PuntuacionTirada.EstrategiaModificacion.EstrategiaModificacion;
 
 public class Carta {
     private final Valor valor;
     private final Palo palo;
-    private EstadoCarta estadoCarta;
+    private Estado estadoCarta;
 
     public Carta(Palo palo, Valor valor) {
         this.valor = valor;
         this.palo = palo;
-        this.estadoCarta = new CartaBase();
+        this.estadoCarta = new Base();
 
     }
 
@@ -34,8 +34,8 @@ public class Carta {
         estadoCarta.modificarPuntuacion(puntuacion, valor.puntosBase());
     }
 
-    public void aplicarTarot(int puntuacionNueva, ModificadorCarta modificador) {
-        this.estadoCarta = new CartaModificada(puntuacionNueva, modificador);
+    public void aplicarTarot(int puntuacionNueva, EstrategiaModificacion modificador) {
+        this.estadoCarta = new Modificada(puntuacionNueva, modificador);
     }
 
 
