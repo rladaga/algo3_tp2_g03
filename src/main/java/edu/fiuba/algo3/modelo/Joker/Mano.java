@@ -4,22 +4,17 @@ import edu.fiuba.algo3.modelo.PuntuacionTirada.EstrategiaModificacion.Estrategia
 import edu.fiuba.algo3.modelo.PuntuacionTirada.PuntuacionTirada;
 import edu.fiuba.algo3.modelo.ManoDePoker.ManoDePoker;
 
-public class JokerMano extends Joker{
+public class Mano implements CondicionActivacion{
 
     private ManoDePoker manoObjetivo;
 
-    public JokerMano(EstrategiaModificacion modificador, int modificacion, ManoDePoker manoObjetivo) {
-        super(modificador, modificacion);
+    public Mano(ManoDePoker manoObjetivo) {
         this.manoObjetivo = manoObjetivo;
     }
-    @Override
-    public void modificarPuntuacion(PuntuacionTirada puntuacion, ManoDePoker manoDePoker) {
-        if(realizarValidacion(manoDePoker)){
-            modificador.modificar(puntuacion, modificacion);
-        }
-    }
 
-    private boolean realizarValidacion(ManoDePoker manoDePoker){
+    @Override
+    public boolean realizarValidacion(ManoDePoker manoDePoker){
         return manoObjetivo.esIgual(manoDePoker);
     }
+
 }

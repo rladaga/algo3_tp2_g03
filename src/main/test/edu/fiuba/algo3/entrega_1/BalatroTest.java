@@ -117,14 +117,14 @@ public class BalatroTest{
         manoEscaleraBajaAS.add(new Carta(new Trebol(), new Cuatro()));
         manoEscaleraBajaAS.add(new Carta(new Picas(), new Cinco()));
 
-        orden1.add(new JokerMano(new SumarMultiplicador(), 10, new Escalera()));
-        orden1.add(new JokerMano(new MultiplicarMultiplicador(), 2, new Escalera()));
+        orden1.add(new Joker("Comodin", "+10", new SumarMultiplicador(), 10, new Mano(new Escalera())));
+        orden1.add(new Joker("Comodin", "x2", new MultiplicarMultiplicador(), 2, new Mano(new Escalera())));
 
-        orden2.add(new JokerMano(new MultiplicarMultiplicador(), 2, new Escalera()));
-        orden2.add(new JokerMano(new SumarMultiplicador(), 10, new Escalera()));
+        orden2.add(new Joker("Comodin", "+10", new MultiplicarMultiplicador(), 2, new Mano(new Escalera())));
+        orden2.add(new Joker("Comodin", "x2", new SumarMultiplicador(), 10, new Mano(new Escalera())));
 
-        assertEquals(evaluadorMano.evaluar(manoEscaleraBajaAS, orden1), 1540);
-        assertEquals(evaluadorMano.evaluar(manoEscaleraBajaAS, orden2), 990);
+        assertEquals(1540, evaluadorMano.evaluar(manoEscaleraBajaAS, orden1));
+        assertEquals(990, evaluadorMano.evaluar(manoEscaleraBajaAS, orden2));
     }
 
     @Test

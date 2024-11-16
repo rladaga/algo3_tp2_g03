@@ -34,4 +34,8 @@ public class PuntuacionTirada {
     public int obtenerPuntuacion(){
         return this.puntuacion*this.multiplicador;
     }
+
+    public int obtenerMultiplicador(){
+        return this.multiplicador;
+    }
 }
