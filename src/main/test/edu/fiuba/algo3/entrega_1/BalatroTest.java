@@ -24,7 +24,8 @@ public class BalatroTest{
     @Test
     public void jugadorPoseeCartasSuficientesParaEmpezarElJuego() {
         Mazo mazo = new Mazo();
-        Jugador jugador = new Jugador(mazo);
+        Descartes descartes = new Descartes(3);
+        Jugador jugador = new Jugador(mazo, descartes);
 
 
         assertTrue(jugador.cartasEnMazo() >= 8);
@@ -33,7 +34,8 @@ public class BalatroTest{
     @Test
     public void jugadorSeLeReparten8CartasDelMazo(){
         Mazo mazo = new Mazo();
-        Jugador jugador = new Jugador(mazo);
+        Descartes descartes = new Descartes(3);
+        Jugador jugador = new Jugador(mazo, descartes);
         jugador.iniciarTurno();
 
         assertEquals(8, jugador.cantidadCartasEnMano());
@@ -43,7 +45,8 @@ public class BalatroTest{
     @Test
     public void sePuedeJugarUnaManoDeUnMazo(){
         Mazo mazo = new Mazo();
-        Jugador jugador = new Jugador(mazo);
+        Descartes descartes = new Descartes(3);
+        Jugador jugador = new Jugador(mazo, descartes);
         jugador.iniciarTurno();
 
         for (int i = 0; i < 4; i++) {
@@ -117,11 +120,11 @@ public class BalatroTest{
         manoEscaleraBajaAS.add(new Carta(new Trebol(), new Cuatro()));
         manoEscaleraBajaAS.add(new Carta(new Picas(), new Cinco()));
 
-        orden1.add(new Joker("Comodin", "+10", new SumarMultiplicador(), 10, new Mano(new Escalera())));
-        orden1.add(new Joker("Comodin", "x2", new MultiplicarMultiplicador(), 2, new Mano(new Escalera())));
+        orden1.add(new JokerMano("Comodin", "+10", new SumarMultiplicador(), 10, new Escalera()));
+        orden1.add(new JokerMano("Comodin", "x2", new MultiplicarMultiplicador(), 2, new Escalera()));
 
-        orden2.add(new Joker("Comodin", "+10", new MultiplicarMultiplicador(), 2, new Mano(new Escalera())));
-        orden2.add(new Joker("Comodin", "x2", new SumarMultiplicador(), 10, new Mano(new Escalera())));
+        orden2.add(new JokerMano("Comodin", "+10", new MultiplicarMultiplicador(), 2, new Escalera()));
+        orden2.add(new JokerMano("Comodin", "x2", new SumarMultiplicador(), 10, new Escalera()));
 
         assertEquals(1540, evaluadorMano.evaluar(manoEscaleraBajaAS, orden1));
         assertEquals(990, evaluadorMano.evaluar(manoEscaleraBajaAS, orden2));

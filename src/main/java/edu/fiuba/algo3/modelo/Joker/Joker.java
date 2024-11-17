@@ -8,42 +8,21 @@ import java.util.ArrayList;
 
 public class Joker {
 
-    protected EstrategiaModificacion modificador;
-    protected int modificacion;
     protected String nombre;
     protected String descripcion;
-    protected ArrayList<CondicionActivacion> condicionActivacion;
+    protected EstrategiaModificacion modificador;
+    protected int modificacion;
 
 
-    public Joker(String nombre, String descripcion, EstrategiaModificacion modificador, int modificacion, ArrayList<CondicionActivacion> condicionActivacion) {
+    public Joker(String nombre, String descripcion, EstrategiaModificacion modificador, int modificacion) {
         this.nombre = nombre;
         this.descripcion = descripcion;
         this.modificador = modificador;
         this.modificacion = modificacion;
-        this.condicionActivacion = condicionActivacion;
     }
 
-    public Joker(String nombre, String descripcion, EstrategiaModificacion modificador, int modificacion, CondicionActivacion condicionActivacion) {
-        this.nombre = nombre;
-        this.descripcion = descripcion;
-        this.modificador = modificador;
-        this.modificacion = modificacion;
-        this.condicionActivacion = new ArrayList<CondicionActivacion>();
-        this.condicionActivacion.add(condicionActivacion);
-    }
-
-    public void modificarPuntuacion(PuntuacionTirada puntuacion, ManoDePoker manoJugada, int cantidadDescartes){
-        boolean valido = true;
-
-        for (CondicionActivacion condicionActivacion : condicionActivacion) {
-            if (!condicionActivacion.realizarValidacion(manoJugada, cantidadDescartes)){
-                valido = false;
-            }
-        }
-
-        if (valido){
-            modificador.modificar(puntuacion, modificacion);
-        }
+    public void modificarPuntuacion(PuntuacionTirada puntuacion, ManoDePoker manoJugada){
+        modificador.modificar(puntuacion, modificacion);
     }
 
 }

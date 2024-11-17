@@ -38,4 +38,8 @@ public class PuntuacionTirada {
     public int obtenerMultiplicador(){
         return this.multiplicador;
     }
+
+    public int obtenerPuntos() {
+        return this.puntuacion;
+    }
 }
