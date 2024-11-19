@@ -58,17 +58,17 @@ public class BalatroTest {
         assertEquals(220, evaluadorMano.evaluar(manoEscaleraBajaAS, sinComodines));
     }
     @Test
-    public void VerificarQueComodinSume8ALosPuntosPorDescarte() {
+    public void VerificarQueComodinSume10ALosPuntosPorDescarte() {
         Descartes descartes = new Descartes(4);
         PuntuacionTirada puntuacionTirada = new PuntuacionTirada(10, 2);
-        Joker comodin = new JokerDescarte("comodin", "puntos +8", new SumarPuntos(), 8, descartes);
+        Joker comodin = new JokerDescarte("comodin", "puntos +10", new SumarPuntos(), 10, descartes);
 
         descartes.permitirDescarte();
         descartes.permitirDescarte();
         comodin.modificarPuntuacion(puntuacionTirada, new Color());
 
 
-        assertEquals(26, puntuacionTirada.obtenerPuntos());
+        assertEquals(30, puntuacionTirada.obtenerPuntos());
     }
 
     @Test
