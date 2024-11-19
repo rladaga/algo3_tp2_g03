@@ -6,7 +6,7 @@ import edu.fiuba.algo3.modelo.Carta.Palo.Diamante;
 import edu.fiuba.algo3.modelo.Carta.Palo.Picas;
 import edu.fiuba.algo3.modelo.Carta.Palo.Trebol;
 import edu.fiuba.algo3.modelo.Carta.Valor.*;
-import edu.fiuba.algo3.modelo.Descartes;
+import edu.fiuba.algo3.modelo.Descarte;
 import edu.fiuba.algo3.modelo.EvaluadorMano;
 import edu.fiuba.algo3.modelo.GeneradorRandom.GeneradorRandom;
 import edu.fiuba.algo3.modelo.GeneradorRandom.NumeroAleatorioMock;
@@ -59,7 +59,7 @@ public class BalatroTest {
     }
     @Test
     public void VerificarQueComodinSume10ALosPuntosPorDescarte() {
-        Descartes descartes = new Descartes(4);
+        Descarte descartes = new Descarte(4);
         PuntuacionTirada puntuacionTirada = new PuntuacionTirada(10, 2);
         Joker comodin = new JokerDescarte("comodin", "puntos +10", new SumarPuntos(), 10, descartes);
 

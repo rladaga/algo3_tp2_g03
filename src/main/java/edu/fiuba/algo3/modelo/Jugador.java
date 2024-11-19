@@ -8,9 +8,9 @@ public class Jugador {
     private Mazo mazo;
     private ArrayList<Carta> cartasEnMano;
     private ArrayList<Carta> cartasAJugar;
-    private Descartes descartes;
+    private Descarte descartes;
 
-    public Jugador(Mazo mazo, Descartes descartes){
+    public Jugador(Mazo mazo, Descarte descartes){
         this.mazo = mazo;
         this.cartasAJugar = new ArrayList<>();
         this.cartasEnMano = new ArrayList<>();

@@ -1,10 +1,10 @@
 package edu.fiuba.algo3.modelo;
 
-public class Descartes {
+public class Descarte {
     private int limiteDescartes;
     private int descartesRealizados;
 
-    public Descartes(int limiteDescartes){
+    public Descarte(int limiteDescartes){
         this.limiteDescartes = limiteDescartes;
         this.descartesRealizados = 0;
     }
@@ -20,6 +20,11 @@ public class Descartes {
         return validacion;
     }
 
+    public void setearLimiteDescartes(int limiteDescartes){
+        this.limiteDescartes = limiteDescartes;
+        reiniciarDescartes();
+    }
+
     public void reiniciarDescartes() {
         this.descartesRealizados = 0;
     }
@@ -27,6 +32,4 @@ public class Descartes {
     public int descartesRealizados(){
         return descartesRealizados;
     }
-
-
 }
