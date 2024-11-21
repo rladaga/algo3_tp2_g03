@@ -1,45 +1,34 @@
 package edu.fiuba.algo3.modelo.PuntuacionTirada;
 
+import edu.fiuba.algo3.modelo.Modificador.*;
+
 public class PuntuacionTirada {
 
-    private int puntuacion;
-    private int multiplicador;
+    private Puntos puntos;
+    private Multiplicador multiplicador;
 
     public PuntuacionTirada(int puntuacion, int multiplicador){
-        this.puntuacion = puntuacion;
-        this.multiplicador = multiplicador;
+        this.puntos = new Puntos(puntuacion);
+        this.multiplicador = new Multiplicador(multiplicador);
     }
 
-    public PuntuacionTirada() {
-        this.puntuacion = 0;
-        this.multiplicador = 0;
+    public void modificarPuntos(Modificador modificador) {
+        this.puntos.modificar(modificador);
     }
 
-    public void sumarPuntos(int puntos){
-        this.puntuacion += puntos;
-    }
-
-    public void sumarMultiplicador(int multiplicador){
-        this.multiplicador += multiplicador;
-    }
-
-    public void multiplicarPuntos(int factor){
-        this.puntuacion *= factor;
-    }
-
-    public void multiplicarMultiplicador(int factor){
-        this.multiplicador *= factor;
+    public void modificarMultiplicador(Modificador modificador) {
+        this.multiplicador.modificar(modificador);
     }
 
     public int obtenerPuntuacion(){
-        return this.puntuacion*this.multiplicador;
+        return this.puntos.multiplicarCon(this.multiplicador);
     }
 
     public int obtenerMultiplicador(){
-        return this.multiplicador;
+        return this.multiplicador.obtenerMultiplicador();
     }
 
     public int obtenerPuntos() {
-        return this.puntuacion;
+        return this.puntos.obtenerPuntos();
     }
 }

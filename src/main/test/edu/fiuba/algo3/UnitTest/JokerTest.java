@@ -1,9 +1,10 @@
 package edu.fiuba.algo3.UnitTest;
 
 import edu.fiuba.algo3.modelo.Descarte;
+import edu.fiuba.algo3.modelo.EstrategiaModificacion.*;
 import edu.fiuba.algo3.modelo.Joker.*;
 import edu.fiuba.algo3.modelo.ManoDePoker.*;
-import edu.fiuba.algo3.modelo.PuntuacionTirada.EstrategiaModificacion.*;
+import edu.fiuba.algo3.modelo.Modificador.*;
 import edu.fiuba.algo3.modelo.PuntuacionTirada.PuntuacionTirada;
 import org.junit.jupiter.api.Test;
 
@@ -15,7 +16,7 @@ public class JokerTest {
     public void test01JokerBaseSeActivaSiempre(){
 
         PuntuacionTirada puntuacionTirada = new PuntuacionTirada(10,10);
-        Joker comodin = new Joker("Comodin Base", "multiplicador + 10", new SumarMultiplicador(), 10);
+        Joker comodin = new Joker("Comodin Base", "multiplicador + 10", new ModificarMultiplicador(), new Sumar(10));
 
         comodin.modificarPuntuacion(puntuacionTirada, new Color());
 
@@ -25,7 +26,7 @@ public class JokerTest {
     @Test
     public void test02JokerManoSeActivaSiManoEsIgual(){
         PuntuacionTirada puntuacionTirada = new PuntuacionTirada(10,10);
-        Joker comodin = new JokerMano("Comodin", "multiplicador * 3", new MultiplicarMultiplicador(), 3, new Color());
+        Joker comodin = new JokerMano("Comodin", "multiplicador * 3", new ModificarMultiplicador(), new Multiplicar(3), new Color());
 
         comodin.modificarPuntuacion(puntuacionTirada, new Color());
 
@@ -35,7 +36,7 @@ public class JokerTest {
     @Test
     public void test03JokerManoNoSeActivaSiManoEsDistinta(){
         PuntuacionTirada puntuacionTirada = new PuntuacionTirada(10,10);
-        Joker comodin = new JokerMano("Comodin", "multiplicador * 3", new MultiplicarMultiplicador(), 3, new Escalera());
+        Joker comodin = new JokerMano("Comodin", "multiplicador * 3", new ModificarMultiplicador(), new Multiplicar(3), new Escalera());
 
         comodin.modificarPuntuacion(puntuacionTirada, new Color());
 
@@ -48,7 +49,7 @@ public class JokerTest {
 
         Descarte descartes = new Descarte(4);
         PuntuacionTirada puntuacionTirada = new PuntuacionTirada(10, 2);
-        Joker comodin = new JokerDescarte("comodin", "puntos +8", new SumarPuntos(), 8, descartes);
+        Joker comodin = new JokerDescarte("comodin", "puntos +8", new ModificarPuntos(), new Sumar(8), descartes);
 
         comodin.modificarPuntuacion(puntuacionTirada, new Color());
 
@@ -60,7 +61,7 @@ public class JokerTest {
 
         Descarte descartes = new Descarte(4);
         PuntuacionTirada puntuacionTirada = new PuntuacionTirada(10, 2);
-        Joker comodin = new JokerDescarte("comodin", "puntos +8", new SumarPuntos(), 8, descartes);
+        Joker comodin = new JokerDescarte("comodin", "puntos +8", new ModificarPuntos(), new Sumar(8), descartes);
 
         descartes.permitirDescarte();
         descartes.permitirDescarte();
@@ -74,8 +75,8 @@ public class JokerTest {
     public void test06JokerCombinadoPuedeNoActivarSusEfectos(){
         Descarte descartes = new Descarte(4);
         PuntuacionTirada puntuacionTirada = new PuntuacionTirada(10, 2);
-        Joker comodinDescarte = new JokerDescarte("comodin", "puntos +8", new SumarPuntos(), 8, descartes);
-        Joker comodinMano = new JokerMano("Comodin", "multiplicador * 3", new MultiplicarMultiplicador(), 3, new Color());
+        Joker comodinDescarte = new JokerDescarte("comodin", "puntos +8", new ModificarPuntos(), new Sumar(8), descartes);
+        Joker comodinMano = new JokerMano("Comodin", "multiplicador * 3", new ModificarMultiplicador(), new Multiplicar(3), new Color());
         Joker comodinCombinado = new JokerCombinado("comodin combinado", "puntos +8 y mult *3", comodinDescarte, comodinMano);
 
         comodinCombinado.modificarPuntuacion(puntuacionTirada, new Escalera());
@@ -88,8 +89,8 @@ public class JokerTest {
     public void test07JokerCombinadoPuedeActivarUnoDeSusEfectos(){
         Descarte descartes = new Descarte(4);
         PuntuacionTirada puntuacionTirada = new PuntuacionTirada(10, 2);
-        Joker comodinDescarte = new JokerDescarte("comodin", "puntos +8", new SumarPuntos(), 8, descartes);
-        Joker comodinMano = new JokerMano("Comodin", "multiplicador * 3", new MultiplicarMultiplicador(), 3, new Color());
+        Joker comodinDescarte = new JokerDescarte("comodin", "puntos +8", new ModificarPuntos(), new Sumar(8), descartes);
+        Joker comodinMano = new JokerMano("Comodin", "multiplicador * 3", new ModificarMultiplicador(), new Multiplicar(3), new Color());
         Joker comodinCombinado = new JokerCombinado("comodin combinado", "puntos +8 y mult *3", comodinDescarte, comodinMano);
 
         comodinCombinado.modificarPuntuacion(puntuacionTirada, new Color());
@@ -102,8 +103,8 @@ public class JokerTest {
     public void test08JokerCombinadoPuedeActivarOtroDeSusEfectos(){
         Descarte descartes = new Descarte(4);
         PuntuacionTirada puntuacionTirada = new PuntuacionTirada(10, 2);
-        Joker comodinDescarte = new JokerDescarte("comodin", "puntos +8", new SumarPuntos(), 8, descartes);
-        Joker comodinMano = new JokerMano("Comodin", "multiplicador * 3", new MultiplicarMultiplicador(), 3, new Color());
+        Joker comodinDescarte = new JokerDescarte("comodin", "puntos +8", new ModificarPuntos(), new Sumar(8), descartes);
+        Joker comodinMano = new JokerMano("Comodin", "multiplicador * 3", new ModificarMultiplicador(), new Multiplicar(3), new Color());
         Joker comodinCombinado = new JokerCombinado("comodin combinado", "puntos +8 y mult *3", comodinDescarte, comodinMano);
 
         descartes.permitirDescarte();
@@ -118,8 +119,8 @@ public class JokerTest {
     public void test09JokerCombinadoPuedeActivarAmbosEfectos(){
         Descarte descartes = new Descarte(4);
         PuntuacionTirada puntuacionTirada = new PuntuacionTirada(10, 2);
-        Joker comodinDescarte = new JokerDescarte("comodin", "puntos +8", new SumarPuntos(), 8, descartes);
-        Joker comodinMano = new JokerMano("Comodin", "multiplicador * 3", new MultiplicarMultiplicador(), 3, new Color());
+        Joker comodinDescarte = new JokerDescarte("comodin", "puntos +8", new ModificarPuntos(), new Sumar(8), descartes);
+        Joker comodinMano = new JokerMano("Comodin", "multiplicador * 3", new ModificarMultiplicador(), new Multiplicar(3), new Color());
         Joker comodinCombinado = new JokerCombinado("comodin combinado", "puntos +8 y mult *3", comodinDescarte, comodinMano);
 
         descartes.permitirDescarte();

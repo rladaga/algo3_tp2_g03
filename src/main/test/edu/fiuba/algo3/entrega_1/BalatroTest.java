@@ -2,12 +2,12 @@ package edu.fiuba.algo3.entrega_1;
 
 import edu.fiuba.algo3.modelo.*;
 import edu.fiuba.algo3.modelo.Carta.Carta;
-import edu.fiuba.algo3.modelo.PuntuacionTirada.EstrategiaModificacion.MultiplicarMultiplicador;
-import edu.fiuba.algo3.modelo.PuntuacionTirada.EstrategiaModificacion.SumarMultiplicador;
-import edu.fiuba.algo3.modelo.PuntuacionTirada.EstrategiaModificacion.SumarPuntos;
+import edu.fiuba.algo3.modelo.EstrategiaModificacion.ModificarMultiplicador;
+import edu.fiuba.algo3.modelo.EstrategiaModificacion.ModificarPuntos;
 import edu.fiuba.algo3.modelo.Carta.Palo.*;
 import edu.fiuba.algo3.modelo.Carta.Valor.*;
 import edu.fiuba.algo3.modelo.Joker.*;
+import edu.fiuba.algo3.modelo.Modificador.*;
 import edu.fiuba.algo3.modelo.Tarot.*;
 import edu.fiuba.algo3.modelo.Tarot.TarotManoPoker;
 import edu.fiuba.algo3.modelo.ManoDePoker.Escalera;
@@ -120,11 +120,11 @@ public class BalatroTest{
         manoEscaleraBajaAS.add(new Carta(new Trebol(), new Cuatro()));
         manoEscaleraBajaAS.add(new Carta(new Picas(), new Cinco()));
 
-        orden1.add(new JokerMano("Comodin", "+10", new SumarMultiplicador(), 10, new Escalera()));
-        orden1.add(new JokerMano("Comodin", "x2", new MultiplicarMultiplicador(), 2, new Escalera()));
+        orden1.add(new JokerMano("Comodin", "+10", new ModificarMultiplicador(), new Sumar(10), new Escalera()));
+        orden1.add(new JokerMano("Comodin", "x2", new ModificarMultiplicador(), new Multiplicar(2), new Escalera()));
 
-        orden2.add(new JokerMano("Comodin", "+10", new MultiplicarMultiplicador(), 2, new Escalera()));
-        orden2.add(new JokerMano("Comodin", "x2", new SumarMultiplicador(), 10, new Escalera()));
+        orden2.add(new JokerMano("Comodin", "+10", new ModificarMultiplicador(), new Multiplicar(2), new Escalera()));
+        orden2.add(new JokerMano("Comodin", "x2", new ModificarMultiplicador(), new Sumar(10), new Escalera()));
 
         assertEquals(1540, evaluadorMano.evaluar(manoEscaleraBajaAS, orden1));
         assertEquals(990, evaluadorMano.evaluar(manoEscaleraBajaAS, orden2));
@@ -134,7 +134,7 @@ public class BalatroTest{
     public void modificarUnaCartaConTarotYCambiaSusPuntosPor10(){
 
         Carta carta = new Carta(new Picas(), new As());
-        TarotCarta tarot = new TarotCarta(10, new SumarPuntos());
+        TarotCarta tarot = new TarotCarta(new Sumar(10), new ModificarPuntos());
 
         tarot.aplicarEfecto(carta);
 

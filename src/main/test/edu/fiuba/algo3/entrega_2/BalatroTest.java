@@ -13,9 +13,9 @@ import edu.fiuba.algo3.modelo.GeneradorRandom.NumeroAleatorioMock;
 import edu.fiuba.algo3.modelo.Joker.*;
 import edu.fiuba.algo3.modelo.ManoDePoker.Color;
 import edu.fiuba.algo3.modelo.ManoDePoker.Escalera;
-import edu.fiuba.algo3.modelo.PuntuacionTirada.EstrategiaModificacion.MultiplicarMultiplicador;
-import edu.fiuba.algo3.modelo.PuntuacionTirada.EstrategiaModificacion.SumarMultiplicador;
-import edu.fiuba.algo3.modelo.PuntuacionTirada.EstrategiaModificacion.SumarPuntos;
+import edu.fiuba.algo3.modelo.EstrategiaModificacion.ModificarMultiplicador;
+import edu.fiuba.algo3.modelo.EstrategiaModificacion.ModificarPuntos;
+import edu.fiuba.algo3.modelo.Modificador.*;
 import edu.fiuba.algo3.modelo.PuntuacionTirada.PuntuacionTirada;
 import org.junit.jupiter.api.Test;
 
@@ -30,7 +30,7 @@ public class BalatroTest {
     public void VerificarQueComodinSume8AlMultiplicador(){
 
         PuntuacionTirada punt = new PuntuacionTirada(2, 2);
-        Joker comodin = new Joker("Comodin", "+8", new SumarMultiplicador(), 8);
+        Joker comodin = new Joker("Comodin", "+8", new ModificarMultiplicador(), new Sumar(8));
 
         comodin.modificarPuntuacion(punt, new Color());
 
@@ -42,7 +42,7 @@ public class BalatroTest {
 
         EvaluadorMano evaluadorMano = new EvaluadorMano();
         ArrayList<Carta> manoEscaleraBajaAS = new ArrayList<>();
-        Joker comodin = new JokerMano("Comodin", "+3", new SumarMultiplicador(), 3, new Escalera());
+        Joker comodin = new JokerMano("Comodin", "+3", new ModificarMultiplicador(), new Sumar(3), new Escalera());
         ArrayList<Joker> comodines = new ArrayList<>();
         ArrayList<Joker> sinComodines = new ArrayList<>();
         comodines.add(comodin);
@@ -61,7 +61,7 @@ public class BalatroTest {
     public void VerificarQueComodinSume10ALosPuntosPorDescarte() {
         Descarte descartes = new Descarte(4);
         PuntuacionTirada puntuacionTirada = new PuntuacionTirada(10, 2);
-        Joker comodin = new JokerDescarte("comodin", "puntos +10", new SumarPuntos(), 10, descartes);
+        Joker comodin = new JokerDescarte("comodin", "puntos +10", new ModificarPuntos(), new Sumar(10), descartes);
 
         descartes.permitirDescarte();
         descartes.permitirDescarte();
@@ -77,8 +77,8 @@ public class BalatroTest {
         PuntuacionTirada puntuacionTirada2 = new PuntuacionTirada(10, 2);
         GeneradorRandom generadorTrue = new NumeroAleatorioMock(1);
         GeneradorRandom generadorFalse = new NumeroAleatorioMock(2);
-        Joker comodin1 = new JokerAleatorio("comodin", "multiplicador x15", new MultiplicarMultiplicador(), 15, generadorTrue);
-        Joker comodin2 = new JokerAleatorio("comodin", "multiplicador x15", new MultiplicarMultiplicador(), 15, generadorFalse);
+        Joker comodin1 = new JokerAleatorio("comodin", "multiplicador x15", new ModificarMultiplicador(), new Multiplicar(15), generadorTrue);
+        Joker comodin2 = new JokerAleatorio("comodin", "multiplicador x15", new ModificarMultiplicador(), new Multiplicar(15), generadorFalse);
 
         comodin1.modificarPuntuacion(puntuacionTirada1, new Color());
         comodin2.modificarPuntuacion(puntuacionTirada2, new Color());
@@ -93,8 +93,8 @@ public class BalatroTest {
         ArrayList<Carta> manoEscaleraBajaAS = new ArrayList<>();
         ArrayList<Joker> comodines = new ArrayList<>();
         ArrayList<Joker> sinComodines = new ArrayList<>();
-        Joker comodinAleatorio = new JokerAleatorio("Comodin", "Aleatorio", new SumarPuntos(), 20,new NumeroAleatorioMock(1));
-        Joker comodinMano = new JokerMano("comodin", "SiEsEscalera", new MultiplicarMultiplicador(), 3, new Escalera());
+        Joker comodinAleatorio = new JokerAleatorio("Comodin", "Aleatorio", new ModificarPuntos(), new Sumar(20),new NumeroAleatorioMock(1));
+        Joker comodinMano = new JokerMano("comodin", "SiEsEscalera", new ModificarMultiplicador(), new Multiplicar(3), new Escalera());
 
         Joker comodin = new JokerCombinado("Comodin", "EfectoDoble", comodinAleatorio, comodinMano);
         comodines.add(comodin);
