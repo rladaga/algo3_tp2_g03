@@ -3,7 +3,7 @@ import edu.fiuba.algo3.modelo.Carta.Carta;
 import edu.fiuba.algo3.modelo.EstrategiaModificacion.EstrategiaModificacion;
 import edu.fiuba.algo3.modelo.Modificador.Modificador;
 
-public class TarotCarta extends Tarot {
+public class TarotCarta  {
     private Modificador modificador;
     private EstrategiaModificacion estrategiaModificacion;
 
@@ -12,7 +12,7 @@ public class TarotCarta extends Tarot {
         this.estrategiaModificacion = estrategiaModificacion;
     }
 
-    @Override
+
     public void aplicarEfecto(Carta carta){
         carta.aplicarTarot(modificador, estrategiaModificacion);
     }

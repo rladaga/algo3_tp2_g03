@@ -12,7 +12,7 @@ public class JokerDescarte extends Joker{
     public JokerDescarte (String nombre, String descripcion, EstrategiaModificacion estrategiaModificacion, Modificador modificador, Descarte descartes){
         super(nombre, descripcion, estrategiaModificacion, modificador);
         this.descartes = descartes;
-
+        this.otroJoker = new JokerNulo();
     }
 
     @Override
@@ -20,6 +20,7 @@ public class JokerDescarte extends Joker{
         for(int i = 0 ; i < descartes.descartesRealizados() ; i++){
             estrategiaModificacion.modificar(puntuacionTirada, modificador);
         }
+        this.otroJoker.modificarPuntuacion(puntuacionTirada, manoDePoker);
     }
 
 }

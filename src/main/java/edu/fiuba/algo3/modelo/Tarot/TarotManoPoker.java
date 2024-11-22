@@ -2,7 +2,7 @@ package edu.fiuba.algo3.modelo.Tarot;
 
 import edu.fiuba.algo3.modelo.ManoDePoker.ManoDePoker;
 
-public class TarotManoPoker extends Tarot {
+public class TarotManoPoker {
     private ManoDePoker mano;
     private int puntuacion;
     private int multiplicador;
@@ -13,7 +13,7 @@ public class TarotManoPoker extends Tarot {
         this.mano = manoAModificar;
     }
 
-    @Override
+
     public void aplicarEfecto(ManoDePoker manoDePoker){
         if(mano.esIgual(manoDePoker)){
             manoDePoker.agregarMejora(puntuacion,multiplicador);

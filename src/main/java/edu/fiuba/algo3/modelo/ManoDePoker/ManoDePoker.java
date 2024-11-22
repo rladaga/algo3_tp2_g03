@@ -31,9 +31,42 @@ public abstract class ManoDePoker {
         return gruposEncontrados / repeticionesDeseadas;
     }
 
-    public abstract boolean esIgual(ManoDePoker mano);
 
     public void agregarMejora(int puntuacion, int multiplicador) {
         mejoraMano.mejorarMano(puntuacion, multiplicador);
     }
+
+    public abstract boolean esIgual(ManoDePoker mano);
+
+    public boolean esIgualACartaAlta(CartaAlta mano){
+        return false;
+    }
+    public boolean esIgualAPar(Par mano){
+        return false;
+    }
+    public boolean esIgualADoblePar(DoblePar mano){
+        return false;
+    }
+    public boolean esIgualATrio(Trio mano){
+        return false;
+    }
+    public boolean esIgualAPoker(Poker mano){
+        return false;
+    }
+    public boolean esIgualAColor(Color mano){
+        return false;
+    }
+    public boolean esIgualAEscalera(Escalera mano){
+        return false;
+    }
+    public boolean esIgualAFullHouse(FullHouse mano){
+        return false;
+    }
+    public boolean esIgualAEscaleraColor(EscaleraColor mano){
+        return false;
+    }
+    public boolean esIgualAEscaleraReal(EscaleraReal mano){
+        return false;
+    }
+
 }

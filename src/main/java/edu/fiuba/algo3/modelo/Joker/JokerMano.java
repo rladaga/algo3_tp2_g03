@@ -5,13 +5,14 @@ import edu.fiuba.algo3.modelo.Modificador.*;
 import edu.fiuba.algo3.modelo.PuntuacionTirada.PuntuacionTirada;
 import edu.fiuba.algo3.modelo.ManoDePoker.ManoDePoker;
 
-public class JokerMano extends Joker{
+public class JokerMano extends Joker {
 
     private ManoDePoker manoObjetivo;
 
     public JokerMano(String nombre, String descripcion, EstrategiaModificacion estrategiaModificacion, Modificador modificador, ManoDePoker manoObjetivo) {
         super(nombre, descripcion, estrategiaModificacion, modificador);
         this.manoObjetivo = manoObjetivo;
+        this.otroJoker = new JokerNulo();
     }
 
     @Override
@@ -19,5 +20,7 @@ public class JokerMano extends Joker{
         if (manoObjetivo.esIgual(manoDePoker)) {
             estrategiaModificacion.modificar(puntuacionTirada, modificador);
         }
+
+        this.otroJoker.modificarPuntuacion(puntuacionTirada, manoDePoker);
     }
 }

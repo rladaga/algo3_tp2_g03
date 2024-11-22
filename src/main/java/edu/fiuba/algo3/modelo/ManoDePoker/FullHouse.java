@@ -26,6 +26,11 @@ public class FullHouse extends ManoDePoker {
 
     @Override
     public boolean esIgual(ManoDePoker mano) {
-        return mano instanceof FullHouse;
+        return mano.esIgualAFullHouse(this);
+    }
+
+    @Override
+    public boolean esIgualAFullHouse(FullHouse mano){
+        return true;
     }
 }
