@@ -16,7 +16,7 @@ public class JokerTest {
     public void test01JokerBaseSeActivaSiempre(){
 
         PuntuacionTirada puntuacionTirada = new PuntuacionTirada(10,10);
-        Joker comodin = new Joker("Comodin Base", "multiplicador + 10", new ModificarMultiplicador(), new Sumar(10));
+        Joker comodin = new JokerNormal("Comodin Base", "multiplicador + 10", new ModificarMultiplicador(), new Sumar(10));
 
         comodin.modificarPuntuacion(puntuacionTirada, new Color());
 
