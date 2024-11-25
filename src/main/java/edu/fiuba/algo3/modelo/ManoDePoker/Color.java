@@ -35,6 +35,11 @@ public class Color extends ManoDePoker {
 
     @Override
     public boolean esIgual(ManoDePoker mano) {
-        return mano instanceof Color;
+        return mano.esIgualAColor(this);
+    }
+
+    @Override
+    public boolean esIgualAColor(Color mano){
+        return true;
     }
 }

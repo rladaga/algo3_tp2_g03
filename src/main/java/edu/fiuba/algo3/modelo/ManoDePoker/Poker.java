@@ -25,6 +25,11 @@ public class Poker extends ManoDePoker {
 
     @Override
     public boolean esIgual(ManoDePoker mano) {
-        return mano instanceof Poker;
+        return mano.esIgualAPoker(this);
+    }
+
+    @Override
+    public boolean esIgualAPoker(Poker mano){
+        return true;
     }
 }

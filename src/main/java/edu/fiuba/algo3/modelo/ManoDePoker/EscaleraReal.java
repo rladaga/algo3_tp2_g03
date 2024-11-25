@@ -37,6 +37,11 @@ public class EscaleraReal extends ManoDePoker {
 
     @Override
     public boolean esIgual(ManoDePoker mano) {
-        return mano instanceof EscaleraReal;
+        return mano.esIgualAEscaleraReal(this);
+    }
+
+    @Override
+    public boolean esIgualAEscaleraReal(EscaleraReal mano){
+        return true;
     }
 }

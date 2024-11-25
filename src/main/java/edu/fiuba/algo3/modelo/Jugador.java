@@ -8,10 +8,14 @@ public class Jugador {
     private Mazo mazo;
     private ArrayList<Carta> cartasEnMano;
     private ArrayList<Carta> cartasAJugar;
+    private Descarte descartes;
 
-    public Jugador(Mazo mazo){
+    public Jugador(Mazo mazo, Descarte descartes){
         this.mazo = mazo;
         this.cartasAJugar = new ArrayList<>();
+        this.cartasEnMano = new ArrayList<>();
+        this.descartes = descartes;
+
     }
 
     public int cartasEnMazo(){
@@ -29,6 +33,14 @@ public class Jugador {
     public void seleccionarCartaEnPosicion(int posicion){
         Carta carta = cartasEnMano.get(posicion);
         cartasAJugar.add(carta);
+    }
+
+    public void descartar(ArrayList<Carta> cartasADescartar){
+        if(descartes.permitirDescarte()) {
+            cartasEnMano.removeAll(cartasADescartar);
+            cartasEnMano.addAll(mazo.repartir(cartasADescartar.size()));
+        };
+
     }
 
     public ArrayList<Carta> jugarMano(){
