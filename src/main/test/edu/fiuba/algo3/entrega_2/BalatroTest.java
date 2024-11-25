@@ -114,6 +114,5 @@ public class BalatroTest {
 
         assertEquals(900, evaluadorMano.evaluar(manoEscaleraBajaAS, comodines));
         assertEquals(220, evaluadorMano.evaluar(manoEscaleraBajaAS, sinComodines));
-
     }
 }

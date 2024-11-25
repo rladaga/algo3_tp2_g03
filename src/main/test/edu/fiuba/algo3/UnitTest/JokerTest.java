@@ -3,12 +3,15 @@ package edu.fiuba.algo3.UnitTest;
 import edu.fiuba.algo3.modelo.Descarte;
 import edu.fiuba.algo3.modelo.EstrategiaModificacion.*;
 import edu.fiuba.algo3.modelo.Joker.*;
+import edu.fiuba.algo3.modelo.Joker.GeneradorRandom.GeneradorRandom;
 import edu.fiuba.algo3.modelo.ManoDePoker.*;
 import edu.fiuba.algo3.modelo.Modificador.*;
 import edu.fiuba.algo3.modelo.PuntuacionTirada.PuntuacionTirada;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.Assert.assertEquals;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
 
 public class JokerTest {
 
@@ -130,4 +133,31 @@ public class JokerTest {
         assertEquals(26, puntuacionTirada.obtenerPuntos());
         assertEquals(6, puntuacionTirada.obtenerMultiplicador());
     }
+
+    @Test
+    public void test10JokerAleatorioAplicaEfectoAlActivarse(){
+        PuntuacionTirada puntuacionTirada = new PuntuacionTirada(10, 2);
+        GeneradorRandom generadorMock = mock(GeneradorRandom.class);
+        when(generadorMock.validar()).thenReturn(true);
+
+        Joker comodinAleatorio = new JokerAleatorio("comodin", "puntos +8", new ModificarPuntos(), new Sumar(8), generadorMock);
+        comodinAleatorio.modificarPuntuacion(puntuacionTirada, new Color());
+
+        assertEquals(18, puntuacionTirada.obtenerPuntos());
+        assertEquals(2, puntuacionTirada.obtenerMultiplicador());
+    }
+
+    @Test
+    public void test11JokerAleatorioNoAplicaEfecto(){
+        PuntuacionTirada puntuacionTirada = new PuntuacionTirada(10, 2);
+        GeneradorRandom generadorMock = mock(GeneradorRandom.class);
+        when(generadorMock.validar()).thenReturn(false);
+
+        Joker comodinAleatorio = new JokerAleatorio("comodin", "puntos +8", new ModificarPuntos(), new Sumar(8), generadorMock);
+        comodinAleatorio.modificarPuntuacion(puntuacionTirada, new Color());
+
+        assertEquals(10, puntuacionTirada.obtenerPuntos());
+        assertEquals(2, puntuacionTirada.obtenerMultiplicador());
+    }
 }
+
