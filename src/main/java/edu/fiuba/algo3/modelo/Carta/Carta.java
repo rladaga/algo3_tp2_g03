@@ -3,8 +3,9 @@ package edu.fiuba.algo3.modelo.Carta;
 import edu.fiuba.algo3.modelo.Carta.Palo.*;
 import edu.fiuba.algo3.modelo.Carta.Valor.*;
 import edu.fiuba.algo3.modelo.Carta.EstadoCarta.*;
+import edu.fiuba.algo3.modelo.Modificador.Modificador;
 import edu.fiuba.algo3.modelo.PuntuacionTirada.PuntuacionTirada;
-import edu.fiuba.algo3.modelo.PuntuacionTirada.EstrategiaModificacion.EstrategiaModificacion;
+import edu.fiuba.algo3.modelo.EstrategiaModificacion.EstrategiaModificacion;
 
 public class Carta {
     private final Valor valor;
@@ -34,8 +35,8 @@ public class Carta {
         estadoCarta.modificarPuntuacion(puntuacion, valor.puntosBase());
     }
 
-    public void aplicarTarot(int puntuacionNueva, EstrategiaModificacion modificador) {
-        this.estadoCarta = new Modificada(puntuacionNueva, modificador);
+    public void aplicarTarot(Modificador modificador, EstrategiaModificacion estrategiaModificacion) {
+        this.estadoCarta = new Modificada(modificador, estrategiaModificacion);
     }
 
 
@@ -43,12 +44,22 @@ public class Carta {
         return estadoCarta.puntosBase(valor.puntosBase());
     }
 
-    public boolean compararValor(Carta otraCarta) {
-        return this.valor.compararCon(otraCarta.getValor());
+    public boolean compararValor(Carta unaCarta) {
+        return unaCarta.compararValor(this.valor);
+    }
+
+    public boolean compararValor(Valor unValor) {
+        return this.valor.compararCon(unValor);
     }
 
     public boolean compararPalo(Carta unaCarta) {
-        return this.palo.compararCon(unaCarta.getPalo());
+        return unaCarta.compararPalo(this.palo);
     }
+
+    public boolean compararPalo(Palo unPalo) {
+        return this.palo.compararCon(unPalo);
+    }
+
+
 
 }

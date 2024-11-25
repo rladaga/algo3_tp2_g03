@@ -1,27 +1,29 @@
 package edu.fiuba.algo3.modelo.Carta.EstadoCarta;
 
+import edu.fiuba.algo3.modelo.Modificador.Modificador;
 import edu.fiuba.algo3.modelo.PuntuacionTirada.PuntuacionTirada;
-import edu.fiuba.algo3.modelo.PuntuacionTirada.EstrategiaModificacion.EstrategiaModificacion;
+import edu.fiuba.algo3.modelo.EstrategiaModificacion.EstrategiaModificacion;
 
 public class Modificada implements Estado {
 
-    private final int modificacion;
-    private EstrategiaModificacion modificador;
+    private final Modificador modificador;
+    private EstrategiaModificacion estrategiaModificacion;
 
 
-    public Modificada(int puntuacion, EstrategiaModificacion modificador){
-        this.modificacion = puntuacion;
+
+    public Modificada(Modificador modificador, EstrategiaModificacion estrategiaModificacion) {
         this.modificador = modificador;
+        this.estrategiaModificacion = estrategiaModificacion;
     }
 
     @Override
     public void modificarPuntuacion(PuntuacionTirada puntuacionTirada, int puntuacionCarta) {
-        modificador.sumarValorCarta(puntuacionTirada, puntuacionCarta);
-        modificador.modificar(puntuacionTirada, modificacion);
+        estrategiaModificacion.sumarValorCarta(puntuacionTirada, puntuacionCarta);
+        estrategiaModificacion.modificar(puntuacionTirada, modificador);
     }
 
     @Override
-    public int puntosBase(int puntuacionValor) {
-        return modificacion;
+    public int puntosBase(int valorBaseCarta) {
+        return estrategiaModificacion.puntosCarta(valorBaseCarta, modificador);
     }
 }

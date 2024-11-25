@@ -25,7 +25,12 @@ public class EscaleraColor extends ManoDePoker {
 
     @Override
     public boolean esIgual(ManoDePoker mano) {
-        return mano instanceof EscaleraColor;
+        return mano.esIgualAEscaleraColor(this);
+    }
+
+    @Override
+    public boolean esIgualAEscaleraColor(EscaleraColor mano){
+        return true;
     }
 
 }
