@@ -26,6 +26,11 @@ public class Trio extends ManoDePoker {
 
     @Override
     public boolean esIgual(ManoDePoker mano) {
-        return mano instanceof Trio;
+        return mano.esIgualATrio(this);
+    }
+
+    @Override
+    public boolean esIgualATrio(Trio mano){
+        return true;
     }
 }
