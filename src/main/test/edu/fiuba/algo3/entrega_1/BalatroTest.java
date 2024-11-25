@@ -23,7 +23,8 @@ public class BalatroTest{
 
     @Test
     public void jugadorPoseeCartasSuficientesParaEmpezarElJuego() {
-        Mazo mazo = new Mazo();
+        IMezclador mezclador = new MezcladorMazo();
+        Mazo mazo = new Mazo(mezclador);
         Descarte descartes = new Descarte(3);
         Jugador jugador = new Jugador(mazo, descartes);
 
@@ -33,7 +34,8 @@ public class BalatroTest{
 
     @Test
     public void jugadorSeLeReparten8CartasDelMazo(){
-        Mazo mazo = new Mazo();
+        IMezclador mezclador = new MezcladorMazo();
+        Mazo mazo = new Mazo(mezclador);
         Descarte descartes = new Descarte(3);
         Jugador jugador = new Jugador(mazo, descartes);
         jugador.iniciarTurno();
@@ -44,7 +46,8 @@ public class BalatroTest{
 
     @Test
     public void sePuedeJugarUnaManoDeUnMazo(){
-        Mazo mazo = new Mazo();
+        IMezclador mezclador = new MezcladorMazo();
+        Mazo mazo = new Mazo(mezclador);
         Descarte descartes = new Descarte(3);
         Jugador jugador = new Jugador(mazo, descartes);
         jugador.iniciarTurno();

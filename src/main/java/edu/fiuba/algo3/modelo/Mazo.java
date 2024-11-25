@@ -10,10 +10,10 @@ import java.util.ArrayList;
 public class Mazo {
     private ArrayList<Carta> cartasEnMazo;
     private ArrayList<Carta> cartasFueraDeMazo;
-    private MezcladorMazo mezcladorMazo;
+    private IMezclador mezclador;
 
-    public Mazo(){
-        mezcladorMazo = new MezcladorMazo();
+    public Mazo(IMezclador mezclador) {
+        this.mezclador = mezclador;
         inicializarMazo();
     }
 
@@ -66,6 +66,6 @@ public class Mazo {
 
 
     public void mezclarCartas(){
-        mezcladorMazo.mezclar(cartasEnMazo);
+        mezclador.mezclar(cartasEnMazo);
     }
 }
