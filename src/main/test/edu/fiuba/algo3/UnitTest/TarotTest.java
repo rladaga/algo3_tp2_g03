@@ -18,7 +18,7 @@ public class TarotTest {
     @Test
     public void test01TarotDeCartaSeAplicaCorrectamente(){
         Carta carta = new Carta(new Picas(), new As());
-        TarotCarta tarot = new TarotCarta(new Sumar(10), new ModificarPuntos());
+        TarotCarta tarot = new TarotCarta("","",new Sumar(10), new ModificarPuntos());
 
         tarot.aplicarEfecto(carta);
 
@@ -28,8 +28,8 @@ public class TarotTest {
     @Test
     public void test02TarotDeCartaSeAplicaSobreCartaYaModificadaYSobreescribeLaModificacion(){
         Carta carta = new Carta(new Picas(), new As());
-        TarotCarta tarot1 = new TarotCarta(new Sumar(10), new ModificarPuntos());
-        TarotCarta tarot2 = new TarotCarta(new Sumar(30), new ModificarPuntos());
+        TarotCarta tarot1 = new TarotCarta("","",new Sumar(10), new ModificarPuntos());
+        TarotCarta tarot2 = new TarotCarta("","",new Sumar(30), new ModificarPuntos());
 
 
         tarot1.aplicarEfecto(carta);
@@ -42,7 +42,7 @@ public class TarotTest {
     public void test03TarotDeCartaModificaMultiplicadorCorrectamenteYCartaMantienePuntosBase(){
         PuntuacionTirada puntuacion = new PuntuacionTirada(10, 10);
         Carta carta = new Carta(new Picas(), new Dos());
-        TarotCarta tarot = new TarotCarta(new Sumar(8), new ModificarMultiplicador());
+        TarotCarta tarot = new TarotCarta("","",new Sumar(8), new ModificarMultiplicador());
 
         tarot.aplicarEfecto(carta);
         carta.modificarPuntuacion(puntuacion);
@@ -55,7 +55,7 @@ public class TarotTest {
     @Test
     public void test04TarotDeManoSeAplicaCorrectamente(){
         ManoDePoker manoPar = new Par();
-        TarotManoPoker tarot = new TarotManoPoker(new Par(), 5, 1);
+        TarotManoPoker tarot = new TarotManoPoker("","",new Par(), 5, 1);
 
         tarot.aplicarEfecto(manoPar);
 
@@ -66,7 +66,7 @@ public class TarotTest {
     @Test
     public void test05TarorDeManoSeAplicaCorrectamenteSobreUnaManoMultiplesVecesYSeAcumula(){
         ManoDePoker manoPar = new Par();
-        TarotManoPoker tarot = new TarotManoPoker(new Par(), 5, 1);
+        TarotManoPoker tarot = new TarotManoPoker("","",new Par(), 5, 1);
 
         tarot.aplicarEfecto(manoPar);
         tarot.aplicarEfecto(manoPar);

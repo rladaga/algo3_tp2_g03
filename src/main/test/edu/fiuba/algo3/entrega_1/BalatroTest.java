@@ -137,7 +137,7 @@ public class BalatroTest{
     public void modificarUnaCartaConTarotYCambiaSusPuntosPor10(){
 
         Carta carta = new Carta(new Picas(), new As());
-        TarotCarta tarot = new TarotCarta(new Sumar(10), new ModificarPuntos());
+        TarotCarta tarot = new TarotCarta("","",new Sumar(10), new ModificarPuntos());
 
         tarot.aplicarEfecto(carta);
 
@@ -147,7 +147,7 @@ public class BalatroTest{
     @Test
     public void ModificarUnaManoConTarotYCambiaSuMultiplicadorPor6(){
         ManoDePoker manoDePoker = new Escalera();
-        TarotManoPoker tarot = new TarotManoPoker(new Escalera() , 15, 2);
+        TarotManoPoker tarot = new TarotManoPoker("","",new Escalera() , 15, 2);
 
         tarot.aplicarEfecto(manoDePoker);
 
