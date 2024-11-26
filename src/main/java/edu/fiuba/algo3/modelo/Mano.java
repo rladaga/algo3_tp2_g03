@@ -22,11 +22,9 @@ public class Mano {
     }
 
     public PuntuacionTirada realizarTirada(){
-
+        PuntuacionTirada  puntuacion = new PuntuacionTirada(0,0);
         manosRealizadas++;
-
-
-        return validacion;
+        return puntuacion;
     }
 
     public void setearLimiteManos(int limiteManos){
