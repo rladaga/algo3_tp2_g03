@@ -34,8 +34,6 @@ public class ParserTarot {
         JsonArray tarots = jsonObject.get("tarots").getAsJsonArray();
         ArrayList<Tarot> listaTarots = new ArrayList<>();
 
-        int i = 0;
-
         for(JsonElement tarotElem : tarots) {
             JsonObject tarotObj = tarotElem.getAsJsonObject();
             String nombre = tarotObj.get("nombre").getAsString();
@@ -69,7 +67,6 @@ public class ParserTarot {
                 default:
                     break;
             }
-            i += 1;
         }
         return listaTarots;
 

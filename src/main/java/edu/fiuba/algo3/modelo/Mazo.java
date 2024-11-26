@@ -17,6 +17,12 @@ public class Mazo {
         inicializarMazo();
     }
 
+    public Mazo(ArrayList<Carta> cartas, IMezclador mezclador) {
+        this.mezclador = mezclador;
+        cartasEnMazo = cartas;
+        cartasFueraDeMazo = new ArrayList<>();
+    }
+
     public int cantidadCartas() {
         return cartasEnMazo.size();
     }

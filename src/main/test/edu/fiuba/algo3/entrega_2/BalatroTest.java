@@ -17,13 +17,13 @@ import edu.fiuba.algo3.modelo.EstrategiaModificacion.ModificarPuntos;
 import edu.fiuba.algo3.modelo.Modificador.*;
 import edu.fiuba.algo3.modelo.PuntuacionTirada.PuntuacionTirada;
 import org.junit.jupiter.api.Test;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
 import java.util.ArrayList;
 
-
-import static org.junit.Assert.assertEquals;
 
 public class BalatroTest {
 

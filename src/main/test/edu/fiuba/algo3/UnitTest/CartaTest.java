@@ -10,7 +10,7 @@ import edu.fiuba.algo3.modelo.PuntuacionTirada.PuntuacionTirada;
 import edu.fiuba.algo3.modelo.Tarot.TarotCarta;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class CartaTest {
     @Test

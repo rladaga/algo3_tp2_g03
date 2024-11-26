@@ -5,7 +5,7 @@ import edu.fiuba.algo3.modelo.Modificador.*;
 import edu.fiuba.algo3.modelo.PuntuacionTirada.PuntuacionTirada;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class EstrategiaModificacionTest {
 
