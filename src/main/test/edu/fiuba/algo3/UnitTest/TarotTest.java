@@ -15,6 +15,7 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class TarotTest {
+
     @Test
     public void test01TarotDeCartaSeAplicaCorrectamente(){
         Carta carta = new Carta(new Picas(), new As());

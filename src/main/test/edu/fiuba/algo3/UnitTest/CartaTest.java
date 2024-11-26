@@ -13,6 +13,7 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class CartaTest {
+
     @Test
     public void test01CartaSeInstanciaCorrectamenteConSuValorYPalo(){
         Carta carteTest = new Carta(new Corazon(), new Diez());
@@ -24,6 +25,7 @@ public class CartaTest {
         assertEquals(Diez.class, valorCarta.getClass());
     }
 
+    @Test
     public void test02CartaDevuelveSuPuntuacionBaseCorrectamente(){
         Carta cartaTest = new Carta(new Corazon(), new Diez());
 
