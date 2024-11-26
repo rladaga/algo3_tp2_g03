@@ -1,9 +1,9 @@
 package edu.fiuba.algo3.modelo.Modificador;
 
 public abstract class Modificador {
-    protected int valorModificacion;
+    protected float valorModificacion;
 
-    public Modificador(int valorModificacion) {
+    public Modificador(float valorModificacion) {
         this.valorModificacion = valorModificacion;
     }
 
