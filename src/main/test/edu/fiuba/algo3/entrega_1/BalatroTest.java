@@ -7,6 +7,8 @@ import edu.fiuba.algo3.modelo.EstrategiaModificacion.ModificarPuntos;
 import edu.fiuba.algo3.modelo.Carta.Palo.*;
 import edu.fiuba.algo3.modelo.Carta.Valor.*;
 import edu.fiuba.algo3.modelo.Joker.*;
+import edu.fiuba.algo3.modelo.Mezclador.IMezclador;
+import edu.fiuba.algo3.modelo.Mezclador.MezcladorMazo;
 import edu.fiuba.algo3.modelo.Modificador.*;
 import edu.fiuba.algo3.modelo.Tarot.*;
 import edu.fiuba.algo3.modelo.Tarot.TarotManoPoker;

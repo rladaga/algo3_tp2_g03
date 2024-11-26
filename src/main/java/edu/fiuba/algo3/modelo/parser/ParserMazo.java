@@ -9,8 +9,7 @@ import edu.fiuba.algo3.modelo.Carta.Carta;
 import edu.fiuba.algo3.modelo.Carta.Palo.*;
 import edu.fiuba.algo3.modelo.Carta.Valor.*;
 import edu.fiuba.algo3.modelo.Mazo;
-import edu.fiuba.algo3.modelo.MezcladorMazo;
-import edu.fiuba.algo3.modelo.Tarot.Tarot;
+import edu.fiuba.algo3.modelo.Mezclador.MezcladorMazo;
 
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
