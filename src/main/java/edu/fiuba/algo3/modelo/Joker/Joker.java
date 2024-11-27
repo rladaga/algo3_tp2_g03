@@ -4,6 +4,7 @@ import edu.fiuba.algo3.modelo.EstrategiaModificacion.EstrategiaModificacion;
 import edu.fiuba.algo3.modelo.Modificador.*;
 import edu.fiuba.algo3.modelo.PuntuacionTirada.PuntuacionTirada;
 import edu.fiuba.algo3.modelo.ManoDePoker.ManoDePoker;
+import edu.fiuba.algo3.modelo.Descarte;
 
 public abstract class Joker {
 
@@ -21,7 +22,7 @@ public abstract class Joker {
         this.modificador = modificacion;
     }
 
-    public abstract void modificarPuntuacion(PuntuacionTirada puntuacion, ManoDePoker manoJugada);
+    public abstract void modificarPuntuacion(PuntuacionTirada puntuacion, ManoDePoker manoJugada, Descarte descarte);
 
     public void agregarJoker(Joker joker){
         this.otroJoker = joker;

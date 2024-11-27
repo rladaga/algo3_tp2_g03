@@ -1,5 +1,6 @@
 package edu.fiuba.algo3.modelo.Joker;
 
+import edu.fiuba.algo3.modelo.Descarte;
 import edu.fiuba.algo3.modelo.Joker.GeneradorRandom.GeneradorRandom;
 import edu.fiuba.algo3.modelo.ManoDePoker.ManoDePoker;
 import edu.fiuba.algo3.modelo.EstrategiaModificacion.EstrategiaModificacion;
@@ -16,10 +17,10 @@ public class JokerAleatorio extends Joker {
     }
 
     @Override
-    public void modificarPuntuacion(PuntuacionTirada puntuacionTirada, ManoDePoker manoDePoker) {
+    public void modificarPuntuacion(PuntuacionTirada puntuacionTirada, ManoDePoker manoDePoker, Descarte descarte) {
         if(generador.validar()){
             estrategiaModificacion.modificar(puntuacionTirada, modificador);
         }
-        this.otroJoker.modificarPuntuacion(puntuacionTirada, manoDePoker);
+        this.otroJoker.modificarPuntuacion(puntuacionTirada, manoDePoker, descarte);
     }
 }

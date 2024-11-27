@@ -10,9 +10,10 @@ import edu.fiuba.algo3.modelo.PuntuacionTirada.PuntuacionTirada;
 import edu.fiuba.algo3.modelo.Tarot.TarotCarta;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class CartaTest {
+
     @Test
     public void test01CartaSeInstanciaCorrectamenteConSuValorYPalo(){
         Carta carteTest = new Carta(new Corazon(), new Diez());
@@ -24,6 +25,7 @@ public class CartaTest {
         assertEquals(Diez.class, valorCarta.getClass());
     }
 
+    @Test
     public void test02CartaDevuelveSuPuntuacionBaseCorrectamente(){
         Carta cartaTest = new Carta(new Corazon(), new Diez());
 
@@ -42,9 +44,9 @@ public class CartaTest {
     }
 
     @Test
-    public void test04CartaSeModificaCorectamenteConTarotYModificarPuntosYCambiaSuPuntuacionBase(){
+    public void test04aCartaSeModificaCorectamenteConTarotYModificarPuntosYCambiaSuPuntuacionBase(){
         Carta cartaTest = new Carta(new Corazon(), new Dos());
-        TarotCarta tarot = new TarotCarta(new Sumar(20), new ModificarPuntos());
+        TarotCarta tarot = new TarotCarta("","",new Sumar(20), new ModificarPuntos());
 
         tarot.aplicarEfecto(cartaTest);
         int resultado = cartaTest.puntosBase();
@@ -53,9 +55,9 @@ public class CartaTest {
     }
 
     @Test
-    public void test04CartaSeModificaCorectamenteConTarotYModificarMultiplicarYNoCambiaSuPuntuacionBase(){
+    public void test04bCartaSeModificaCorectamenteConTarotYModificarMultiplicarYNoCambiaSuPuntuacionBase(){
         Carta cartaTest = new Carta(new Corazon(), new Dos());
-        TarotCarta tarot = new TarotCarta(new Sumar(20), new ModificarMultiplicador());
+        TarotCarta tarot = new TarotCarta("","",new Sumar(20), new ModificarMultiplicador());
 
         tarot.aplicarEfecto(cartaTest);
         int resultado = cartaTest.puntosBase();
@@ -117,7 +119,7 @@ public class CartaTest {
     public void test10UnaCartaTarotizadaConModificarMultiplicadorAlModificarPuntuacionTiradaAplicaSusPuntos(){
         Carta cartaTest = new Carta(new Corazon(), new Diez());
         PuntuacionTirada puntuacionTirada = new PuntuacionTirada(10,2);
-        TarotCarta tarot = new TarotCarta(new Sumar(20), new ModificarMultiplicador());
+        TarotCarta tarot = new TarotCarta("","",new Sumar(20), new ModificarMultiplicador());
 
         tarot.aplicarEfecto(cartaTest);
         cartaTest.modificarPuntuacion(puntuacionTirada);
