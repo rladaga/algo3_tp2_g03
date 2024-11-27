@@ -104,12 +104,13 @@ public class BalatroTest{
         manoFullHouse.add(new Carta(palos[3], valores[2]));
 
         ArrayList<Joker> jokers = new ArrayList<>();
+        Descarte descarte = new Descarte(0);
 
-        assertEquals(220, evaluadorMano.evaluar(manoEscaleraBajaAS, jokers ));
-        assertEquals(1192, evaluadorMano.evaluar(manoEscaleraColor, jokers));
-        assertEquals(1208, evaluadorMano.evaluar(manoEscaleraReal, jokers));
-        assertEquals(497, evaluadorMano.evaluar(manoPoker, jokers));
-        assertEquals(208, evaluadorMano.evaluar(manoFullHouse, jokers));
+        assertEquals(220, evaluadorMano.evaluar(manoEscaleraBajaAS, jokers, descarte ));
+        assertEquals(1192, evaluadorMano.evaluar(manoEscaleraColor, jokers, descarte));
+        assertEquals(1208, evaluadorMano.evaluar(manoEscaleraReal, jokers, descarte));
+        assertEquals(497, evaluadorMano.evaluar(manoPoker, jokers, descarte));
+        assertEquals(208, evaluadorMano.evaluar(manoFullHouse, jokers, descarte));
     }
 
     @Test
@@ -118,6 +119,7 @@ public class BalatroTest{
         ArrayList<Carta> manoEscaleraBajaAS = new ArrayList<>();
         ArrayList<Joker> orden1 = new ArrayList<>();
         ArrayList<Joker> orden2 = new ArrayList<>();
+        Descarte descarte = new Descarte(0);
 
         manoEscaleraBajaAS.add(new Carta(new Picas(), new As()));
         manoEscaleraBajaAS.add(new Carta(new Corazon(), new Dos()));
@@ -131,8 +133,8 @@ public class BalatroTest{
         orden2.add(new JokerMano("Comodin", "+10", new ModificarMultiplicador(), new Multiplicar(2), new Escalera()));
         orden2.add(new JokerMano("Comodin", "x2", new ModificarMultiplicador(), new Sumar(10), new Escalera()));
 
-        assertEquals(1540, evaluadorMano.evaluar(manoEscaleraBajaAS, orden1));
-        assertEquals(990, evaluadorMano.evaluar(manoEscaleraBajaAS, orden2));
+        assertEquals(1540, evaluadorMano.evaluar(manoEscaleraBajaAS, orden1, descarte));
+        assertEquals(990, evaluadorMano.evaluar(manoEscaleraBajaAS, orden2, descarte));
     }
 
     @Test

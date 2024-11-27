@@ -7,20 +7,18 @@ import edu.fiuba.algo3.modelo.Modificador.*;
 import edu.fiuba.algo3.modelo.PuntuacionTirada.PuntuacionTirada;
 
 public class JokerDescarte extends Joker{
-    private Descarte descartes;
 
-    public JokerDescarte (String nombre, String descripcion, EstrategiaModificacion estrategiaModificacion, Modificador modificador, Descarte descartes){
+    public JokerDescarte (String nombre, String descripcion, EstrategiaModificacion estrategiaModificacion, Modificador modificador){
         super(nombre, descripcion, estrategiaModificacion, modificador);
-        this.descartes = descartes;
         this.otroJoker = new JokerNulo();
     }
 
     @Override
-    public void modificarPuntuacion(PuntuacionTirada puntuacionTirada, ManoDePoker manoDePoker){
-        for(int i = 0 ; i < descartes.descartesRealizados() ; i++){
+    public void modificarPuntuacion(PuntuacionTirada puntuacionTirada, ManoDePoker manoDePoker, Descarte descarte){
+        for(int i = 0 ; i < descarte.descartesRealizados() ; i++){
             estrategiaModificacion.modificar(puntuacionTirada, modificador);
         }
-        this.otroJoker.modificarPuntuacion(puntuacionTirada, manoDePoker);
+        this.otroJoker.modificarPuntuacion(puntuacionTirada, manoDePoker, descarte);
     }
 
 }

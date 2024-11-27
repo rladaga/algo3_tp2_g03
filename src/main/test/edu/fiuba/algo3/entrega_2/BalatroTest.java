@@ -29,11 +29,11 @@ public class BalatroTest {
 
     @Test
     public void VerificarQueComodinSume8AlMultiplicador(){
-
+        Descarte descarte = new Descarte(0);
         PuntuacionTirada punt = new PuntuacionTirada(2, 2);
         Joker comodin = new JokerNormal("Comodin", "+8", new ModificarMultiplicador(), new Sumar(8));
 
-        comodin.modificarPuntuacion(punt, new Color());
+        comodin.modificarPuntuacion(punt, new Color(), descarte);
 
         assertEquals(10, punt.obtenerMultiplicador());
     }
@@ -46,6 +46,7 @@ public class BalatroTest {
         Joker comodin = new JokerMano("Comodin", "+3", new ModificarMultiplicador(), new Sumar(3), new Escalera());
         ArrayList<Joker> comodines = new ArrayList<>();
         ArrayList<Joker> sinComodines = new ArrayList<>();
+        Descarte descarte = new Descarte(0);
         comodines.add(comodin);
 
         manoEscaleraBajaAS.add(new Carta(new Picas(), new As()));
@@ -55,18 +56,17 @@ public class BalatroTest {
         manoEscaleraBajaAS.add(new Carta(new Picas(), new Cinco()));
 
 
-        assertEquals(385, evaluadorMano.evaluar(manoEscaleraBajaAS, comodines));
-        assertEquals(220, evaluadorMano.evaluar(manoEscaleraBajaAS, sinComodines));
+        assertEquals(385, evaluadorMano.evaluar(manoEscaleraBajaAS, comodines, descarte));
+        assertEquals(220, evaluadorMano.evaluar(manoEscaleraBajaAS, sinComodines, descarte));
     }
     @Test
     public void VerificarQueComodinSume10ALosPuntosPorDescarte() {
         Descarte descartes = new Descarte(4);
         PuntuacionTirada puntuacionTirada = new PuntuacionTirada(10, 2);
-        Joker comodin = new JokerDescarte("comodin", "puntos +10", new ModificarPuntos(), new Sumar(10), descartes);
-
+        Joker comodin = new JokerDescarte("comodin", "puntos +10", new ModificarPuntos(), new Sumar(10));
         descartes.permitirDescarte();
         descartes.permitirDescarte();
-        comodin.modificarPuntuacion(puntuacionTirada, new Color());
+        comodin.modificarPuntuacion(puntuacionTirada, new Color(), descartes);
 
 
         assertEquals(30, puntuacionTirada.obtenerPuntos());
@@ -80,12 +80,13 @@ public class BalatroTest {
         GeneradorRandom rand2 = mock(GeneradorRandom.class);
         when(rand1.validar()).thenReturn(true);
         when(rand2.validar()).thenReturn(false);
+        Descarte descarte = new Descarte(0);
 
         Joker comodin1 = new JokerAleatorio("comodin", "multiplicador x15", new ModificarMultiplicador(), new Multiplicar(15), rand1);
         Joker comodin2 = new JokerAleatorio("comodin", "multiplicador x15", new ModificarMultiplicador(), new Multiplicar(15), rand2);
 
-        comodin1.modificarPuntuacion(puntuacionTirada1, new Color());
-        comodin2.modificarPuntuacion(puntuacionTirada2, new Color());
+        comodin1.modificarPuntuacion(puntuacionTirada1, new Color(), descarte);
+        comodin2.modificarPuntuacion(puntuacionTirada2, new Color(), descarte);
 
         assertEquals(30, puntuacionTirada1.obtenerMultiplicador());
         assertEquals(2, puntuacionTirada2.obtenerMultiplicador());
@@ -93,6 +94,7 @@ public class BalatroTest {
 
     @Test
     public void VerificarCombinacionEfectosJoker(){
+        Descarte descarte = new Descarte(0);
         EvaluadorMano evaluadorMano = new EvaluadorMano();
         ArrayList<Carta> manoEscaleraBajaAS = new ArrayList<>();
         ArrayList<Joker> comodines = new ArrayList<>();
@@ -112,7 +114,7 @@ public class BalatroTest {
         manoEscaleraBajaAS.add(new Carta(new Trebol(), new Cuatro()));
         manoEscaleraBajaAS.add(new Carta(new Picas(), new Cinco()));
 
-        assertEquals(900, evaluadorMano.evaluar(manoEscaleraBajaAS, comodines));
-        assertEquals(220, evaluadorMano.evaluar(manoEscaleraBajaAS, sinComodines));
+        assertEquals(900, evaluadorMano.evaluar(manoEscaleraBajaAS, comodines, descarte));
+        assertEquals(220, evaluadorMano.evaluar(manoEscaleraBajaAS, sinComodines, descarte));
     }
 }

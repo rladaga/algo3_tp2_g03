@@ -56,7 +56,7 @@ public class FabricaDeJokers {
     }
 
     private static Joker CrearJokerDescarte(String nombre, String descripcion, EstrategiaModificacion estrategiaModificacion, Modificador modificador, Descarte descartes) {
-        return new JokerDescarte(nombre, descripcion, estrategiaModificacion, modificador, descartes);
+        return new JokerDescarte(nombre, descripcion, estrategiaModificacion, modificador);
     }
 
     private static Joker CrearJokerMano(String nombre, String descripcion, EstrategiaModificacion estrategiaModificacion, Modificador modificador, ManoDePoker manoObjetivo) {

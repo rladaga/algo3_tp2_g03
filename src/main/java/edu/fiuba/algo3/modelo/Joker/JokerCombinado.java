@@ -4,6 +4,7 @@ import edu.fiuba.algo3.modelo.EstrategiaModificacion.ModificarPuntos;
 import edu.fiuba.algo3.modelo.ManoDePoker.ManoDePoker;
 import edu.fiuba.algo3.modelo.Modificador.Sumar;
 import edu.fiuba.algo3.modelo.PuntuacionTirada.PuntuacionTirada;
+import edu.fiuba.algo3.modelo.Descarte;
 
 public class JokerCombinado extends Joker {
 
@@ -14,7 +15,7 @@ public class JokerCombinado extends Joker {
     }
 
     @Override
-    public void modificarPuntuacion(PuntuacionTirada puntuacion, ManoDePoker manoJugada) {
-        this.otroJoker.modificarPuntuacion(puntuacion, manoJugada);
+    public void modificarPuntuacion(PuntuacionTirada puntuacion, ManoDePoker manoJugada, Descarte descarte) {
+        this.otroJoker.modificarPuntuacion(puntuacion, manoJugada, descarte);
     }
 }
