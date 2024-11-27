@@ -3,14 +3,18 @@ package edu.fiuba.algo3.modelo;
 import edu.fiuba.algo3.modelo.PuntuacionTirada.PuntuacionTirada;
 
 public class Ronda{
-    private int cantidadDescartes;
-    private int cantidadManos;
+    private int numeroRonda;
+    private Descarte descartes;
+    private Mano manos;
     private int puntajeObjetivo;
+    private Tienda tienda;
 
-    public Ronda(int cantidadDescartes, int cantidadManos, int puntajeObjetivo){
-        this.cantidadDescartes = cantidadDescartes;
-        this.cantidadManos = cantidadManos;
+    public Ronda(int numeroRonda, Descarte descartes, Mano manos, int puntajeObjetivo, Tienda tienda){
+        this.numeroRonda = numeroRonda;
+        this.descartes = descartes;
+        this.manos = manos;
         this.puntajeObjetivo = puntajeObjetivo;
+        this.tienda = tienda;
     }
 
     public boolean esPuntajeAlcanzado(PuntuacionTirada puntuacion) {
@@ -18,8 +22,6 @@ public class Ronda{
     }
 
     public boolean resolverRonda(Jugador jugador, Descarte descartes, Mano manos) {
-        manos.setearLimiteManos(cantidadManos);
-        descartes.setearLimiteDescartes(cantidadDescartes);
         PuntuacionTirada puntuacion = new PuntuacionTirada(0,0);
         while(!esPuntajeAlcanzado(puntuacion) && manos.permitirTirada()){
             //jugador.resolverTurno(this);

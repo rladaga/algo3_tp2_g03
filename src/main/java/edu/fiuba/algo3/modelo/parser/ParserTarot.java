@@ -29,17 +29,19 @@ public class ParserTarot {
         Gson gson = new Gson();
         BufferedReader br = new BufferedReader(new FileReader(System.getProperty("user.dir") + RUTA_TAROT));
         JsonObject jsonObject = gson.fromJson(br, JsonObject.class);
-        JsonArray tarots = jsonObject.get("tarots").getAsJsonArray();
+        JsonArray tarotsArr = jsonObject.get("tarots").getAsJsonArray();
+        return parsearTarots(tarotsArr);
+    }
+
+    public ArrayList<Tarot> parsearTarots(JsonArray tarotArr){
         ArrayList<Tarot> listaTarots = new ArrayList<>();
 
-        for(JsonElement tarotElem : tarots) {
+        for(JsonElement tarotElem : tarotArr) {
             JsonObject tarotObj = tarotElem.getAsJsonObject();
             listaTarots.add(parsearTarot(tarotObj));
         }
         return listaTarots;
-
     }
-
     public Tarot parsearTarot(JsonObject tarotObj){
 
         TarotODT tarotODT = new TarotODT();
