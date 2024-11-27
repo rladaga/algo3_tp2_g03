@@ -13,9 +13,7 @@ import edu.fiuba.algo3.modelo.ManoDePoker.ManoDePoker;
 import edu.fiuba.algo3.modelo.Modificador.Modificador;
 import edu.fiuba.algo3.modelo.Modificador.Multiplicar;
 import edu.fiuba.algo3.modelo.Modificador.Sumar;
-import edu.fiuba.algo3.modelo.Tarot.Tarot;
-import edu.fiuba.algo3.modelo.Tarot.TarotCarta;
-import edu.fiuba.algo3.modelo.Tarot.TarotManoPoker;
+import edu.fiuba.algo3.modelo.Tarot.*;
 
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
@@ -36,44 +34,24 @@ public class ParserTarot {
 
         for(JsonElement tarotElem : tarots) {
             JsonObject tarotObj = tarotElem.getAsJsonObject();
-            String nombre = tarotObj.get("nombre").getAsString();
-            String descripcion = tarotObj.get("descripcion").getAsString();
-            JsonObject efecto = tarotObj.get("efecto").getAsJsonObject();
-            int puntos = efecto.get("puntos").getAsInt();
-            float multiplicador = efecto.get("multiplicador").getAsFloat();
-            String sobre = tarotObj.get("sobre").getAsString();
-            String ejemplar = tarotObj.get("ejemplar").getAsString();
-            ManoDePoker mano;
-            Carta carta;
-
-
-            switch (sobre) {
-                case "mano":
-                    mano = FabricaDeManos.crearMano(ejemplar);
-                    listaTarots.add(new TarotManoPoker(nombre, descripcion,mano, puntos, (int) multiplicador));
-                    break;
-                case "carta":
-                    EstrategiaModificacion modStrat;
-                    Modificador mod;
-                    if (puntos > 1) {
-                        modStrat = new ModificarPuntos();
-                        mod = new Sumar(puntos);
-                    } else {
-                        modStrat = new ModificarMultiplicador();
-                        mod = new Multiplicar(multiplicador);
-                    }
-                    listaTarots.add(new TarotCarta(nombre, descripcion,mod, modStrat));
-                    break;
-                default:
-                    break;
-            }
+            listaTarots.add(parsearTarot(tarotObj));
         }
         return listaTarots;
 
     }
 
+    public Tarot parsearTarot(JsonObject tarotObj){
 
+        TarotODT tarotODT = new TarotODT();
+        tarotODT.setNombre(tarotObj.get("nombre").getAsString());
+        tarotODT.setDescripcion(tarotObj.get("descripcion").getAsString());
+        JsonObject efecto = tarotObj.get("efecto").getAsJsonObject();
+        tarotODT.setPuntos(efecto.get("puntos").getAsInt());
+        tarotODT.setMultiplicador(efecto.get("multiplicador").getAsFloat());
+        tarotODT.setSobre(tarotObj.get("sobre").getAsString());
+        tarotODT.setEjemplar(tarotObj.get("ejemplar").getAsString());
 
-    public ParserTarot() throws FileNotFoundException {
+        return FabricaDeTarot.crearTarot(tarotODT);
     }
+
 }
