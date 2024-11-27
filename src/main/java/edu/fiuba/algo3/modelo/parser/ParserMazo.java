@@ -6,8 +6,8 @@ import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import edu.fiuba.algo3.modelo.Carta.FabricaDeCartas;
 import edu.fiuba.algo3.modelo.Carta.Carta;
-import edu.fiuba.algo3.modelo.Carta.Palo.*;
-import edu.fiuba.algo3.modelo.Carta.Valor.*;
+import edu.fiuba.algo3.modelo.Carta.Palo.FabricaDePalo;
+import edu.fiuba.algo3.modelo.Carta.Valor.FabricaDeValor;
 import edu.fiuba.algo3.modelo.Mazo;
 import edu.fiuba.algo3.modelo.Mezclador.MezcladorMazo;
 
@@ -31,54 +31,8 @@ public class ParserMazo {
             JsonObject cartaObj = cartaElem.getAsJsonObject();
             String palo = cartaObj.get("palo").getAsString();
             String valor = cartaObj.get("numero").getAsString();
-            cartasMazo.add(FabricaDeCartas.crearCarta(devolverPalo(palo), devolverValor(valor)));
+            cartasMazo.add(FabricaDeCartas.crearCarta(FabricaDePalo.CrearPalo(palo), FabricaDeValor.CrearValor(valor)));
         }
         return new Mazo(cartasMazo, new MezcladorMazo());
-    }
-
-    public Palo devolverPalo (String palo){
-        switch (palo) {
-            case "Trebol":
-                return new Trebol();
-            case "Corazones":
-                return new Corazon();
-            case "Picas":
-                return new Picas();
-            case "Diamantes":
-                return new Diamante();
-        }
-        return null;
-    }
-
-    public Valor devolverValor (String valor){
-        switch (valor) {
-            case "As":
-                return new As();
-            case "2":
-                return new Dos();
-            case "3":
-                return new Tres();
-            case "4":
-                return new Cuatro();
-            case "5":
-                return new Cinco();
-            case "6":
-                return new Seis();
-            case "7":
-                return new Siete();
-            case "8":
-                return new Ocho();
-            case "9":
-                return new Nueve();
-            case "10":
-                return new Diez();
-            case "Jota":
-                return new Jota();
-            case "Reina":
-                return new Reina();
-            case "Rey":
-                return new Rey();
-        }
-        return null;
     }
 }
