@@ -1,5 +1,6 @@
 package edu.fiuba.algo3.entrega_3;
 
+import edu.fiuba.algo3.modelo.Carta.Carta;
 import edu.fiuba.algo3.modelo.Joker.Joker;
 import edu.fiuba.algo3.modelo.Mazo;
 import edu.fiuba.algo3.modelo.Ronda;
@@ -46,12 +47,21 @@ public class BalatroTest {
     }
 
     @Test
-    public void test04ParserBalatro() throws FileNotFoundException {
+    public void test04ParserBalatroDevueleveLasRondas() throws FileNotFoundException {
         ParserBalatro parserBalatro = new ParserBalatro();
 
-        ArrayList<Ronda> rondas = parserBalatro.parse();
+        ArrayList<Ronda> rondas = parserBalatro.parsearRondas();
 
         assertEquals(8, rondas.size());
+    }
+
+    @Test
+    public void test05ParserBalatroDevuelveElMazo() throws FileNotFoundException {
+        ParserBalatro parserBalatro = new ParserBalatro();
+
+        ArrayList<Carta> cartas = parserBalatro.parsearMazo();
+
+        assertEquals(52, cartas.size());
     }
 
 

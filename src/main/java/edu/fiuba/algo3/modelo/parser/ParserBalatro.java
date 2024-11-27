@@ -4,6 +4,7 @@ import com.google.gson.Gson;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
+import edu.fiuba.algo3.modelo.Carta.Carta;
 import edu.fiuba.algo3.modelo.Descarte;
 import edu.fiuba.algo3.modelo.Joker.Joker;
 import edu.fiuba.algo3.modelo.Mano;
@@ -17,12 +18,16 @@ import java.util.ArrayList;
 
 public class ParserBalatro {
     private static final String RUTA_BALATRO = "/json/balatro.json";
+    private JsonObject jsonObject;
 
-    public ArrayList<Ronda> parse() throws FileNotFoundException {
-
+    public ParserBalatro() throws FileNotFoundException {
         Gson gson = new Gson();
         BufferedReader br = new BufferedReader(new FileReader(System.getProperty("user.dir") + RUTA_BALATRO));
         JsonObject jsonObject = gson.fromJson(br, JsonObject.class);
+        this.jsonObject = jsonObject;
+    }
+
+    public ArrayList<Ronda> parsearRondas() {
         JsonArray rondasJson = jsonObject.getAsJsonArray("rondas");
         ArrayList<Ronda> rondas = new ArrayList<>();
         for (JsonElement rondaElem : rondasJson) {
@@ -50,5 +55,11 @@ public class ParserBalatro {
         JsonArray tarotsArr = tiendaObj.getAsJsonArray("tarots");
         JsonObject cartaObj = tiendaObj.getAsJsonObject("carta");
         return new Tienda(parserJoker.parsearJokers(comodinesArr), parserTarot.parsearTarots(tarotsArr), parserCartas.parsearCarta(cartaObj));
+    }
+
+    public ArrayList<Carta> parsearMazo(){
+        ParserMazo parserCartas = new ParserMazo();
+        JsonArray mazoArr = jsonObject.getAsJsonArray("mazo");
+        return parserCartas.parsearCartas(mazoArr);
     }
 }
