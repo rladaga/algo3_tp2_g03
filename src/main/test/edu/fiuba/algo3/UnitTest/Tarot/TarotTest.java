@@ -1,4 +1,4 @@
-package edu.fiuba.algo3.UnitTest;
+package edu.fiuba.algo3.UnitTest.Tarot;
 
 import edu.fiuba.algo3.modelo.Carta.Carta;
 import edu.fiuba.algo3.modelo.Carta.Palo.Picas;

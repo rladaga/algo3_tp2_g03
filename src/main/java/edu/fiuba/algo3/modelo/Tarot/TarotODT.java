@@ -10,6 +10,15 @@ public class TarotODT {
 
     public TarotODT(){}
 
+    public TarotODT(String nombre, String descripcion, int puntos, float multiplicador, String sobre, String ejemplar) {
+        this.nombre = nombre;
+        this.descripcion = descripcion;
+        this.puntos = puntos;
+        this.multiplicador = multiplicador;
+        this.sobre = sobre;
+        this.ejemplar = ejemplar;
+    }
+
     public String getNombre() {
         return nombre;
     }
