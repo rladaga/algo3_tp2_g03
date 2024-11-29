@@ -17,19 +17,6 @@ public class Ronda{
         this.tienda = tienda;
     }
 
-    public boolean esPuntajeAlcanzado(PuntuacionTirada puntuacion) {
-        return puntuacion.obtenerPuntuacion() < puntajeObjetivo;
-    }
-
-    public boolean resolverRonda(Jugador jugador, Descarte descartes, Mano manos) {
-        PuntuacionTirada puntuacion = new PuntuacionTirada(0,0);
-        while(!esPuntajeAlcanzado(puntuacion) && manos.permitirTirada()){
-            //jugador.resolverTurno(this);
-            manos.realizarTirada();
-        }
-        return esPuntajeAlcanzado(puntuacion);
-    }
-
 
 }
 

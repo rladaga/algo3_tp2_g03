@@ -17,7 +17,7 @@ import java.io.FileReader;
 import java.util.ArrayList;
 
 public class ParserBalatro {
-    private static final String RUTA_BALATRO = "/json/balatro.json";
+    private static final String RUTA_BALATRO = "/recursos/json/balatro.json";
     private JsonObject jsonObject;
 
     public ParserBalatro() throws FileNotFoundException {

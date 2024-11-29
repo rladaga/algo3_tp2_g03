@@ -1,6 +1,6 @@
 package edu.fiuba.algo3.modelo.Joker;
 
-public class JokerODT {
+public class JokerDTO {
     private String nombre;
     private String descripcion;
     private String activacion;
@@ -9,7 +9,7 @@ public class JokerODT {
     private float multiplicador;
 
     // Constructor
-    public JokerODT(String nombre, String descripcion, String activacion, String parametroActivacion, int puntos, float multiplicador) {
+    public JokerDTO(String nombre, String descripcion, String activacion, String parametroActivacion, int puntos, float multiplicador) {
         this.nombre = nombre;
         this.descripcion = descripcion;
         this.activacion = activacion;
@@ -18,7 +18,7 @@ public class JokerODT {
         this.multiplicador = multiplicador;
     }
 
-    public JokerODT(){}
+    public JokerDTO(){}
 
     // Getters
     public String getNombre() {

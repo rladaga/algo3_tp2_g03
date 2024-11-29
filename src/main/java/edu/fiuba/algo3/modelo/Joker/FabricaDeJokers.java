@@ -14,13 +14,13 @@ import edu.fiuba.algo3.modelo.Modificador.Sumar;
 
 public class FabricaDeJokers {
 
-    public static Joker crearJoker(JokerODT jokerODT){
-        String nombre = jokerODT.getNombre();
-        String descripcion = jokerODT.getDescripcion();
-        String activacion = jokerODT.getActivacion();
-        String parametroActivacion = jokerODT.getParametroActivacion();
-        int puntos = jokerODT.getPuntos();
-        float multiplicador = jokerODT.getMultiplicador();
+    public static Joker crearJoker(JokerDTO jokerDTO){
+        String nombre = jokerDTO.getNombre();
+        String descripcion = jokerDTO.getDescripcion();
+        String activacion = jokerDTO.getActivacion();
+        String parametroActivacion = jokerDTO.getParametroActivacion();
+        int puntos = jokerDTO.getPuntos();
+        float multiplicador = jokerDTO.getMultiplicador();
 
         EstrategiaModificacion modStrat;
         Modificador mod;

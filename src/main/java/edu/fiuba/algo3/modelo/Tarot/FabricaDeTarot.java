@@ -10,13 +10,13 @@ import edu.fiuba.algo3.modelo.Modificador.Multiplicar;
 import edu.fiuba.algo3.modelo.Modificador.Sumar;
 
 public class FabricaDeTarot {
-    public static Tarot crearTarot(TarotODT tarotODT){
-        String nombre = tarotODT.getNombre();
-        String descripcion = tarotODT.getDescripcion();
-        int puntos = tarotODT.getPuntos();
-        float multiplicador = tarotODT.getMultiplicador();
-        String sobre = tarotODT.getSobre();
-        String ejemplar = tarotODT.getEjemplar();
+    public static Tarot crearTarot(TarotDTO tarotDTO){
+        String nombre = tarotDTO.getNombre();
+        String descripcion = tarotDTO.getDescripcion();
+        int puntos = tarotDTO.getPuntos();
+        float multiplicador = tarotDTO.getMultiplicador();
+        String sobre = tarotDTO.getSobre();
+        String ejemplar = tarotDTO.getEjemplar();
 
         switch (sobre) {
             case "mano":

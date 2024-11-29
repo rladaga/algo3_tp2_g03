@@ -10,7 +10,7 @@ import java.io.FileReader;
 import java.util.ArrayList;
 
 public class ParserJoker {
-    private static final String RUTA_JOKER = "/json/comodines.json";
+    private static final String RUTA_JOKER = "/recursos/json/comodines.json";
 
     public ArrayList<Joker> parse() throws FileNotFoundException {
 
@@ -42,30 +42,30 @@ public class ParserJoker {
     }
 
     public Joker parsearJoker(JsonObject comodinObj) {
-        JokerODT jokerODT = new JokerODT();
+        JokerDTO jokerDTO = new JokerDTO();
         if (comodinObj.has("comodines"))
             return parsearJokerCombinado(comodinObj);
-        jokerODT.setNombre(comodinObj.get("nombre").getAsString());
-        jokerODT.setDescripcion(comodinObj.get("descripcion").getAsString());
+        jokerDTO.setNombre(comodinObj.get("nombre").getAsString());
+        jokerDTO.setDescripcion(comodinObj.get("descripcion").getAsString());
         JsonElement activacionEle = comodinObj.get("activacion");
         if (activacionEle.isJsonObject()) {
             JsonObject activacionObj = activacionEle.getAsJsonObject();
             if (activacionObj.has("1 en")) {
-                jokerODT.setActivacion("1 en");
-                jokerODT.setParametroActivacion(activacionObj.get("1 en").getAsString());
+                jokerDTO.setActivacion("1 en");
+                jokerDTO.setParametroActivacion(activacionObj.get("1 en").getAsString());
             } else if (activacionObj.has("Mano Jugada")) {
-                jokerODT.setActivacion("Mano Jugada");
-                jokerODT.setParametroActivacion(activacionObj.get("Mano Jugada").getAsString());
+                jokerDTO.setActivacion("Mano Jugada");
+                jokerDTO.setParametroActivacion(activacionObj.get("Mano Jugada").getAsString());
             }
         } else {
-            jokerODT.setActivacion(activacionEle.getAsString());
-            jokerODT.setParametroActivacion("");
+            jokerDTO.setActivacion(activacionEle.getAsString());
+            jokerDTO.setParametroActivacion("");
         }
         JsonObject efecto = comodinObj.get("efecto").getAsJsonObject();
-        jokerODT.setPuntos(efecto.get("puntos").getAsInt());
-        jokerODT.setMultiplicador(efecto.get("multiplicador").getAsFloat());
+        jokerDTO.setPuntos(efecto.get("puntos").getAsInt());
+        jokerDTO.setMultiplicador(efecto.get("multiplicador").getAsFloat());
 
-        return FabricaDeJokers.crearJoker(jokerODT);
+        return FabricaDeJokers.crearJoker(jokerDTO);
     }
 
 

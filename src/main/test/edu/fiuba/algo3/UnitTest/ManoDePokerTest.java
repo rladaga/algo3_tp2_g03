@@ -17,7 +17,7 @@ public class ManoDePokerTest {
     }
 
     @Test
-    public void test01ManoDePokerSeComparaCorrectamentePorFalso(){
+    public void test02ManoDePokerSeComparaCorrectamentePorFalso(){
         ManoDePoker manoDePoker = new FullHouse();
         ManoDePoker manoDePoker2 = new Par();
 

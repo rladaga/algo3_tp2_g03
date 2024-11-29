@@ -27,22 +27,22 @@ public class BalatroTest{
     public void jugadorPoseeCartasSuficientesParaEmpezarElJuego() {
         IMezclador mezclador = new MezcladorMazo();
         Mazo mazo = new Mazo(mezclador);
-        Descarte descartes = new Descarte(3);
-        Jugador jugador = new Jugador(mazo, descartes);
+        ArrayList<Ronda> arrRonda = new ArrayList<>();
+        Balatro balatro = new Balatro(arrRonda, mazo);
+        balatro.iniciarTurno();
 
-
-        assertTrue(jugador.cartasEnMazo() >= 8);
+        assertTrue(balatro.cartasEnMazo() >= 8);
     }
 
     @Test
     public void jugadorSeLeReparten8CartasDelMazo(){
         IMezclador mezclador = new MezcladorMazo();
         Mazo mazo = new Mazo(mezclador);
-        Descarte descartes = new Descarte(3);
-        Jugador jugador = new Jugador(mazo, descartes);
-        jugador.iniciarTurno();
+        ArrayList<Ronda> arrRonda = new ArrayList<>();
+        Balatro balatro = new Balatro(arrRonda, mazo);
+        balatro.iniciarTurno();
 
-        assertEquals(8, jugador.cantidadCartasEnMano());
+        assertEquals(8, balatro.cantidadCartasEnMano());
 
     }
 
@@ -50,15 +50,15 @@ public class BalatroTest{
     public void sePuedeJugarUnaManoDeUnMazo(){
         IMezclador mezclador = new MezcladorMazo();
         Mazo mazo = new Mazo(mezclador);
-        Descarte descartes = new Descarte(3);
-        Jugador jugador = new Jugador(mazo, descartes);
-        jugador.iniciarTurno();
+        ArrayList<Ronda> arrRonda = new ArrayList<>();
+        Balatro balatro = new Balatro(arrRonda, mazo);
+        balatro.iniciarTurno();
 
         for (int i = 0; i < 4; i++) {
-            jugador.seleccionarCartaEnPosicion(i);
+            balatro.seleccionarCartaEnPosicion(i);
         }
 
-        assertTrue(jugador.jugarMano().size() > 0 && jugador.jugarMano().size() < 6);
+        assertTrue(balatro.jugarMano().size() > 0 && balatro.jugarMano().size() < 6);
     }
 
     @Test

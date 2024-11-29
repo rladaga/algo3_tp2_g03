@@ -1,6 +1,6 @@
 package edu.fiuba.algo3.modelo.Tarot;
 
-public class TarotODT {
+public class TarotDTO {
     String nombre;
     String descripcion;
     int puntos;
@@ -8,9 +8,9 @@ public class TarotODT {
     String sobre;
     String ejemplar;
 
-    public TarotODT(){}
+    public TarotDTO(){}
 
-    public TarotODT(String nombre, String descripcion, int puntos, float multiplicador, String sobre, String ejemplar) {
+    public TarotDTO(String nombre, String descripcion, int puntos, float multiplicador, String sobre, String ejemplar) {
         this.nombre = nombre;
         this.descripcion = descripcion;
         this.puntos = puntos;

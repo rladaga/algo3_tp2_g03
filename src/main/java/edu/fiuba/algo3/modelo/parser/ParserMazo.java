@@ -17,7 +17,7 @@ import java.io.FileReader;
 import java.util.ArrayList;
 
 public class ParserMazo {
-    private static final String RUTA_MAZO = "/json/mazo.json";
+    private static final String RUTA_MAZO = "/recursos/json/mazo.json";
 
     public Mazo parse() throws FileNotFoundException {
 
