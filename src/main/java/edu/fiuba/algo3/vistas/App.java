@@ -15,7 +15,12 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
 import javafx.stage.Stage;
 
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
+import javafx.scene.media.MediaView;
+
 import java.util.ArrayList;
+import java.util.Objects;
 import java.util.Optional;
 
 /**
@@ -26,11 +31,18 @@ public class App extends Application {
     private Scene scene1;
     private Scene scene2;
     private Stage stage;
+    private MediaPlayer mediaPlayer;
+    private boolean isMusicPlaying = false;
 
     @Override
     public void start(Stage stagePrimario) {
         stage = stagePrimario;
         stage.setTitle("Balatro");
+
+        String mediaPath = getClass().getResource("/audio/wii.mp3").toExternalForm();
+        Media media = new Media(mediaPath);
+        mediaPlayer = new MediaPlayer(media);
+        mediaPlayer.setCycleCount(MediaPlayer.INDEFINITE);
 
         scene1 = crearMenuInicial();
         scene2 = crearVisualPartida();
@@ -60,12 +72,27 @@ public class App extends Application {
             }
         });
 
-        // Agregar opciones al menú
+        MenuItem toggleMusic = new MenuItem("Música: OFF");
+        toggleMusic.setOnAction(event -> {
+            if (isMusicPlaying) {
+                mediaPlayer.pause();
+                toggleMusic.setText("Música: OFF");
+            } else {
+                mediaPlayer.play();
+                toggleMusic.setText("Música: ON");
+            }
+            isMusicPlaying = !isMusicPlaying;
+        });
+
+
         menuOpciones.getItems().addAll(pantallaCompleta, cambiarEscena);
+
+        Menu menuMusica = new Menu("Musica");
+        menuMusica.getItems().addAll(toggleMusic);
 
         // Crear la barra de menús
         MenuBar menuBar = new MenuBar();
-        menuBar.getMenus().add(menuOpciones);
+        menuBar.getMenus().addAll(menuOpciones, menuMusica);
 
         return menuBar;
     }
@@ -108,7 +135,7 @@ public class App extends Application {
         VBox menuInicial = new VBox(30);
         menuInicial.setAlignment(Pos.CENTER);
 
-        ImageView logoImage = new ImageView(new Image("file:recursos/imagenes/logo_balatro.png"));
+        ImageView logoImage = new ImageView(new Image(getClass().getResourceAsStream("/imagenes/logo_balatro.png")));
         logoImage.setFitWidth(600);
         logoImage.setPreserveRatio(true);
 
@@ -228,7 +255,7 @@ public class App extends Application {
         AnchorPane.setBottomAnchor(contenedorBotones,  100.0);
         AnchorPane.setLeftAnchor(contenedorBotones, 520.0);
 
-        Image image = new Image("file:recursos/imagenes/image_4.png");
+        Image image = new Image(getClass().getResourceAsStream("/imagenes/image_4.png"));
         ImageView imageView = new ImageView(image);
 
         imageView.setFitHeight(165);
@@ -273,7 +300,7 @@ public class App extends Application {
         };
 
         for (String imagePath : jokerImagenes) {
-            ImageView joker = new ImageView(new Image("file:recursos/imagenes/" + imagePath));
+            ImageView joker = new ImageView(new Image(getClass().getResourceAsStream("/imagenes/" + imagePath)));
             joker.setFitHeight(120);
             joker.setFitWidth(90);
             joker.setPreserveRatio(true);
@@ -298,7 +325,7 @@ public class App extends Application {
         };
 
         for (String imagePath : imagenesTarot) {
-            ImageView tarot = new ImageView(new Image("file:recursos/imagenes/" + imagePath));
+            ImageView tarot = new ImageView(new Image(getClass().getResourceAsStream("/imagenes/" + imagePath)));
             tarot.setFitHeight(120);
             tarot.setFitWidth(90);
             tarot.setPreserveRatio(true);
@@ -321,7 +348,7 @@ public class App extends Application {
         };
 
         for (Carta carta : cartas) {
-            ImageView cartaImagen = new ImageView(new Image("file:recursos/imagenes/cartas/" + carta.getImagen()));
+            ImageView cartaImagen = new ImageView(new Image(getClass().getResourceAsStream("/imagenes/cartas/" + carta.getImagen())));
             cartaImagen.setFitHeight(120);
             cartaImagen.setFitWidth(90);
             cartaImagen.setPreserveRatio(true);
