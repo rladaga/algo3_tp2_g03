@@ -17,7 +17,7 @@ import javafx.stage.Stage;
 
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
-import javafx.scene.media.MediaView;
+
 
 import java.util.ArrayList;
 import java.util.Objects;
@@ -90,7 +90,7 @@ public class App extends Application {
         Menu menuMusica = new Menu("Musica");
         menuMusica.getItems().addAll(toggleMusic);
 
-        // Crear la barra de menús
+
         MenuBar menuBar = new MenuBar();
         menuBar.getMenus().addAll(menuOpciones, menuMusica);
 
