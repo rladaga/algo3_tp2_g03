@@ -6,19 +6,17 @@ import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import edu.fiuba.algo3.modelo.Tarot.*;
 
-import java.io.BufferedReader;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
+import java.io.*;
 import java.util.ArrayList;
 
 public class ParserTarot {
 
-    private static final String RUTA_TAROT     =    "/recursos/json/tarots.json";
-
     public ArrayList<Tarot> parse() throws FileNotFoundException {
 
+        InputStream inputStream = getClass().getResourceAsStream("/json/tarots.json");
+
         Gson gson = new Gson();
-        BufferedReader br = new BufferedReader(new FileReader(System.getProperty("user.dir") + RUTA_TAROT));
+        BufferedReader br = new BufferedReader(new InputStreamReader(inputStream));
         JsonObject jsonObject = gson.fromJson(br, JsonObject.class);
         JsonArray tarotsArr = jsonObject.get("tarots").getAsJsonArray();
         return parsearTarots(tarotsArr);
@@ -33,6 +31,7 @@ public class ParserTarot {
         }
         return listaTarots;
     }
+
     public Tarot parsearTarot(JsonObject tarotObj){
 
         TarotDTO tarotDTO = new TarotDTO();

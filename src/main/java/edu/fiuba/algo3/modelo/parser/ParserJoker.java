@@ -4,9 +4,7 @@ import com.google.gson.*;
 import edu.fiuba.algo3.modelo.Joker.FabricaDeJokers;
 import edu.fiuba.algo3.modelo.Joker.*;
 
-import java.io.BufferedReader;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
+import java.io.*;
 import java.util.ArrayList;
 
 public class ParserJoker {
@@ -14,8 +12,10 @@ public class ParserJoker {
 
     public ArrayList<Joker> parse() throws FileNotFoundException {
 
+        InputStream inputStream = getClass().getResourceAsStream("/json/comodines.json");
+
         Gson gson = new Gson();
-        BufferedReader br = new BufferedReader(new FileReader(System.getProperty("user.dir") + RUTA_JOKER));
+        BufferedReader br = new BufferedReader(new InputStreamReader(inputStream));
         JsonObject jsonObject = gson.fromJson(br, JsonObject.class);
         JsonObject jokersNormal = jsonObject.get("Al Puntaje").getAsJsonObject();
         JsonObject jokersMano = jsonObject.get("Bonus por Mano Jugada").getAsJsonObject();

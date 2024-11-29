@@ -11,9 +11,7 @@ import edu.fiuba.algo3.modelo.Mano;
 import edu.fiuba.algo3.modelo.Ronda;
 import edu.fiuba.algo3.modelo.Tienda;
 
-import java.io.BufferedReader;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
+import java.io.*;
 import java.util.ArrayList;
 
 public class ParserBalatro {
@@ -21,8 +19,11 @@ public class ParserBalatro {
     private JsonObject jsonObject;
 
     public ParserBalatro() throws FileNotFoundException {
+
+        InputStream inputStream = getClass().getResourceAsStream("/json/balatro.json");
+
         Gson gson = new Gson();
-        BufferedReader br = new BufferedReader(new FileReader(System.getProperty("user.dir") + RUTA_BALATRO));
+        BufferedReader br = new BufferedReader(new InputStreamReader(inputStream));
         JsonObject jsonObject = gson.fromJson(br, JsonObject.class);
         this.jsonObject = jsonObject;
     }

@@ -11,9 +11,7 @@ import edu.fiuba.algo3.modelo.Carta.Valor.FabricaDeValor;
 import edu.fiuba.algo3.modelo.Mazo;
 import edu.fiuba.algo3.modelo.Mezclador.MezcladorMazo;
 
-import java.io.BufferedReader;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
+import java.io.*;
 import java.util.ArrayList;
 
 public class ParserMazo {
@@ -21,8 +19,10 @@ public class ParserMazo {
 
     public Mazo parse() throws FileNotFoundException {
 
+        InputStream inputStream = getClass().getResourceAsStream("/json/mazo.json");
+
         Gson gson = new Gson();
-        BufferedReader br = new BufferedReader(new FileReader(System.getProperty("user.dir") + RUTA_MAZO));
+        BufferedReader br = new BufferedReader(new InputStreamReader(inputStream));
         JsonObject jsonObject = gson.fromJson(br, JsonObject.class);
         JsonArray cartas = jsonObject.get("mazo").getAsJsonArray();
         return new Mazo(parsearCartas(cartas), new MezcladorMazo());
