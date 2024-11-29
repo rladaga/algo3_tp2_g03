@@ -1,5 +1,9 @@
 package edu.fiuba.algo3.vistas;
 
+import edu.fiuba.algo3.modelo.Carta.Carta;
+import edu.fiuba.algo3.modelo.Mazo;
+import edu.fiuba.algo3.modelo.Mezclador.IMezclador;
+import edu.fiuba.algo3.modelo.Mezclador.MezcladorMazo;
 import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.geometry.Insets;
@@ -11,6 +15,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
 import javafx.stage.Stage;
 
+import java.util.ArrayList;
 import java.util.Optional;
 
 /**
@@ -31,12 +36,45 @@ public class App extends Application {
         scene2 = crearVisualPartida();
 
         stage.setScene(scene1);
+        stage.setResizable(false);
         stage.show();
+    }
+
+    private MenuBar crearBarraDeMenus() {
+
+        Menu menuOpciones = new Menu("Opciones");
+
+        MenuItem pantallaCompleta = new MenuItem("Pantalla completa");
+        pantallaCompleta.setOnAction(event -> {
+            boolean isFullScreen = stage.isFullScreen();
+            stage.setFullScreen(!isFullScreen);
+        });
+
+
+        MenuItem cambiarEscena = new MenuItem("Cambiar escena");
+        cambiarEscena.setOnAction(event -> {
+            if (stage.getScene() == scene1) {
+                stage.setScene(scene2);
+            } else {
+                stage.setScene(scene1);
+            }
+        });
+
+        // Agregar opciones al menú
+        menuOpciones.getItems().addAll(pantallaCompleta, cambiarEscena);
+
+        // Crear la barra de menús
+        MenuBar menuBar = new MenuBar();
+        menuBar.getMenus().add(menuOpciones);
+
+        return menuBar;
     }
 
     private Scene crearMenuInicial(){
         StackPane root = new StackPane();
         root.setStyle("-fx-background-color: linear-gradient(to right, #8B0000, #000080);");
+
+        MenuBar menuBar = crearBarraDeMenus();
 
         Dialog<String> dialog = new Dialog<>();
         dialog.setTitle("Bienvenido a Balatro");
@@ -70,7 +108,7 @@ public class App extends Application {
         VBox menuInicial = new VBox(30);
         menuInicial.setAlignment(Pos.CENTER);
 
-        ImageView logoImage = new ImageView(new Image("file:src/main/java/edu/fiuba/algo3/vistas/assets/logo_balatro.png"));
+        ImageView logoImage = new ImageView(new Image("file:recursos/imagenes/logo_balatro.png"));
         logoImage.setFitWidth(600);
         logoImage.setPreserveRatio(true);
 
@@ -101,8 +139,11 @@ public class App extends Application {
 
         root.getChildren().addAll(menuInicial);
 
+        BorderPane root2 = new BorderPane();
+        root2.setTop(menuBar);
+        root2.setCenter(root);
 
-        Scene scene = new Scene(root, 1366, 768);
+        Scene scene = new Scene(root2, 1366, 768);
 
         Platform.runLater(() -> {
             Optional<String> result = dialog.showAndWait();
@@ -117,8 +158,14 @@ public class App extends Application {
     }
 
     private Scene crearVisualPartida(){
+        IMezclador mezclador = new MezcladorMazo();
+        Mazo mazo = new Mazo(mezclador);
+        ArrayList<Carta> cartas = mazo.repartir();
+
         StackPane root = new StackPane();
         root.setStyle("-fx-background-color: #356C54");
+
+        MenuBar menuBar = crearBarraDeMenus();
 
         VBox cajaGris = new VBox(10);
         cajaGris.setStyle("-fx-background-color: #2E393B");
@@ -149,7 +196,7 @@ public class App extends Application {
         AnchorPane.setTopAnchor(areaTarots, 20.0);
         AnchorPane.setLeftAnchor(areaTarots, 950.0);
 
-        HBox areaCartas = crearAreaCartas();
+        HBox areaCartas = crearAreaCartas(cartas);
         AnchorPane.setBottomAnchor(areaCartas, 200.0);
         AnchorPane.setLeftAnchor(areaCartas, 350.0);
 
@@ -181,7 +228,7 @@ public class App extends Application {
         AnchorPane.setBottomAnchor(contenedorBotones,  100.0);
         AnchorPane.setLeftAnchor(contenedorBotones, 520.0);
 
-        Image image = new Image("file:src/main/java/edu/fiuba/algo3/vistas/assets/image_4.png");
+        Image image = new Image("file:recursos/imagenes/image_4.png");
         ImageView imageView = new ImageView(image);
 
         imageView.setFitHeight(165);
@@ -199,7 +246,11 @@ public class App extends Application {
 
         root.getChildren().addAll(cajaGris, anchor);
 
-        Scene scene = new Scene(root, 1366, 768);
+        BorderPane root2 = new BorderPane();
+        root2.setTop(menuBar);
+        root2.setCenter(root);
+
+        Scene scene = new Scene(root2, 1366, 768);
 
         return scene;
     }
@@ -222,7 +273,7 @@ public class App extends Application {
         };
 
         for (String imagePath : jokerImagenes) {
-            ImageView joker = new ImageView(new Image("file:src/main/java/edu/fiuba/algo3/vistas/assets/" + imagePath));
+            ImageView joker = new ImageView(new Image("file:recursos/imagenes/" + imagePath));
             joker.setFitHeight(120);
             joker.setFitWidth(90);
             joker.setPreserveRatio(true);
@@ -247,7 +298,7 @@ public class App extends Application {
         };
 
         for (String imagePath : imagenesTarot) {
-            ImageView tarot = new ImageView(new Image("file:src/main/java/edu/fiuba/algo3/vistas/assets/" + imagePath));
+            ImageView tarot = new ImageView(new Image("file:recursos/imagenes/" + imagePath));
             tarot.setFitHeight(120);
             tarot.setFitWidth(90);
             tarot.setPreserveRatio(true);
@@ -257,7 +308,7 @@ public class App extends Application {
         return areaTarots;
     }
 
-    private HBox crearAreaCartas() {
+    private HBox crearAreaCartas(ArrayList<Carta> cartas) {
         HBox areaCartas = new HBox(10);
         areaCartas.setPrefHeight(150);
         areaCartas.setPadding(new Insets(20, 20, 20, 20));
@@ -269,12 +320,12 @@ public class App extends Application {
                 "cartas_repartidas.png",
         };
 
-        for (String imagePath : imagenesCartas) {
-            ImageView cartas = new ImageView(new Image("file:src/main/java/edu/fiuba/algo3/vistas/assets/" + imagePath));
-            cartas.setFitHeight(180);
-            cartas.setFitWidth(800);
-            cartas.setPreserveRatio(true);
-            areaCartas.getChildren().add(cartas);
+        for (Carta carta : cartas) {
+            ImageView cartaImagen = new ImageView(new Image("file:recursos/imagenes/cartas/" + carta.getImagen()));
+            cartaImagen.setFitHeight(120);
+            cartaImagen.setFitWidth(90);
+            cartaImagen.setPreserveRatio(true);
+            areaCartas.getChildren().add(cartaImagen);
         }
 
         return areaCartas;

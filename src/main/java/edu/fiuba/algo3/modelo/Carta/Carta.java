@@ -19,6 +19,15 @@ public class Carta {
 
     }
 
+    public String getImagen(){
+        String nombrePalo = palo.getClass().getSimpleName();
+        String nombreValor = valor.getClass().getSimpleName();
+
+        System.out.println(nombreValor + "_" + nombrePalo);
+
+        return nombreValor + "_" + nombrePalo + ".png";
+    }
+
     public int obtenerIndice() {
         return this.valor.numeracion();
     }
