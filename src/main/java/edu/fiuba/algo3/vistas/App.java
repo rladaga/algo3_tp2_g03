@@ -13,6 +13,7 @@ import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
+import javafx.scene.text.Font;
 import javafx.stage.Stage;
 
 import javafx.scene.media.Media;
@@ -33,6 +34,7 @@ public class App extends Application {
     private Stage stage;
     private MediaPlayer mediaPlayer;
     private boolean isMusicPlaying = false;
+    private Font customFont;
 
     @Override
     public void start(Stage stagePrimario) {
@@ -43,6 +45,11 @@ public class App extends Application {
         Media media = new Media(mediaPath);
         mediaPlayer = new MediaPlayer(media);
         mediaPlayer.setCycleCount(MediaPlayer.INDEFINITE);
+
+        customFont = Font.loadFont(
+                getClass().getResourceAsStream("/tipografia/balatro.ttf"),
+                20
+        );
 
         scene1 = crearMenuInicial();
         scene2 = crearVisualPartida();
@@ -158,10 +165,9 @@ public class App extends Application {
 
         Button botonJugar = crearBotonMenu("JUGAR", estiloBoton);
         botonJugar.setOnAction(e -> switchScenes(scene2));
-        Button botonCargarPartida = crearBotonMenu("CARGAR PARTIDA", estiloBoton);
 
 
-        botonesMenu.getChildren().addAll(botonJugar, botonCargarPartida);
+        botonesMenu.getChildren().add(botonJugar);
         menuInicial.getChildren().addAll(logoImage, botonesMenu);
 
         root.getChildren().addAll(menuInicial);
@@ -171,6 +177,11 @@ public class App extends Application {
         root2.setCenter(root);
 
         Scene scene = new Scene(root2, 1366, 768);
+
+        String fontFamily = "Balatro";
+        String css = "-fx-font-family: '" + fontFamily + "';";
+
+        scene.getRoot().setStyle(css);
 
         Platform.runLater(() -> {
             Optional<String> result = dialog.showAndWait();
@@ -205,13 +216,103 @@ public class App extends Application {
         cajaGris.setSpacing(20);
         cajaGris.setFillWidth(true);
 
-        VBox cajaInterna1 = crearCajaInterna("#E29000", "NOMBRE RONDA", 65, 120);
-        VBox cajaInterna2 = crearCajaInterna("#9D6400", "PUNTAJE \nNECESARIO", 147, 120);
-        VBox cajaInterna3 = crearCajaInterna("#242B2C", "PUNTOS DE \nLA RONDA", 66, 120);
-        VBox cajaInterna4 = crearCajaInterna("#242B2C", "PUNTUACION TIRADA", 136, 120);
-        VBox cajaInterna5 = crearCajaInterna("#242B2C", "MANO RONDA DESCARTES", 124, 120);
 
-        cajaGris.getChildren().addAll(cajaInterna1, cajaInterna2, cajaInterna3, cajaInterna4, cajaInterna5);
+        VBox cajaInterna2 = crearCajaInterna("#9D6400", "PUNTAJE \nNECESARIO", 147, 120);
+        VBox cajaInterna3 = crearCajaInterna("#242B2C", "PUNTOS DE\nLA RONDA", 150, 120);
+        VBox cajaInterna4 = crearCajaInterna("#242B2C", "PUNTUACION TIRADA", 136, 120);
+        VBox cajaInterna5 = crearCajaInterna("#242B2C", "", 124, 120);
+
+        HBox fichaPuntajeCaja = new HBox(10);
+        fichaPuntajeCaja.setAlignment(Pos.CENTER);
+        fichaPuntajeCaja.setStyle("-fx-background-color: #2E393B; -fx-background-radius: 5px;");
+        fichaPuntajeCaja.setPadding(new Insets(20, 20, 20, 20));
+
+        ImageView fichaImagen = new ImageView(new Image(getClass().getResourceAsStream("/imagenes/ficha.png")));
+        fichaImagen.setFitHeight(29);
+        fichaImagen.setFitWidth(29);
+        fichaImagen.setPreserveRatio(true);
+        fichaPuntajeCaja.getChildren().add(fichaImagen);
+
+        Label puntajeLabel = new Label("10750");
+        puntajeLabel.setStyle("-fx-text-fill: #dc3545; -fx-font-size: 30px");
+        fichaPuntajeCaja.getChildren().add(puntajeLabel);
+
+        cajaInterna2.getChildren().add(fichaPuntajeCaja);
+
+        VBox.setMargin(fichaPuntajeCaja, new Insets(20, 0, 0, 0));
+
+        HBox fichaPuntajeCaja2 = new HBox(10);
+        fichaPuntajeCaja2.setAlignment(Pos.CENTER);
+        fichaPuntajeCaja2.setStyle("-fx-background-color: #2E393B; -fx-background-radius: 5px;");
+        fichaPuntajeCaja2.setPadding(new Insets(20, 20, 20, 20));
+
+        ImageView fichaImagen2 = new ImageView(new Image(getClass().getResourceAsStream("/imagenes/ficha.png")));
+        fichaImagen2.setFitHeight(29);
+        fichaImagen2.setFitWidth(29);
+        fichaImagen2.setPreserveRatio(true);
+        fichaPuntajeCaja2.getChildren().add(fichaImagen2);
+
+        Label puntajeLabel2 = new Label("0");
+        puntajeLabel2.setStyle("-fx-text-fill: white; -fx-font-size: 30px");
+        fichaPuntajeCaja2.getChildren().add(puntajeLabel2);
+
+        cajaInterna3.getChildren().add(fichaPuntajeCaja2);
+
+        VBox.setMargin(fichaPuntajeCaja2, new Insets(20, 0, 0, 0));
+
+        HBox puntuacionTiradaCaja = new HBox(10);
+        puntuacionTiradaCaja.setAlignment(Pos.BOTTOM_CENTER);
+
+        HBox cajaPuntos = new HBox();
+        cajaPuntos.setAlignment(Pos.BOTTOM_RIGHT);
+        cajaPuntos.setStyle("-fx-background-color: #007bff; -fx-background-radius: 5px;");
+        cajaPuntos.setPrefSize(100,50);
+        Label puntosLabel = new Label("0");
+        puntosLabel.setStyle("-fx-text-fill: white; -fx-font-size: 24px");
+        puntosLabel.setPadding(new Insets(0, 5, 0, 0));
+
+        cajaPuntos.getChildren().add(puntosLabel);
+
+        Label xLabel = new Label("X");
+        xLabel.setStyle("-fx-font-size: 24px; -fx-text-fill: #dc3545; -fx-font-weight: bold;");
+
+        HBox cajaMultiplicador = new HBox();
+        cajaMultiplicador.setAlignment(Pos.BOTTOM_LEFT);
+        cajaMultiplicador.setStyle("-fx-background-color: #dc3545; -fx-background-radius: 5px;");
+        cajaMultiplicador.setPrefSize(100,50);
+        Label puntosLabel2 = new Label("0");
+        puntosLabel2.setPadding(new Insets(0, 0, 0, 5));
+        puntosLabel2.setStyle("-fx-text-fill: white; -fx-font-size: 24px");
+
+        cajaMultiplicador.getChildren().add(puntosLabel2);
+
+        puntuacionTiradaCaja.getChildren().addAll(cajaPuntos, xLabel, cajaMultiplicador);
+
+        VBox.setMargin(puntuacionTiradaCaja, new Insets(45, 0, 0, 0));
+
+        cajaInterna4.getChildren().add(puntuacionTiradaCaja);
+
+        VBox manoCaja = new VBox();
+        manoCaja.setAlignment(Pos.TOP_LEFT);
+        manoCaja.setStyle("-fx-background-color: white; -fx-background-radius: 5px;");
+        Label manoLabel = new Label("MANO");
+        manoCaja.getChildren().add(manoLabel);
+
+        VBox rondaCaja = new VBox();
+        rondaCaja.setAlignment(Pos.TOP_CENTER);
+        rondaCaja.setStyle("-fx-background-color: white; -fx-background-radius: 5px;");
+        Label rondaLabel = new Label("RONDA");
+        rondaCaja.getChildren().add(rondaLabel);
+
+        VBox descartesCaja = new VBox();
+        descartesCaja.setAlignment(Pos.TOP_RIGHT);
+        descartesCaja.setStyle("-fx-background-color: white; -fx-background-radius: 5px;");
+        Label descartesLabel = new Label("DESCARTES");
+        descartesCaja.getChildren().add(descartesLabel);
+
+        cajaInterna5.getChildren().addAll(manoCaja, rondaCaja, descartesCaja);
+
+        cajaGris.getChildren().addAll(cajaInterna2, cajaInterna3, cajaInterna4, cajaInterna5);
 
         AnchorPane anchor = new AnchorPane();
 
@@ -222,10 +323,6 @@ public class App extends Application {
         HBox areaTarots = crearAreaTarots();
         AnchorPane.setTopAnchor(areaTarots, 20.0);
         AnchorPane.setLeftAnchor(areaTarots, 950.0);
-
-        HBox areaCartas = crearAreaCartas(cartas);
-        AnchorPane.setBottomAnchor(areaCartas, 200.0);
-        AnchorPane.setLeftAnchor(areaCartas, 350.0);
 
         HBox contenedorBotones = new HBox(20);
         contenedorBotones.setAlignment(Pos.CENTER);
@@ -249,11 +346,18 @@ public class App extends Application {
                 "-fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.4), 5, 0, 3, 3);";
 
         Button botonJugarMano = crearBotonMenu("JUGAR MANO", estiloBotonJugar);
+        botonJugarMano.setDisable(true);
+
         Button botonDescartar = crearBotonMenu("DESCARTAR", estiloBotonDescartar);
+        botonDescartar.setDisable(true);
 
         contenedorBotones.getChildren().addAll(botonJugarMano, botonDescartar);
         AnchorPane.setBottomAnchor(contenedorBotones,  100.0);
         AnchorPane.setLeftAnchor(contenedorBotones, 520.0);
+
+        HBox areaCartas = crearAreaCartas(cartas, botonJugarMano, botonDescartar);
+        AnchorPane.setBottomAnchor(areaCartas, 200.0);
+        AnchorPane.setLeftAnchor(areaCartas, 350.0);
 
         Image image = new Image(getClass().getResourceAsStream("/imagenes/image_4.png"));
         ImageView imageView = new ImageView(image);
@@ -278,6 +382,11 @@ public class App extends Application {
         root2.setCenter(root);
 
         Scene scene = new Scene(root2, 1366, 768);
+
+        String fontFamily = "Balatro";
+        String css = "-fx-font-family: '" + fontFamily + "';";
+
+        scene.getRoot().setStyle(css);
 
         return scene;
     }
@@ -335,7 +444,7 @@ public class App extends Application {
         return areaTarots;
     }
 
-    private HBox crearAreaCartas(ArrayList<Carta> cartas) {
+    private HBox crearAreaCartas(ArrayList<Carta> cartas, Button botonJugarMano, Button botonDescartar) {
         HBox areaCartas = new HBox(10);
         areaCartas.setPrefHeight(150);
         areaCartas.setPadding(new Insets(20, 20, 20, 20));
@@ -343,15 +452,47 @@ public class App extends Application {
         areaCartas.setPrefWidth(800);
         areaCartas.setMinWidth(800);
 
-        String[] imagenesCartas = {
-                "cartas_repartidas.png",
-        };
-
+        final int[] contadorCartas = {0};
+        
         for (Carta carta : cartas) {
             ImageView cartaImagen = new ImageView(new Image(getClass().getResourceAsStream("/imagenes/cartas/" + carta.getImagen())));
             cartaImagen.setFitHeight(120);
             cartaImagen.setFitWidth(90);
             cartaImagen.setPreserveRatio(true);
+
+            final boolean[] estaSeleccionada = {false};
+
+
+            cartaImagen.setOnMouseClicked(event -> {
+                estaSeleccionada[0] = !estaSeleccionada[0];
+                if (estaSeleccionada[0]) {
+                    cartaImagen.setScaleX(1.2);
+                    cartaImagen.setScaleY(1.2);
+                    contadorCartas[0]++;
+                } else {
+                    cartaImagen.setScaleX(1.0);
+                    cartaImagen.setScaleY(1.0);
+                    contadorCartas[0]--;
+                }
+
+                botonJugarMano.setDisable(contadorCartas[0] != 5);
+                botonDescartar.setDisable(contadorCartas[0] < 1 || contadorCartas[0] > 5);
+            });
+
+
+            cartaImagen.setOnMouseEntered(event -> {
+                if (!estaSeleccionada[0]) {
+                    cartaImagen.setScaleX(1.2);
+                    cartaImagen.setScaleY(1.2);
+                }
+            });
+            cartaImagen.setOnMouseExited(event -> {
+                if (!estaSeleccionada[0]) {
+                    cartaImagen.setScaleX(1.0);
+                    cartaImagen.setScaleY(1.0);
+                }
+            });
+
             areaCartas.getChildren().add(cartaImagen);
         }
 
@@ -363,7 +504,8 @@ public class App extends Application {
         vbox.setStyle("-fx-background-color: " + color + "; -fx-background-radius: 5;");
 
         Label label1 = new Label(label);
-        label1.setStyle("-fx-text-fill: white;");
+        label1.setStyle("-fx-text-fill: white; -fx-font-size: 15px; -fx-text-alignment: center;");
+        label1.setAlignment(Pos.TOP_CENTER);
 
         vbox.getChildren().add(label1);
 
