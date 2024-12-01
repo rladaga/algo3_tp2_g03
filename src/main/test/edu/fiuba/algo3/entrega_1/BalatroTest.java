@@ -7,6 +7,8 @@ import edu.fiuba.algo3.modelo.EstrategiaModificacion.ModificarPuntos;
 import edu.fiuba.algo3.modelo.Carta.Palo.*;
 import edu.fiuba.algo3.modelo.Carta.Valor.*;
 import edu.fiuba.algo3.modelo.Joker.*;
+import edu.fiuba.algo3.modelo.Mezclador.IMezclador;
+import edu.fiuba.algo3.modelo.Mezclador.MezcladorMazo;
 import edu.fiuba.algo3.modelo.Modificador.*;
 import edu.fiuba.algo3.modelo.Tarot.*;
 import edu.fiuba.algo3.modelo.Tarot.TarotManoPoker;
@@ -25,22 +27,22 @@ public class BalatroTest{
     public void jugadorPoseeCartasSuficientesParaEmpezarElJuego() {
         IMezclador mezclador = new MezcladorMazo();
         Mazo mazo = new Mazo(mezclador);
-        Descarte descartes = new Descarte(3);
-        Jugador jugador = new Jugador(mazo, descartes);
+        ArrayList<Ronda> arrRonda = new ArrayList<>();
+        Balatro balatro = new Balatro(arrRonda, mazo);
+        balatro.iniciarTurno();
 
-
-        assertTrue(jugador.cartasEnMazo() >= 8);
+        assertTrue(balatro.cartasEnMazo() >= 8);
     }
 
     @Test
     public void jugadorSeLeReparten8CartasDelMazo(){
         IMezclador mezclador = new MezcladorMazo();
         Mazo mazo = new Mazo(mezclador);
-        Descarte descartes = new Descarte(3);
-        Jugador jugador = new Jugador(mazo, descartes);
-        jugador.iniciarTurno();
+        ArrayList<Ronda> arrRonda = new ArrayList<>();
+        Balatro balatro = new Balatro(arrRonda, mazo);
+        balatro.iniciarTurno();
 
-        assertEquals(8, jugador.cantidadCartasEnMano());
+        assertEquals(8, balatro.cantidadCartasEnMano());
 
     }
 
@@ -48,15 +50,15 @@ public class BalatroTest{
     public void sePuedeJugarUnaManoDeUnMazo(){
         IMezclador mezclador = new MezcladorMazo();
         Mazo mazo = new Mazo(mezclador);
-        Descarte descartes = new Descarte(3);
-        Jugador jugador = new Jugador(mazo, descartes);
-        jugador.iniciarTurno();
+        ArrayList<Ronda> arrRonda = new ArrayList<>();
+        Balatro balatro = new Balatro(arrRonda, mazo);
+        balatro.iniciarTurno();
 
         for (int i = 0; i < 4; i++) {
-            jugador.seleccionarCartaEnPosicion(i);
+            balatro.seleccionarCartaEnPosicion(i);
         }
 
-        assertTrue(jugador.jugarMano().size() > 0 && jugador.jugarMano().size() < 6);
+        assertTrue(balatro.jugarMano().size() > 0 && balatro.jugarMano().size() < 6);
     }
 
     @Test
@@ -102,12 +104,13 @@ public class BalatroTest{
         manoFullHouse.add(new Carta(palos[3], valores[2]));
 
         ArrayList<Joker> jokers = new ArrayList<>();
+        Descarte descarte = new Descarte(0);
 
-        assertEquals(220, evaluadorMano.evaluar(manoEscaleraBajaAS, jokers ));
-        assertEquals(1192, evaluadorMano.evaluar(manoEscaleraColor, jokers));
-        assertEquals(1208, evaluadorMano.evaluar(manoEscaleraReal, jokers));
-        assertEquals(497, evaluadorMano.evaluar(manoPoker, jokers));
-        assertEquals(208, evaluadorMano.evaluar(manoFullHouse, jokers));
+        assertEquals(220, evaluadorMano.evaluar(manoEscaleraBajaAS, jokers, descarte ));
+        assertEquals(1192, evaluadorMano.evaluar(manoEscaleraColor, jokers, descarte));
+        assertEquals(1208, evaluadorMano.evaluar(manoEscaleraReal, jokers, descarte));
+        assertEquals(497, evaluadorMano.evaluar(manoPoker, jokers, descarte));
+        assertEquals(208, evaluadorMano.evaluar(manoFullHouse, jokers, descarte));
     }
 
     @Test
@@ -116,6 +119,7 @@ public class BalatroTest{
         ArrayList<Carta> manoEscaleraBajaAS = new ArrayList<>();
         ArrayList<Joker> orden1 = new ArrayList<>();
         ArrayList<Joker> orden2 = new ArrayList<>();
+        Descarte descarte = new Descarte(0);
 
         manoEscaleraBajaAS.add(new Carta(new Picas(), new As()));
         manoEscaleraBajaAS.add(new Carta(new Corazon(), new Dos()));
@@ -129,15 +133,15 @@ public class BalatroTest{
         orden2.add(new JokerMano("Comodin", "+10", new ModificarMultiplicador(), new Multiplicar(2), new Escalera()));
         orden2.add(new JokerMano("Comodin", "x2", new ModificarMultiplicador(), new Sumar(10), new Escalera()));
 
-        assertEquals(1540, evaluadorMano.evaluar(manoEscaleraBajaAS, orden1));
-        assertEquals(990, evaluadorMano.evaluar(manoEscaleraBajaAS, orden2));
+        assertEquals(1540, evaluadorMano.evaluar(manoEscaleraBajaAS, orden1, descarte));
+        assertEquals(990, evaluadorMano.evaluar(manoEscaleraBajaAS, orden2, descarte));
     }
 
     @Test
     public void modificarUnaCartaConTarotYCambiaSusPuntosPor10(){
 
         Carta carta = new Carta(new Picas(), new As());
-        TarotCarta tarot = new TarotCarta(new Sumar(10), new ModificarPuntos());
+        TarotCarta tarot = new TarotCarta("","",new Sumar(10), new ModificarPuntos());
 
         tarot.aplicarEfecto(carta);
 
@@ -147,7 +151,7 @@ public class BalatroTest{
     @Test
     public void ModificarUnaManoConTarotYCambiaSuMultiplicadorPor6(){
         ManoDePoker manoDePoker = new Escalera();
-        TarotManoPoker tarot = new TarotManoPoker(new Escalera() , 15, 2);
+        TarotManoPoker tarot = new TarotManoPoker("","",new Escalera() , 15, 2);
 
         tarot.aplicarEfecto(manoDePoker);
 

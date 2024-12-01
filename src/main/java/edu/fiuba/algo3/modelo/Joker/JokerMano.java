@@ -1,5 +1,6 @@
 package edu.fiuba.algo3.modelo.Joker;
 
+import edu.fiuba.algo3.modelo.Descarte;
 import edu.fiuba.algo3.modelo.EstrategiaModificacion.EstrategiaModificacion;
 import edu.fiuba.algo3.modelo.Modificador.*;
 import edu.fiuba.algo3.modelo.PuntuacionTirada.PuntuacionTirada;
@@ -16,11 +17,11 @@ public class JokerMano extends Joker {
     }
 
     @Override
-    public void modificarPuntuacion(PuntuacionTirada puntuacionTirada, ManoDePoker manoDePoker) {
+    public void modificarPuntuacion(PuntuacionTirada puntuacionTirada, ManoDePoker manoDePoker, Descarte descarte) {
         if (manoObjetivo.esIgual(manoDePoker)) {
             estrategiaModificacion.modificar(puntuacionTirada, modificador);
         }
 
-        this.otroJoker.modificarPuntuacion(puntuacionTirada, manoDePoker);
+        this.otroJoker.modificarPuntuacion(puntuacionTirada, manoDePoker, descarte);
     }
 }

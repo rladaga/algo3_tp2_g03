@@ -7,6 +7,6 @@ public class Sumar extends Modificador {
 
     @Override
     public int modificar(int valor) {
-        return valor + valorModificacion;
+        return valor + (int)valorModificacion;
     }
 }

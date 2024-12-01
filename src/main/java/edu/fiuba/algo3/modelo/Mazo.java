@@ -3,6 +3,7 @@ package edu.fiuba.algo3.modelo;
 import edu.fiuba.algo3.modelo.Carta.Carta;
 import edu.fiuba.algo3.modelo.Carta.Palo.*;
 import edu.fiuba.algo3.modelo.Carta.Valor.*;
+import edu.fiuba.algo3.modelo.Mezclador.IMezclador;
 
 import java.util.ArrayList;
 
@@ -15,6 +16,12 @@ public class Mazo {
     public Mazo(IMezclador mezclador) {
         this.mezclador = mezclador;
         inicializarMazo();
+    }
+
+    public Mazo(ArrayList<Carta> cartas, IMezclador mezclador) {
+        this.mezclador = mezclador;
+        cartasEnMazo = cartas;
+        cartasFueraDeMazo = new ArrayList<>();
     }
 
     public int cantidadCartas() {

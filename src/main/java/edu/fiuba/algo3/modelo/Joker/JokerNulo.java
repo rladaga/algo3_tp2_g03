@@ -1,5 +1,6 @@
 package edu.fiuba.algo3.modelo.Joker;
 
+import edu.fiuba.algo3.modelo.Descarte;
 import edu.fiuba.algo3.modelo.EstrategiaModificacion.ModificarPuntos;
 import edu.fiuba.algo3.modelo.ManoDePoker.ManoDePoker;
 import edu.fiuba.algo3.modelo.Modificador.Sumar;
@@ -13,5 +14,5 @@ public class JokerNulo extends Joker {
     }
 
     @Override
-    public void modificarPuntuacion(PuntuacionTirada puntuacion, ManoDePoker manoJugada){};
+    public void modificarPuntuacion(PuntuacionTirada puntuacion, ManoDePoker manoJugada, Descarte descarte){};
 }

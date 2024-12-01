@@ -32,28 +32,28 @@ public class EvaluadorMano {
         }
     }
 
-    private void aplicarJokers(ArrayList<Joker> Jokers, ManoDePoker tipo, PuntuacionTirada puntuacion) {
+    private void aplicarJokers(ArrayList<Joker> Jokers, ManoDePoker tipo, PuntuacionTirada puntuacion, Descarte descarte) {
         for (Joker joker : Jokers) {
-            joker.modificarPuntuacion(puntuacion, tipo);
+            joker.modificarPuntuacion(puntuacion, tipo, descarte);
         }
     }
 
-    private int calcularPuntuacionTotal(ArrayList<Carta> mano, ManoDePoker tipo, ArrayList<Joker> jokers) {
+    private int calcularPuntuacionTotal(ArrayList<Carta> mano, ManoDePoker tipo, ArrayList<Joker> jokers, Descarte descarte) {
 
         PuntuacionTirada puntuacion = new PuntuacionTirada(tipo.calcularPuntos(), tipo.calcularMultiplicador());
 
         aplicarValorCartas(mano, puntuacion);
 
-        aplicarJokers(jokers, tipo, puntuacion);
+        aplicarJokers(jokers, tipo, puntuacion, descarte);
 
         return puntuacion.obtenerPuntuacion();
     }
 
-    public int evaluar(ArrayList<Carta> mano, ArrayList<Joker> jokers) {
+    public int evaluar(ArrayList<Carta> mano, ArrayList<Joker> jokers, Descarte descarte) {
 
         for (ManoDePoker tipo : tiposDeMano) {
             if (tipo.esValida(mano)) {
-                return calcularPuntuacionTotal(mano, tipo, jokers);
+                return calcularPuntuacionTotal(mano, tipo, jokers, descarte);
             }
         }
 
