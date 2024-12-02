@@ -16,14 +16,12 @@ import java.util.ArrayList;
 
 public class VistaPartida extends BorderPane {
 
-    public VistaPartida(Stage stagePrimario, ArrayList<Carta> cartas, MediaPlayer mediaPlayer) {
+    public VistaPartida(Stage stagePrimario, ArrayList<Carta> cartas, MediaPlayer mediaPlayer, MenuBar menuBar, String nombreJugador) {
 
         StackPane root = new StackPane();
         root.setStyle("-fx-background-color: #356C54");
 
-        MenuBar menuBar = new BarraDeMenu(stagePrimario, mediaPlayer);
-
-        VBox cajaGris = new VistaInformacion();
+        VBox cajaGris = new VistaInformacion(nombreJugador);
 
         VBox cajaInterna2 = new CajaInterna("#9D6400", "PUNTAJE \nNECESARIO", 147, 120);
         VBox cajaInterna3 = new CajaInterna("#242B2C", "PUNTOS DE\nLA RONDA", 150, 120);
@@ -68,6 +66,11 @@ public class VistaPartida extends BorderPane {
 
         this.setTop(menuBar);
         this.setCenter(root);
+
+        String fontFamily = "Balatro";
+        String css = "-fx-font-family: '" + fontFamily + "';";
+
+        this.setStyle(css);
     }
 
 }

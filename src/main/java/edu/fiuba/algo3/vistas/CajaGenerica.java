@@ -7,7 +7,5 @@ public class CajaGenerica extends HBox {
     public CajaGenerica(int spacing, Pos posicion) {
         this.setSpacing(spacing);
         this.setAlignment(posicion);
-
-
     }
 }

@@ -1,5 +1,7 @@
 package edu.fiuba.algo3.vistas;
 
+import edu.fiuba.algo3.controllers.ControladorApagarMusica;
+import edu.fiuba.algo3.controllers.ControladorPantallaCompleta;
 import javafx.scene.media.MediaPlayer;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
@@ -14,7 +16,6 @@ public class BarraDeMenu extends MenuBar {
 
     private Stage stage;
     private MediaPlayer mediaPlayer;
-    private boolean isMusicPlaying = false;
     private Font customFont;
 
     public BarraDeMenu(Stage stage, MediaPlayer mediaPlayer) {
@@ -29,27 +30,15 @@ public class BarraDeMenu extends MenuBar {
         Menu menuOpciones = new Menu("Opciones");
 
         MenuItem pantallaCompleta = new MenuItem("Pantalla completa");
-        pantallaCompleta.setOnAction(event -> {
-            boolean isFullScreen = stage.isFullScreen();
-            stage.setFullScreen(!isFullScreen);
-        });
-
-        MenuItem toggleMusic = new MenuItem("Música: OFF");
-        toggleMusic.setOnAction(event -> {
-            if (isMusicPlaying) {
-                mediaPlayer.pause();
-                toggleMusic.setText("Música: OFF");
-            } else {
-                mediaPlayer.play();
-                toggleMusic.setText("Música: ON");
-            }
-            isMusicPlaying = !isMusicPlaying;
-        });
-
+        pantallaCompleta.setOnAction(new ControladorPantallaCompleta(stage));
         menuOpciones.getItems().addAll(pantallaCompleta);
 
-        javafx.scene.control.Menu menuMusica = new Menu("Musica");
-        menuMusica.getItems().addAll(toggleMusic);
+        Menu menuMusica = new Menu("Musica");
+        MenuItem itemApagar = new MenuItem("OFF");
+        itemApagar.setOnAction(new ControladorApagarMusica(mediaPlayer, menuMusica));
+        mediaPlayer.play();
+        menuMusica.getItems().addAll(itemApagar);
+
 
         this.getMenus().addAll(menuOpciones, menuMusica);
 

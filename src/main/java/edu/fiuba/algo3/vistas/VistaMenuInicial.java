@@ -18,6 +18,8 @@ import java.util.Optional;
 
 public class VistaMenuInicial extends BorderPane {
 
+    private String nombreJugador;
+
     public VistaMenuInicial(Stage stagePrimario, MediaPlayer mediaPlayer) {
 
         StackPane root = new StackPane();
@@ -25,34 +27,7 @@ public class VistaMenuInicial extends BorderPane {
 
         MenuBar menuBar = new BarraDeMenu(stagePrimario, mediaPlayer);
 
-        Dialog<String> dialog = new Dialog<>();
-        dialog.setTitle("Bienvenido a Balatro");
-        dialog.setHeaderText("Por favor, ingresa tu nombre:");
-
-
-        ButtonType loginButtonType = new ButtonType("Guardar", ButtonBar.ButtonData.OK_DONE);
-        dialog.getDialogPane().getButtonTypes().addAll(loginButtonType, ButtonType.CANCEL);
-
-
-        GridPane grid = new GridPane();
-        grid.setHgap(10);
-        grid.setVgap(10);
-        grid.setPadding(new Insets(20, 150, 10, 10));
-
-        TextField username = new TextField();
-        username.setPromptText("Nombre");
-        grid.add(new Label("Nombre:"), 0, 0);
-        grid.add(username, 1, 0);
-
-        dialog.getDialogPane().setContent(grid);
-
-
-        dialog.setResultConverter(dialogButton -> {
-            if (dialogButton == loginButtonType) {
-                return username.getText();
-            }
-            return null;
-        });
+        Dialog<String> dialog = new PromptNombre();
 
         VBox menuInicial = new VBox(30);
         menuInicial.setAlignment(Pos.CENTER);
@@ -60,7 +35,6 @@ public class VistaMenuInicial extends BorderPane {
         ImageView logoImage = new ImageView(new Image(getClass().getResourceAsStream("/imagenes/logo_balatro.png")));
         logoImage.setFitWidth(600);
         logoImage.setPreserveRatio(true);
-
 
         VBox botonesMenu = new VBox(15);
         botonesMenu.setAlignment(Pos.CENTER);
@@ -79,26 +53,26 @@ public class VistaMenuInicial extends BorderPane {
                 "-fx-background-radius: 5px;";
 
         Button botonJugar = new CrearBoton("JUGAR", estiloBoton);
-        botonJugar.setOnAction(new ControladorJugar(stagePrimario, mediaPlayer));
+
 
         botonesMenu.getChildren().add(botonJugar);
         menuInicial.getChildren().addAll(logoImage, botonesMenu);
 
         root.getChildren().addAll(menuInicial);
 
-
-        this.setTop(menuBar);
-        this.setCenter(root);
-
-
         Platform.runLater(() -> {
             Optional<String> result = dialog.showAndWait();
             result.ifPresent(nombre -> {
 
+                nombreJugador = nombre;
+                botonJugar.setOnAction(new ControladorJugar(stagePrimario, mediaPlayer, menuBar, nombreJugador));
                 System.out.println("Nombre del jugador: " + nombre);
                 menuInicial.setVisible(true);
             });
         });
+
+        this.setTop(menuBar);
+        this.setCenter(root);
     }
 
 }
