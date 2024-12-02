@@ -4,7 +4,6 @@ import edu.fiuba.algo3.controllers.ControladorJugar;
 import javafx.application.Platform;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
-import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -20,10 +19,11 @@ import java.util.Optional;
 public class VistaMenuInicial extends BorderPane {
 
     public VistaMenuInicial(Stage stagePrimario, MediaPlayer mediaPlayer) {
+
         StackPane root = new StackPane();
         root.setStyle("-fx-background-color: linear-gradient(to right, #8B0000, #000080);");
 
-        MenuBar menuBar = new BarraDeMenus(stagePrimario, mediaPlayer);
+        MenuBar menuBar = new BarraDeMenu(stagePrimario, mediaPlayer);
 
         Dialog<String> dialog = new Dialog<>();
         dialog.setTitle("Bienvenido a Balatro");
@@ -78,7 +78,7 @@ public class VistaMenuInicial extends BorderPane {
                 "-fx-border-radius: 5px; " +
                 "-fx-background-radius: 5px;";
 
-        Button botonJugar = crearBotonMenu("JUGAR", estiloBoton);
+        Button botonJugar = new CrearBoton("JUGAR", estiloBoton);
         botonJugar.setOnAction(new ControladorJugar(stagePrimario, mediaPlayer));
 
         botonesMenu.getChildren().add(botonJugar);
@@ -99,34 +99,6 @@ public class VistaMenuInicial extends BorderPane {
                 menuInicial.setVisible(true);
             });
         });
-    }
-
-    private Button crearBotonMenu(String texto, String estilo) {
-        Button boton = new Button(texto);
-
-        String estiloBase = "-fx-background-color: #2C3E50; " +
-                "-fx-text-fill: white; " +
-                "-fx-font-size: 20px; " +
-                "-fx-min-width: 200px; " +
-                "-fx-min-height: 50px; " +
-                "-fx-padding: 10px; " +
-                "-fx-border-color: white; " +
-                "-fx-border-width: 2px; " +
-                "-fx-border-radius: 5px; " +
-                "-fx-background-radius: 5px;";
-
-
-        String estiloHover = estiloBase + "-fx-background-color: #34495E;";
-
-        String estiloInicial = (estilo == null || estilo.isEmpty()) ? estiloBase : estilo;
-        boton.setStyle(estiloInicial);
-
-        String estiloHoverFinal = (estilo == null || estilo.isEmpty()) ? estiloHover : estilo + "-fx-opacity: 0.8;";
-        boton.setOnMouseEntered(e -> boton.setStyle(estiloHoverFinal));
-        boton.setOnMouseExited(e -> boton.setStyle(estiloInicial));
-
-        System.out.println("Botón creado: " + texto);
-        return boton;
     }
 
 }

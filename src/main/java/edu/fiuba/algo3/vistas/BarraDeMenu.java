@@ -1,6 +1,5 @@
 package edu.fiuba.algo3.vistas;
 
-import javafx.scene.Scene;
 import javafx.scene.media.MediaPlayer;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
@@ -10,7 +9,7 @@ import javafx.scene.control.MenuItem;
 
 
 
-public class BarraDeMenus extends MenuBar {
+public class BarraDeMenu extends MenuBar {
 
 
     private Stage stage;
@@ -18,7 +17,7 @@ public class BarraDeMenus extends MenuBar {
     private boolean isMusicPlaying = false;
     private Font customFont;
 
-    public BarraDeMenus(Stage stage, MediaPlayer mediaPlayer) {
+    public BarraDeMenu(Stage stage, MediaPlayer mediaPlayer) {
         this.stage = stage;
         this.mediaPlayer = mediaPlayer;
 
