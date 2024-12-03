@@ -11,6 +11,7 @@ public class Balatro {
     private ArrayList<Ronda> rondas;
     private Mazo mazo;
     private ArrayList<Joker> jokers;
+    private ArrayList<Tarot> tarots;
     private ArrayList<Carta> cartasEnMano;
     private ArrayList<Carta> cartasAJugar;
     private EvaluadorMano evaluadorMano;
@@ -18,6 +19,7 @@ public class Balatro {
     public Balatro(ArrayList<Ronda> rondas, Mazo mazo) {
         this.rondas = rondas;
         this.mazo = mazo;
+        this.tarots = new ArrayList<>();
         this.jokers = new ArrayList<>();
         this.cartasEnMano = new ArrayList<>();
         this.cartasAJugar = new ArrayList<>();
@@ -29,7 +31,7 @@ public class Balatro {
     }
 
     public void iniciarTurno(){
-        cartasEnMano = mazo.repartir();
+        cartasEnMano = mazo.repartir(8);
     }
 
     public void repartirCartas(){
@@ -77,6 +79,18 @@ public class Balatro {
 
     public Ronda getRonda() {
         return rondas.get(0);
+    }
+
+    public void agregarCarta(Carta carta) {
+        mazo.agregarCartaAlMazo(carta);
+    }
+
+    public void agregarJoker(Joker joker) {
+        jokers.add(joker);
+    }
+
+    public void agregarTarot(Tarot tarot) {
+        tarots.add(tarot);
     }
 
     /*public void iniciarJuego(){
