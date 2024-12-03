@@ -51,6 +51,7 @@ public class Balatro {
         if (rondas.get(0).permitirDescarte()) {
             cartasEnMano.removeAll(cartasAJugar);
         }
+        cartasAJugar.clear();
     }
 
     public void seleccionarCarta(Carta carta) {
@@ -67,6 +68,7 @@ public class Balatro {
             rondaActual.jugarRonda(cartasAJugar, jokers, evaluadorMano);
             cartasEnMano.removeAll(cartasAJugar);
         }
+        cartasAJugar.clear();
     }
 
     public ArrayList<Carta> getCartasEnMano() {
