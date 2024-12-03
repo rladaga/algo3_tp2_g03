@@ -1,5 +1,7 @@
 package edu.fiuba.algo3.modelo;
 
+import edu.fiuba.algo3.modelo.Excepcion.DescarteError;
+
 public class Descarte {
     private int limiteDescartes;
     private int descartesRealizados;
@@ -12,17 +14,12 @@ public class Descarte {
     public boolean permitirDescarte(){
         boolean validacion = false;
 
-        if(descartesRealizados < limiteDescartes){
-            validacion = true;
-            descartesRealizados++;
+        if(descartesRealizados >= limiteDescartes){
+            throw new DescarteError("No más descartes posibles");
         }
-
+        validacion = true;
+        descartesRealizados++;
         return validacion;
-    }
-
-    public void setearLimiteDescartes(int limiteDescartes){
-        this.limiteDescartes = limiteDescartes;
-        reiniciarDescartes();
     }
 
     public void reiniciarDescartes() {
@@ -31,5 +28,9 @@ public class Descarte {
 
     public int descartesRealizados(){
         return descartesRealizados;
+    }
+
+    public Integer getDescartesRestantes() {
+        return limiteDescartes - descartesRealizados;
     }
 }

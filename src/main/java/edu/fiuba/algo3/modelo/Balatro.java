@@ -11,14 +11,19 @@ public class Balatro {
     private ArrayList<Ronda> rondas;
     private Mazo mazo;
     private ArrayList<Joker> jokers;
+    private ArrayList<Tarot> tarots;
     private ArrayList<Carta> cartasEnMano;
     private ArrayList<Carta> cartasAJugar;
+    private EvaluadorMano evaluadorMano;
 
     public Balatro(ArrayList<Ronda> rondas, Mazo mazo) {
         this.rondas = rondas;
         this.mazo = mazo;
+        this.tarots = new ArrayList<>();
         this.jokers = new ArrayList<>();
-        cartasAJugar = new ArrayList<>();
+        this.cartasEnMano = new ArrayList<>();
+        this.cartasAJugar = new ArrayList<>();
+        this.evaluadorMano = new EvaluadorMano();
     }
 
     public int cartasEnMazo(){
@@ -26,11 +31,11 @@ public class Balatro {
     }
 
     public void iniciarTurno(){
-        cartasEnMano = mazo.repartir();
+        cartasEnMano = mazo.repartir(8);
     }
 
     public void repartirCartas(){
-        cartasEnMano = mazo.repartir(8 - cartasEnMano.size());
+        cartasEnMano.addAll(mazo.repartir(8 - cartasEnMano.size()));
     }
 
     public int cantidadCartasEnMano(){
@@ -44,16 +49,48 @@ public class Balatro {
         }// else throw excepcion
     }
 
-    public void descartar(ArrayList<Carta> cartasADescartar, Descarte descartes) {
-        if (descartes.permitirDescarte()) {
-            cartasEnMano.removeAll(cartasADescartar);
-            cartasEnMano.addAll(mazo.repartir(cartasADescartar.size()));
+    public void descartar() {
+        if (rondas.get(0).permitirDescarte()) {
+            cartasEnMano.removeAll(cartasAJugar);
         }
-        ;
+        cartasAJugar.clear();
     }
 
-    public ArrayList<Carta> jugarMano(){
-        return cartasAJugar;
+    public void seleccionarCarta(Carta carta) {
+        cartasAJugar.add(carta);
+    }
+
+    public void deseleccionarCarta(Carta carta) {
+        cartasAJugar.remove(carta);
+    }
+
+    public void jugarMano(){
+        Ronda rondaActual = rondas.get(0);
+        if(rondaActual.permitirJugar()) {
+            rondaActual.jugarRonda(cartasAJugar, jokers, evaluadorMano);
+            cartasEnMano.removeAll(cartasAJugar);
+        }
+        cartasAJugar.clear();
+    }
+
+    public ArrayList<Carta> getCartasEnMano() {
+        return cartasEnMano;
+    }
+
+    public Ronda getRonda() {
+        return rondas.get(0);
+    }
+
+    public void agregarCarta(Carta carta) {
+        mazo.agregarCartaAlMazo(carta);
+    }
+
+    public void agregarJoker(Joker joker) {
+        jokers.add(joker);
+    }
+
+    public void agregarTarot(Tarot tarot) {
+        tarots.add(tarot);
     }
 
     /*public void iniciarJuego(){

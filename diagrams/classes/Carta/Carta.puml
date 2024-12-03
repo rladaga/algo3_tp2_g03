@@ -11,6 +11,7 @@ class Carta {
 +puntosBase(): int
 +compararValor(otraCarta : Carta): boolean
 +compararPalo(otraCarta : Carta): boolean
++void()
 }
 
 interface Estado {

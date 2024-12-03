@@ -9,11 +9,23 @@ import java.util.ArrayList;
 public class Tienda {
     ArrayList<Joker> jokers;
     ArrayList<Tarot> tarots;
-    Carta cartas;
+    Carta carta;
 
     public Tienda(ArrayList<Joker> jokers, ArrayList<Tarot> tarots, Carta carta) {
         this.jokers = jokers;
         this.tarots = tarots;
-        this.cartas = carta;
+        this.carta= carta;
+    }
+
+    public Carta getCarta() {
+        return carta;
+    }
+
+    public ArrayList<Joker> getJokers() {
+        return jokers;
+    }
+
+    public ArrayList<Tarot> getTarots() {
+        return tarots;
     }
 }

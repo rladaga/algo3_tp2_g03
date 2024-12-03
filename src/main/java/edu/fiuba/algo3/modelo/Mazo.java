@@ -42,25 +42,13 @@ public class Mazo {
         mezclarCartas();
     }
 
-    public ArrayList<Carta> repartir(){
-        mezclarCartas();
-        ArrayList<Carta> cartasARepartir = new ArrayList<Carta>();
-        for (int i = 1; i < 9; i++) {
-            cartasARepartir.add(cartasEnMazo.get(i - 1));
-            cartasFueraDeMazo.add(cartasEnMazo.get(i - 1));
-            cartasEnMazo.remove(i-1);
-        }
-
-        return cartasARepartir;
-    }
-
     public ArrayList<Carta> repartir(int cantidad){
         mezclarCartas();
         ArrayList<Carta> cartasARepartir = new ArrayList<Carta>();
         for (int i = 1; i < cantidad+1; i++) {
-            cartasARepartir.add(cartasEnMazo.get(i - 1));
-            cartasFueraDeMazo.add(cartasEnMazo.get(i - 1));
-            cartasEnMazo.remove(i-1);
+            cartasARepartir.add(cartasEnMazo.get(0));
+            cartasFueraDeMazo.add(cartasEnMazo.get(0));
+            cartasEnMazo.remove(0);
         }
 
         return cartasARepartir;
@@ -71,8 +59,9 @@ public class Mazo {
         cartasFueraDeMazo.clear();
     }
 
-
     public void mezclarCartas(){
         mezclador.mezclar(cartasEnMazo);
     }
+
+    public void agregarCartaAlMazo(Carta carta) { cartasEnMazo.add(carta); }
 }

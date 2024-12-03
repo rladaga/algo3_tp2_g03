@@ -7,7 +7,6 @@ import edu.fiuba.algo3.modelo.Joker.GeneradorRandom.GeneradorRandom;
 import edu.fiuba.algo3.modelo.ManoDePoker.*;
 import edu.fiuba.algo3.modelo.Modificador.*;
 import edu.fiuba.algo3.modelo.PuntuacionTirada.PuntuacionTirada;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
