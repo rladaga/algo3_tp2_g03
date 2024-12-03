@@ -19,11 +19,19 @@ import javafx.util.Duration;
 
 public class ControladorManosPoker implements EventHandler<ActionEvent> {
 
+    private Stage stagePrincipal;
+
+    public ControladorManosPoker(Stage stagePrincipal) {
+        this.stagePrincipal = stagePrincipal;
+    }
+
     @Override
     public void handle(ActionEvent event) {
         Stage ventanaReglas = new Stage();
         ventanaReglas.getIcons().add(new Image(getClass().getResourceAsStream("/imagenes/logo_balatro.png")));
         ventanaReglas.initModality(Modality.APPLICATION_MODAL);
+        ventanaReglas.initOwner(stagePrincipal);
+        ventanaReglas.setOnShowing(e -> stagePrincipal.setFullScreen(true));
         ventanaReglas.setTitle("Manos de Poker y Puntuación");
         ventanaReglas.setResizable(false);
 
@@ -108,6 +116,6 @@ public class ControladorManosPoker implements EventHandler<ActionEvent> {
         scene.getRoot().setStyle(css + cssBackground);
 
         ventanaReglas.setScene(scene);
-        ventanaReglas.show();
+        ventanaReglas.showAndWait();
     }
 }

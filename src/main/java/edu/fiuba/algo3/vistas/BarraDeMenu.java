@@ -42,8 +42,8 @@ public class BarraDeMenu extends MenuBar {
         MenuItem informacionJuego = new MenuItem("Informacion del juego");
         MenuItem manosPoker = new MenuItem("Manos de poker");
 
-        informacionJuego.setOnAction(new ControladorInformacionJuego());
-        manosPoker.setOnAction(new ControladorManosPoker());
+        informacionJuego.setOnAction(new ControladorInformacionJuego(stage));
+        manosPoker.setOnAction(new ControladorManosPoker(stage));
 
         menuAyuda.getItems().addAll(informacionJuego,manosPoker);
 

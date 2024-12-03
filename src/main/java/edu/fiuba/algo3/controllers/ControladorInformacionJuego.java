@@ -16,11 +16,19 @@ import javafx.stage.Stage;
 
 public class ControladorInformacionJuego implements EventHandler<ActionEvent> {
 
+    private Stage stagePrincipal;
+
+    public ControladorInformacionJuego(Stage stagePrincipal) {
+        this.stagePrincipal = stagePrincipal;
+    }
+
     @Override
     public void handle(ActionEvent event) {
         Stage ventanaAyuda = new Stage();
         ventanaAyuda.getIcons().add(new Image(getClass().getResourceAsStream("/imagenes/logo_balatro.png")));
         ventanaAyuda.initModality(Modality.APPLICATION_MODAL);
+        ventanaAyuda.initOwner(stagePrincipal);
+        ventanaAyuda.setOnShowing(e -> stagePrincipal.setFullScreen(true));
         ventanaAyuda.setTitle("Información del Juego");
         ventanaAyuda.setResizable(false);
 
@@ -72,6 +80,6 @@ public class ControladorInformacionJuego implements EventHandler<ActionEvent> {
         scene.getRoot().setStyle(css);
 
         ventanaAyuda.setScene(scene);
-        ventanaAyuda.show();
+        ventanaAyuda.showAndWait();
     }
 }
