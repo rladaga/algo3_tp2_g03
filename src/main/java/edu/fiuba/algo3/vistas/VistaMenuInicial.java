@@ -43,7 +43,6 @@ public class VistaMenuInicial extends BorderPane {
         botonesMenu.setMinWidth(300);
         botonesMenu.setMinHeight(200);
 
-
         String estiloBoton = "-fx-background-color: #2C3E50; " +
                 "-fx-text-fill: white; " +
                 "-fx-font-size: 20px; " +
@@ -55,7 +54,6 @@ public class VistaMenuInicial extends BorderPane {
 
         Button botonJugar = new CrearBoton("JUGAR", estiloBoton);
 
-
         botonesMenu.getChildren().add(botonJugar);
         menuInicial.getChildren().addAll(logoImage, botonesMenu);
 
@@ -64,10 +62,8 @@ public class VistaMenuInicial extends BorderPane {
         Platform.runLater(() -> {
             Optional<String> result = dialog.showAndWait();
             result.ifPresent(nombre -> {
-
                 nombreJugador = nombre;
                 botonJugar.setOnAction(new ControladorJugar(stagePrimario, mediaPlayer, menuBar, nombreJugador, modelo));
-                System.out.println("Nombre del jugador: " + nombre);
                 menuInicial.setVisible(true);
             });
         });

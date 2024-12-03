@@ -55,7 +55,7 @@ public class VistaPartida extends BorderPane {
         this.cajaDescartes = descartesCaja;
         this.cajaManos = manoCaja;
 
-        cajaGeneralInfo.getChildren().addAll((VBox)manoCaja, rondaCaja, (VBox)descartesCaja);
+        cajaGeneralInfo.getChildren().addAll(manoCaja, rondaCaja, descartesCaja);
         cajaInterna5.getChildren().add(cajaGeneralInfo);
 
         cajaGris.getChildren().addAll(cajaInterna2, cajaInterna3, cajaInterna4, cajaInterna5);

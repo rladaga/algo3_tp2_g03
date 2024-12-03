@@ -1,5 +1,7 @@
 package edu.fiuba.algo3.vistas;
 
+import edu.fiuba.algo3.controllers.ControladorClickCarta;
+import edu.fiuba.algo3.controllers.ControladorHoverCarta;
 import edu.fiuba.algo3.modelo.Balatro;
 import edu.fiuba.algo3.modelo.Carta.Carta;
 import javafx.scene.image.Image;
@@ -22,38 +24,29 @@ public class VistaCarta extends StackPane {
         cartaImagen.setFitWidth(90);
         cartaImagen.setPreserveRatio(true);
 
-        // Configurar comportamiento
-        cartaImagen.setOnMouseClicked(event -> {
-            estaSeleccionada[0] = !estaSeleccionada[0];
-            if (estaSeleccionada[0]) {
-                cartaImagen.setScaleX(1.2);
-                cartaImagen.setScaleY(1.2);
-                contadorCartas[0]++;
-                modelo.seleccionarCarta(this.carta);
-            } else {
-                cartaImagen.setScaleX(1.0);
-                cartaImagen.setScaleY(1.0);
-                contadorCartas[0]--;
-                modelo.deseleccionarCarta(this.carta);
-            }
-            actualizarBotones.run();
-        });
+        cartaImagen.setOnMouseClicked(new ControladorClickCarta(
+                cartaImagen,
+                estaSeleccionada,
+                contadorCartas,
+                this.carta,
+                modelo,
+                actualizarBotones
+        ));
 
-        cartaImagen.setOnMouseEntered(event -> {
-            if (!estaSeleccionada[0]) {
-                cartaImagen.setScaleX(1.2);
-                cartaImagen.setScaleY(1.2);
-            }
-        });
+        cartaImagen.setOnMouseEntered(new ControladorHoverCarta(
+                cartaImagen,
+                estaSeleccionada,
+                true
+        ));
 
-        cartaImagen.setOnMouseExited(event -> {
-            if (!estaSeleccionada[0]) {
-                cartaImagen.setScaleX(1.0);
-                cartaImagen.setScaleY(1.0);
-            }
-        });
 
-        // Añadir el componente al StackPane
+        cartaImagen.setOnMouseExited(new ControladorHoverCarta(
+                cartaImagen,
+                estaSeleccionada,
+                false
+        ));
+
+
         this.getChildren().add(cartaImagen);
     }
 }

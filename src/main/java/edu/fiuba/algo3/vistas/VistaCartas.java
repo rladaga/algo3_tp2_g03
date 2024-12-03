@@ -16,6 +16,7 @@ public class VistaCartas extends HBox {
     private Balatro modelo;
     private Button botonJugarMano;
     private Button botonDescartar;
+
     public VistaCartas(Balatro modelo, Button botonJugarMano, Button botonDescartar) {
 
         this.modelo = modelo;
@@ -33,19 +34,21 @@ public class VistaCartas extends HBox {
     }
 
     public void repartir() {
-        modelo.repartirCartas(); // Actualiza el modelo para repartir nuevas cartas
+        modelo.repartirCartas();
 
-        this.getChildren().clear(); // Elimina todas las cartas actuales del HBox
+        this.getChildren().clear();
 
         final int[] contadorCartas = {0};
 
-        // Crear un Runnable para actualizar los botones
+
         Runnable actualizarBotones = () -> {
             botonJugarMano.setDisable(contadorCartas[0] != 5);
             botonDescartar.setDisable(contadorCartas[0] < 1 || contadorCartas[0] > 5);
         };
 
-        // Añade las nuevas cartas a la vista
+        botonJugarMano.setDisable(true);
+        botonDescartar.setDisable(true);
+
         for (Carta carta : modelo.getCartasEnMano()) {
             VistaCarta vistaCarta = new VistaCarta(modelo, carta, contadorCartas, actualizarBotones);
             this.getChildren().add(vistaCarta);
@@ -53,19 +56,20 @@ public class VistaCartas extends HBox {
     }
 
     public void repartirSinDescartes(){
-        modelo.repartirCartas(); // Actualiza el modelo para repartir nuevas cartas
+        modelo.repartirCartas();
 
-        this.getChildren().clear(); // Elimina todas las cartas actuales del HBox
+        this.getChildren().clear();
 
         final int[] contadorCartas = {0};
 
-        // Crear un Runnable para actualizar los botones
+
         Runnable actualizarBotones = () -> {
             botonJugarMano.setDisable(contadorCartas[0] != 5);
         };
 
         botonDescartar.setDisable(true);
-        // Añade las nuevas cartas a la vista
+        botonJugarMano.setDisable(true);
+
         for (Carta carta : modelo.getCartasEnMano()) {
             VistaCarta vistaCarta = new VistaCarta(modelo, carta, contadorCartas, actualizarBotones);
             this.getChildren().add(vistaCarta);

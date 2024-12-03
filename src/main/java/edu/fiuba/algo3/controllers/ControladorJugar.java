@@ -42,7 +42,7 @@ public class ControladorJugar implements EventHandler<ActionEvent> {
 
         Platform.runLater(() -> {
             stage.getScene().setRoot(vistaMesa);
-            System.out.println("Nombre del jugador: " + nombreJugador);
+
             if (estabaEnPantallaCompleta) {
                 stage.setFullScreen(true);
             }

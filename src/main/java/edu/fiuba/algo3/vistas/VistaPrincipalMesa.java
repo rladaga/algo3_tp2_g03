@@ -17,6 +17,7 @@ public class VistaPrincipalMesa extends AnchorPane {
     private Balatro modelo;
     private VistaCartas vistaCartas;
     public VistaPartida vistaPartida;
+
     public VistaPrincipalMesa(Balatro modelo, VistaPartida vistaPartida) {
 
         this.modelo = modelo;
