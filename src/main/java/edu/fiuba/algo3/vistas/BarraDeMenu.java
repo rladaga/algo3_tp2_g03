@@ -1,6 +1,8 @@
 package edu.fiuba.algo3.vistas;
 
 import edu.fiuba.algo3.controllers.ControladorApagarMusica;
+import edu.fiuba.algo3.controllers.ControladorInformacionJuego;
+import edu.fiuba.algo3.controllers.ControladorManosPoker;
 import edu.fiuba.algo3.controllers.ControladorPantallaCompleta;
 import javafx.scene.media.MediaPlayer;
 import javafx.scene.text.Font;
@@ -36,8 +38,17 @@ public class BarraDeMenu extends MenuBar {
         mediaPlayer.play();
         menuMusica.getItems().addAll(itemApagar);
 
+        Menu menuAyuda = new Menu("Ayuda");
+        MenuItem informacionJuego = new MenuItem("Informacion del juego");
+        MenuItem manosPoker = new MenuItem("Manos de poker");
 
-        this.getMenus().addAll(menuOpciones, menuMusica);
+        informacionJuego.setOnAction(new ControladorInformacionJuego());
+        manosPoker.setOnAction(new ControladorManosPoker());
+
+        menuAyuda.getItems().addAll(informacionJuego,manosPoker);
+
+
+        this.getMenus().addAll(menuOpciones, menuMusica, menuAyuda);
 
     }
 }
