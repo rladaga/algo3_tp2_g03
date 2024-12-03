@@ -58,7 +58,7 @@ public class BalatroTest{
             balatro.seleccionarCartaEnPosicion(i);
         }
 
-        assertTrue(balatro.jugarMano().size() > 0 && balatro.jugarMano().size() < 6);
+        assertTrue(!balatro.getCartasEnMano().isEmpty() && balatro.getCartasEnMano().size() < 6);
     }
 
     @Test

@@ -1,5 +1,8 @@
 package edu.fiuba.algo3.vistas;
 
+import edu.fiuba.algo3.controllers.ControladorJugar;
+import edu.fiuba.algo3.controllers.ControladorJugarMano;
+import edu.fiuba.algo3.modelo.Balatro;
 import edu.fiuba.algo3.modelo.Carta.Carta;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
@@ -11,7 +14,13 @@ import javafx.scene.layout.HBox;
 import java.util.ArrayList;
 
 public class VistaPrincipalMesa extends AnchorPane {
-    public VistaPrincipalMesa(ArrayList<Carta> cartas) {
+    private Balatro modelo;
+    private VistaCartas vistaCartas;
+    public VistaPartida vistaPartida;
+    public VistaPrincipalMesa(Balatro modelo, VistaPartida vistaPartida) {
+
+        this.modelo = modelo;
+        this.vistaPartida = vistaPartida;
 
         HBox areaComodines = new VistaComodines();
         AnchorPane.setTopAnchor(areaComodines, 20.0);
@@ -43,6 +52,7 @@ public class VistaPrincipalMesa extends AnchorPane {
 
         Button botonJugarMano = new CrearBoton("JUGAR MANO", estiloBotonJugar);
         botonJugarMano.setDisable(true);
+        botonJugarMano.setOnAction(new ControladorJugarMano(modelo, vistaPartida));
 
         Button botonDescartar = new CrearBoton("DESCARTAR", estiloBotonDescartar);
         botonDescartar.setDisable(true);
@@ -51,9 +61,10 @@ public class VistaPrincipalMesa extends AnchorPane {
         AnchorPane.setBottomAnchor(contenedorBotones,  100.0);
         AnchorPane.setLeftAnchor(contenedorBotones, 520.0);
 
-        HBox areaCartas = new VistaCartas(cartas, botonJugarMano, botonDescartar);
+        VistaCartas areaCartas = new VistaCartas(modelo, botonJugarMano, botonDescartar);
         AnchorPane.setBottomAnchor(areaCartas, 200.0);
         AnchorPane.setLeftAnchor(areaCartas, 350.0);
+        this.vistaCartas = areaCartas;
 
         Image image = new Image(getClass().getResourceAsStream("/imagenes/image_4.png"));
         ImageView imageView = new ImageView(image);
@@ -67,6 +78,10 @@ public class VistaPrincipalMesa extends AnchorPane {
         AnchorPane.setRightAnchor(imageView, 40.0);
 
         this.getChildren().addAll(imageView, areaComodines, areaTarots, areaCartas, contenedorBotones);
+    }
+
+    public void actualizarMano() {
+        vistaCartas.repartir();
     }
 
 }

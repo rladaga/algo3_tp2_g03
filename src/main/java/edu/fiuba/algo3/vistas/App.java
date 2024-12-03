@@ -1,9 +1,11 @@
 package edu.fiuba.algo3.vistas;
 
+import edu.fiuba.algo3.modelo.Balatro;
 import edu.fiuba.algo3.modelo.Carta.Carta;
 import edu.fiuba.algo3.modelo.Mazo;
 import edu.fiuba.algo3.modelo.Mezclador.IMezclador;
 import edu.fiuba.algo3.modelo.Mezclador.MezcladorMazo;
+import edu.fiuba.algo3.modelo.parser.ParserBalatro;
 import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.geometry.Insets;
@@ -20,6 +22,7 @@ import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 
 
+import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.Objects;
 import java.util.Optional;
@@ -34,10 +37,12 @@ public class App extends Application {
     private Font customFont;
 
     @Override
-    public void start(Stage stagePrimario) {
+    public void start(Stage stagePrimario) throws FileNotFoundException {
         stage = stagePrimario;
         stagePrimario.setTitle("Balatro");
         stagePrimario.getIcons().add(new Image(getClass().getResourceAsStream("/imagenes/logo_balatro.png")));
+        ParserBalatro parser = new ParserBalatro();
+        Balatro modelo = parser.pasearBalatro();
 
         String mediaPath = getClass().getResource("/audio/wii.mp3").toExternalForm();
         Media media = new Media(mediaPath);
@@ -49,7 +54,7 @@ public class App extends Application {
                 20
         );
 
-        VistaMenuInicial menuVisual = new VistaMenuInicial(stagePrimario, mediaPlayer);
+        VistaMenuInicial menuVisual = new VistaMenuInicial(stagePrimario, mediaPlayer, modelo);
         Scene escenaMenu = new Scene(menuVisual, 1366, 768);
 
         String fontFamily = "Balatro";

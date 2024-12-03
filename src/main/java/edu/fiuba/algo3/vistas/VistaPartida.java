@@ -1,5 +1,6 @@
 package edu.fiuba.algo3.vistas;
 
+import edu.fiuba.algo3.modelo.Balatro;
 import edu.fiuba.algo3.modelo.Carta.Carta;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -16,7 +17,10 @@ import java.util.ArrayList;
 
 public class VistaPartida extends BorderPane {
 
-    public VistaPartida(Stage stagePrimario, ArrayList<Carta> cartas, MediaPlayer mediaPlayer, MenuBar menuBar, String nombreJugador) {
+    private CajaPuntajeActual cajaPuntajeActual;
+    private VistaPrincipalMesa vistaPrincipalMesa;
+
+    public VistaPartida(Stage stagePrimario, MediaPlayer mediaPlayer, MenuBar menuBar, String nombreJugador, Balatro modelo) {
 
         StackPane root = new StackPane();
         root.setStyle("-fx-background-color: #356C54");
@@ -28,13 +32,14 @@ public class VistaPartida extends BorderPane {
         VBox cajaInterna4 = new CajaInterna("#242B2C", "PUNTUACION TIRADA", 136, 120);
         VBox cajaInterna5 = new CajaInterna("#242B2C", "", 124, 120);
 
-        HBox fichaPuntajeCaja = new CajaPuntaje("10750", "#dc3545");
+        HBox fichaPuntajeCaja = new CajaPuntaje(modelo, "#dc3545");
         cajaInterna2.getChildren().add(fichaPuntajeCaja);
         VBox.setMargin(fichaPuntajeCaja, new Insets(20, 0, 0, 0));
 
-        HBox fichaPuntajeCaja2 = new CajaPuntaje("0", "white");
+        CajaPuntajeActual fichaPuntajeCaja2 = new CajaPuntajeActual(modelo, "white");
         cajaInterna3.getChildren().add(fichaPuntajeCaja2);
         VBox.setMargin(fichaPuntajeCaja2, new Insets(20, 0, 0, 0));
+        this.cajaPuntajeActual = fichaPuntajeCaja2;
 
         HBox puntuacionTiradaCaja = new CajaGenerica(10, Pos.BOTTOM_CENTER);
         HBox cajaPuntos = new CajaPuntuacionManoInterna(Pos.BOTTOM_RIGHT, "#007bff", 100, 50, "0", new Insets(0, 5, 0, 0));
@@ -48,21 +53,22 @@ public class VistaPartida extends BorderPane {
 
         HBox cajaGeneralInfo = new CajaGenerica(10, Pos.BOTTOM_CENTER);
 
-        VBox manoCaja = new CajaInfoInterna("MANO", 3, "#007bff");
-        VBox rondaCaja = new CajaInfoInterna("RONDA", 1, "#FBA000");
-        VBox descartesCaja = new CajaInfoInterna("DESCARTES", 4, "#dc3545");
+        VBox manoCaja = new CajaInfoInterna("MANO", modelo.getRonda().getManos().getManosRestantes(), "#007bff");
+        VBox rondaCaja = new CajaInfoInterna("RONDA", modelo.getRonda().getNumeroRonda(), "#FBA000");
+        VBox descartesCaja = new CajaInfoInterna("DESCARTES", modelo.getRonda().getDescartes().getDescartesRestantes(), "#dc3545");
 
         cajaGeneralInfo.getChildren().addAll(manoCaja, rondaCaja, descartesCaja);
         cajaInterna5.getChildren().add(cajaGeneralInfo);
 
         cajaGris.getChildren().addAll(cajaInterna2, cajaInterna3, cajaInterna4, cajaInterna5);
 
-        AnchorPane anchor = new VistaPrincipalMesa(cartas);
+        VistaPrincipalMesa anchor = new VistaPrincipalMesa(modelo, this);
 
         StackPane.setMargin(cajaGris, new Insets(0, 0, 0, 20));
         StackPane.setAlignment(cajaGris, Pos.CENTER_LEFT);
 
         root.getChildren().addAll(cajaGris, anchor);
+        this.vistaPrincipalMesa = anchor;
 
         this.setTop(menuBar);
         this.setCenter(root);
@@ -71,6 +77,14 @@ public class VistaPartida extends BorderPane {
         String css = "-fx-font-family: '" + fontFamily + "';";
 
         this.setStyle(css);
+    }
+
+    public void actualizarPuntajeActual() {
+        this.cajaPuntajeActual.actualizar();
+    }
+
+    public void actualizarCartasEnMano(){
+        vistaPrincipalMesa.actualizarMano();
     }
 
 }

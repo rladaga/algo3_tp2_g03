@@ -1,6 +1,7 @@
 package edu.fiuba.algo3.vistas;
 
 import edu.fiuba.algo3.controllers.ControladorJugar;
+import edu.fiuba.algo3.modelo.Balatro;
 import javafx.application.Platform;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -20,7 +21,7 @@ public class VistaMenuInicial extends BorderPane {
 
     private String nombreJugador;
 
-    public VistaMenuInicial(Stage stagePrimario, MediaPlayer mediaPlayer) {
+    public VistaMenuInicial(Stage stagePrimario, MediaPlayer mediaPlayer, Balatro modelo) {
 
         StackPane root = new StackPane();
         root.setStyle("-fx-background-color: linear-gradient(to right, #8B0000, #000080);");
@@ -65,7 +66,7 @@ public class VistaMenuInicial extends BorderPane {
             result.ifPresent(nombre -> {
 
                 nombreJugador = nombre;
-                botonJugar.setOnAction(new ControladorJugar(stagePrimario, mediaPlayer, menuBar, nombreJugador));
+                botonJugar.setOnAction(new ControladorJugar(stagePrimario, mediaPlayer, menuBar, nombreJugador, modelo));
                 System.out.println("Nombre del jugador: " + nombre);
                 menuInicial.setVisible(true);
             });

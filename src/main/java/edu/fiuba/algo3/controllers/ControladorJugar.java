@@ -1,5 +1,6 @@
 package edu.fiuba.algo3.controllers;
 
+import edu.fiuba.algo3.modelo.Balatro;
 import edu.fiuba.algo3.modelo.Carta.Carta;
 import edu.fiuba.algo3.modelo.Mazo;
 import edu.fiuba.algo3.modelo.Mezclador.IMezclador;
@@ -22,12 +23,14 @@ public class ControladorJugar implements EventHandler<ActionEvent> {
     MediaPlayer mediaPlayer;
     MenuBar menuBar;
     String nombreJugador;
+    Balatro modelo;
 
-    public ControladorJugar(Stage stagePrimario, MediaPlayer mediaPlayer, MenuBar menuBar, String nombreJugador) {
+    public ControladorJugar(Stage stagePrimario, MediaPlayer mediaPlayer, MenuBar menuBar, String nombreJugador, Balatro modelo) {
         this.stage = stagePrimario;
         this.mediaPlayer = mediaPlayer;
         this.menuBar = menuBar;
         this.nombreJugador = nombreJugador;
+        this.modelo = modelo;
     }
 
     @Override
@@ -35,11 +38,7 @@ public class ControladorJugar implements EventHandler<ActionEvent> {
 
         boolean estabaEnPantallaCompleta = stage.isFullScreen();
 
-        IMezclador mezclador = new MezcladorMazo();
-        Mazo mazo = new Mazo(mezclador);
-        ArrayList<Carta> cartas = mazo.repartir();
-
-        VistaPartida vistaMesa = new VistaPartida(stage, cartas, mediaPlayer, menuBar, nombreJugador);
+        VistaPartida vistaMesa = new VistaPartida(stage, mediaPlayer, menuBar, nombreJugador, modelo);
 
         Platform.runLater(() -> {
             stage.getScene().setRoot(vistaMesa);

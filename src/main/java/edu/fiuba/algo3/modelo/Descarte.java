@@ -20,16 +20,15 @@ public class Descarte {
         return validacion;
     }
 
-    public void setearLimiteDescartes(int limiteDescartes){
-        this.limiteDescartes = limiteDescartes;
-        reiniciarDescartes();
-    }
-
     public void reiniciarDescartes() {
         this.descartesRealizados = 0;
     }
 
     public int descartesRealizados(){
         return descartesRealizados;
+    }
+
+    public Integer getDescartesRestantes() {
+        return limiteDescartes - descartesRealizados;
     }
 }

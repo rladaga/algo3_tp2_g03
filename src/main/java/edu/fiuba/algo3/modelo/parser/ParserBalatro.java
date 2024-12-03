@@ -4,12 +4,10 @@ import com.google.gson.Gson;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
+import edu.fiuba.algo3.modelo.*;
 import edu.fiuba.algo3.modelo.Carta.Carta;
-import edu.fiuba.algo3.modelo.Descarte;
 import edu.fiuba.algo3.modelo.Joker.Joker;
-import edu.fiuba.algo3.modelo.Mano;
-import edu.fiuba.algo3.modelo.Ronda;
-import edu.fiuba.algo3.modelo.Tienda;
+import edu.fiuba.algo3.modelo.Mezclador.MezcladorMazo;
 
 import java.io.*;
 import java.util.ArrayList;
@@ -26,6 +24,10 @@ public class ParserBalatro {
         BufferedReader br = new BufferedReader(new InputStreamReader(inputStream));
         JsonObject jsonObject = gson.fromJson(br, JsonObject.class);
         this.jsonObject = jsonObject;
+    }
+
+    public Balatro pasearBalatro() {
+        return new Balatro(parsearRondas(), new Mazo(parsearMazo(), new MezcladorMazo()));
     }
 
     public ArrayList<Ronda> parsearRondas() {

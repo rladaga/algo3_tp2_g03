@@ -36,7 +36,7 @@ public class Mano {
         this.manosRealizadas = 0;
     }
 
-    public int manosRestantes(){
+    public Integer getManosRestantes(){
         return limiteManos-manosRealizadas;
     }
 }

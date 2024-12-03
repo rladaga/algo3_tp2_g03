@@ -1,6 +1,10 @@
 package edu.fiuba.algo3.modelo;
 
+import edu.fiuba.algo3.modelo.Carta.Carta;
+import edu.fiuba.algo3.modelo.Joker.Joker;
 import edu.fiuba.algo3.modelo.PuntuacionTirada.PuntuacionTirada;
+
+import java.util.ArrayList;
 
 public class Ronda{
     private int numeroRonda;
@@ -8,6 +12,7 @@ public class Ronda{
     private Mano manos;
     private int puntajeObjetivo;
     private Tienda tienda;
+    private int puntajeActual;
 
     public Ronda(int numeroRonda, Descarte descartes, Mano manos, int puntajeObjetivo, Tienda tienda){
         this.numeroRonda = numeroRonda;
@@ -15,9 +20,32 @@ public class Ronda{
         this.manos = manos;
         this.puntajeObjetivo = puntajeObjetivo;
         this.tienda = tienda;
+        this.puntajeActual = 0;
+    }
+
+    public void jugarRonda(ArrayList<Carta> cartasAJugar, ArrayList<Joker> jokers, EvaluadorMano evaluadorMano) {
+        puntajeActual += evaluadorMano.evaluar(cartasAJugar, jokers, descartes);
     }
 
 
+    public Integer getPuntajeObjetivo() {
+        return puntajeObjetivo;
+    }
+    public Integer getPuntajeActual() {
+        return puntajeActual;
+    }
+
+    public int getNumeroRonda() {
+        return numeroRonda;
+    }
+
+    public Descarte getDescartes() {
+        return descartes;
+    }
+
+    public Mano getManos() {
+        return manos;
+    }
 }
 
 
