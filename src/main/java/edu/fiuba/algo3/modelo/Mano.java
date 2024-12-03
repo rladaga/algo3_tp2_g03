@@ -1,5 +1,6 @@
 package edu.fiuba.algo3.modelo;
 
+import edu.fiuba.algo3.modelo.Excepcion.ManoError;
 import edu.fiuba.algo3.modelo.PuntuacionTirada.PuntuacionTirada;
 
 public class Mano {
@@ -14,11 +15,11 @@ public class Mano {
     public boolean permitirTirada(){
         boolean validacion = false;
 
-        if(manosRealizadas < limiteManos){
-            validacion = true;
-            manosRealizadas++;
+        if(manosRealizadas >= limiteManos){
+            throw new ManoError("No quedan manos suficientes");
         }
-
+        validacion = true;
+        manosRealizadas++;
         return validacion;
     }
 
