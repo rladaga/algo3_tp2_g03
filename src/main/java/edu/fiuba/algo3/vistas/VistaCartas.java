@@ -51,4 +51,24 @@ public class VistaCartas extends HBox {
             this.getChildren().add(vistaCarta);
         }
     }
+
+    public void repartirSinDescartes(){
+        modelo.repartirCartas(); // Actualiza el modelo para repartir nuevas cartas
+
+        this.getChildren().clear(); // Elimina todas las cartas actuales del HBox
+
+        final int[] contadorCartas = {0};
+
+        // Crear un Runnable para actualizar los botones
+        Runnable actualizarBotones = () -> {
+            botonJugarMano.setDisable(contadorCartas[0] != 5);
+        };
+
+        botonDescartar.setDisable(true);
+        // Añade las nuevas cartas a la vista
+        for (Carta carta : modelo.getCartasEnMano()) {
+            VistaCarta vistaCarta = new VistaCarta(modelo, carta, contadorCartas, actualizarBotones);
+            this.getChildren().add(vistaCarta);
+        }
+    }
 }

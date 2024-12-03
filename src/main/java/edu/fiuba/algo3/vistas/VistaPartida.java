@@ -1,23 +1,19 @@
 package edu.fiuba.algo3.vistas;
 
 import edu.fiuba.algo3.modelo.Balatro;
-import edu.fiuba.algo3.modelo.Carta.Carta;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
-import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.MenuBar;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
 import javafx.scene.media.MediaPlayer;
 import javafx.stage.Stage;
 
-import java.util.ArrayList;
-
 public class VistaPartida extends BorderPane {
 
     private CajaPuntajeActual cajaPuntajeActual;
+    private CajaInfoInterna cajaManos;
+    private CajaInfoInterna cajaDescartes;
     private VistaPrincipalMesa vistaPrincipalMesa;
 
     public VistaPartida(Stage stagePrimario, MediaPlayer mediaPlayer, MenuBar menuBar, String nombreJugador, Balatro modelo) {
@@ -53,11 +49,13 @@ public class VistaPartida extends BorderPane {
 
         HBox cajaGeneralInfo = new CajaGenerica(10, Pos.BOTTOM_CENTER);
 
-        VBox manoCaja = new CajaInfoInterna("MANO", modelo.getRonda().getManos().getManosRestantes(), "#007bff");
+        CajaInfoInterna manoCaja = new CajaInfoInterna("MANO", modelo.getRonda().getManos().getManosRestantes(), "#007bff");
         VBox rondaCaja = new CajaInfoInterna("RONDA", modelo.getRonda().getNumeroRonda(), "#FBA000");
-        VBox descartesCaja = new CajaInfoInterna("DESCARTES", modelo.getRonda().getDescartes().getDescartesRestantes(), "#dc3545");
+        CajaInfoInterna descartesCaja = new CajaInfoInterna("DESCARTES", modelo.getRonda().getDescartes().getDescartesRestantes(), "#dc3545");
+        this.cajaDescartes = descartesCaja;
+        this.cajaManos = manoCaja;
 
-        cajaGeneralInfo.getChildren().addAll(manoCaja, rondaCaja, descartesCaja);
+        cajaGeneralInfo.getChildren().addAll((VBox)manoCaja, rondaCaja, (VBox)descartesCaja);
         cajaInterna5.getChildren().add(cajaGeneralInfo);
 
         cajaGris.getChildren().addAll(cajaInterna2, cajaInterna3, cajaInterna4, cajaInterna5);
@@ -82,6 +80,10 @@ public class VistaPartida extends BorderPane {
     public void actualizarPuntajeActual() {
         this.cajaPuntajeActual.actualizar();
     }
+
+    public void actualizarCajaDescartes(int valor) {this.cajaDescartes.actualizar(valor);}
+
+    public void actualizarCajaManos(int valor) {this.cajaManos.actualizar(valor);}
 
     public void actualizarCartasEnMano(){
         vistaPrincipalMesa.actualizarMano();

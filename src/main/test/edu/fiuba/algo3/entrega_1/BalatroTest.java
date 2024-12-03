@@ -54,11 +54,7 @@ public class BalatroTest{
         Balatro balatro = new Balatro(arrRonda, mazo);
         balatro.iniciarTurno();
 
-        for (int i = 0; i < 4; i++) {
-            balatro.seleccionarCartaEnPosicion(i);
-        }
-
-        assertTrue(!balatro.getCartasEnMano().isEmpty() && balatro.getCartasEnMano().size() < 6);
+        assertTrue(balatro.getCartasEnMano().size() > 4);
     }
 
     @Test

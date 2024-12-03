@@ -58,9 +58,9 @@ public class Mazo {
         mezclarCartas();
         ArrayList<Carta> cartasARepartir = new ArrayList<Carta>();
         for (int i = 1; i < cantidad+1; i++) {
-            cartasARepartir.add(cartasEnMazo.get(i - 1));
-            cartasFueraDeMazo.add(cartasEnMazo.get(i - 1));
-            cartasEnMazo.remove(i-1);
+            cartasARepartir.add(cartasEnMazo.get(0));
+            cartasFueraDeMazo.add(cartasEnMazo.get(0));
+            cartasEnMazo.remove(0);
         }
 
         return cartasARepartir;

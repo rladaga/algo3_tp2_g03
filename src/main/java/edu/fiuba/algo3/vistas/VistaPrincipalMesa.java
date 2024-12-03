@@ -1,6 +1,6 @@
 package edu.fiuba.algo3.vistas;
 
-import edu.fiuba.algo3.controllers.ControladorJugar;
+import edu.fiuba.algo3.controllers.ControladorDescartar;
 import edu.fiuba.algo3.controllers.ControladorJugarMano;
 import edu.fiuba.algo3.modelo.Balatro;
 import edu.fiuba.algo3.modelo.Carta.Carta;
@@ -56,6 +56,7 @@ public class VistaPrincipalMesa extends AnchorPane {
 
         Button botonDescartar = new CrearBoton("DESCARTAR", estiloBotonDescartar);
         botonDescartar.setDisable(true);
+        botonDescartar.setOnAction(new ControladorDescartar(modelo, vistaPartida));
 
         contenedorBotones.getChildren().addAll(botonJugarMano, botonDescartar);
         AnchorPane.setBottomAnchor(contenedorBotones,  100.0);
@@ -81,7 +82,11 @@ public class VistaPrincipalMesa extends AnchorPane {
     }
 
     public void actualizarMano() {
-        vistaCartas.repartir();
+        if(modelo.getRonda().getDescartes().getDescartesRestantes() == 0){
+            vistaCartas.repartirSinDescartes();
+        }else {
+            vistaCartas.repartir();
+        }
     }
 
 }

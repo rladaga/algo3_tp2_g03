@@ -46,6 +46,14 @@ public class Ronda{
     public Mano getManos() {
         return manos;
     }
+
+    public boolean permitirDescarte() {
+        return descartes.permitirDescarte();
+    }
+
+    public boolean permitirJugar(){
+        return manos.permitirTirada();
+    }
 }
 
 

@@ -8,6 +8,7 @@ public class Mano {
 
     public Mano(int limiteManos){
         this.limiteManos = limiteManos;
+        this.manosRealizadas = 0;
     }
 
     public boolean permitirTirada(){
@@ -19,21 +20,6 @@ public class Mano {
         }
 
         return validacion;
-    }
-
-    public PuntuacionTirada realizarTirada(){
-        PuntuacionTirada  puntuacion = new PuntuacionTirada(0,0);
-        manosRealizadas++;
-        return puntuacion;
-    }
-
-    public void setearLimiteManos(int limiteManos){
-        this.limiteManos = limiteManos;
-        reiniciarManos();
-    }
-
-    public void reiniciarManos() {
-        this.manosRealizadas = 0;
     }
 
     public Integer getManosRestantes(){

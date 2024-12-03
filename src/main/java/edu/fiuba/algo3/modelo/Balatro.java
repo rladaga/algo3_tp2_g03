@@ -47,12 +47,10 @@ public class Balatro {
         }// else throw excepcion
     }
 
-    public void descartar(ArrayList<Carta> cartasADescartar, Descarte descartes) {
-        if (descartes.permitirDescarte()) {
-            cartasEnMano.removeAll(cartasADescartar);
-            cartasEnMano.addAll(mazo.repartir(cartasADescartar.size()));
+    public void descartar() {
+        if (rondas.get(0).permitirDescarte()) {
+            cartasEnMano.removeAll(cartasAJugar);
         }
-        ;
     }
 
     public void seleccionarCarta(Carta carta) {
@@ -64,8 +62,11 @@ public class Balatro {
     }
 
     public void jugarMano(){
-        cartasEnMano.removeAll(cartasAJugar);
-        rondas.get(0).jugarRonda(cartasAJugar, jokers, evaluadorMano);
+        Ronda rondaActual = rondas.get(0);
+        if(rondaActual.permitirJugar()) {
+            rondaActual.jugarRonda(cartasAJugar, jokers, evaluadorMano);
+            cartasEnMano.removeAll(cartasAJugar);
+        }
     }
 
     public ArrayList<Carta> getCartasEnMano() {
