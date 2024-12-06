@@ -1,12 +1,13 @@
-package edu.fiuba.algo3.modelo.Joker;
+package edu.fiuba.algo3.modelo.Fabricas;
 
+import edu.fiuba.algo3.modelo.DTOs.JokerDTO;
 import edu.fiuba.algo3.modelo.Descarte;
 import edu.fiuba.algo3.modelo.EstrategiaModificacion.EstrategiaModificacion;
 import edu.fiuba.algo3.modelo.EstrategiaModificacion.ModificarMultiplicador;
 import edu.fiuba.algo3.modelo.EstrategiaModificacion.ModificarPuntos;
+import edu.fiuba.algo3.modelo.Joker.*;
 import edu.fiuba.algo3.modelo.Joker.GeneradorRandom.GeneradorRandom;
 import edu.fiuba.algo3.modelo.Joker.GeneradorRandom.NumeroAleatorio;
-import edu.fiuba.algo3.modelo.ManoDePoker.FabricaDeManos;
 import edu.fiuba.algo3.modelo.ManoDePoker.ManoDePoker;
 import edu.fiuba.algo3.modelo.Modificador.Modificador;
 import edu.fiuba.algo3.modelo.Modificador.Multiplicar;

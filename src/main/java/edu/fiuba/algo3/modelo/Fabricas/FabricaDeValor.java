@@ -1,4 +1,6 @@
-package edu.fiuba.algo3.modelo.Carta.Valor;
+package edu.fiuba.algo3.modelo.Fabricas;
+
+import edu.fiuba.algo3.modelo.Carta.Valor.*;
 
 public class FabricaDeValor {
     public static Valor CrearValor (String valor){

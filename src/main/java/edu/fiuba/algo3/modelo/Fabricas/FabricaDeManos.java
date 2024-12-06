@@ -1,4 +1,6 @@
-package edu.fiuba.algo3.modelo.ManoDePoker;
+package edu.fiuba.algo3.modelo.Fabricas;
+
+import edu.fiuba.algo3.modelo.ManoDePoker.*;
 
 public class FabricaDeManos {
 

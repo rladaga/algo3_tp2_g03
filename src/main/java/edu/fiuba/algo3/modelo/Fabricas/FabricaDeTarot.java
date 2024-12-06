@@ -1,13 +1,16 @@
-package edu.fiuba.algo3.modelo.Tarot;
+package edu.fiuba.algo3.modelo.Fabricas;
 
+import edu.fiuba.algo3.modelo.DTOs.TarotDTO;
 import edu.fiuba.algo3.modelo.EstrategiaModificacion.EstrategiaModificacion;
 import edu.fiuba.algo3.modelo.EstrategiaModificacion.ModificarMultiplicador;
 import edu.fiuba.algo3.modelo.EstrategiaModificacion.ModificarPuntos;
-import edu.fiuba.algo3.modelo.ManoDePoker.FabricaDeManos;
 import edu.fiuba.algo3.modelo.ManoDePoker.ManoDePoker;
 import edu.fiuba.algo3.modelo.Modificador.Modificador;
 import edu.fiuba.algo3.modelo.Modificador.Multiplicar;
 import edu.fiuba.algo3.modelo.Modificador.Sumar;
+import edu.fiuba.algo3.modelo.Tarot.Tarot;
+import edu.fiuba.algo3.modelo.Tarot.TarotCarta;
+import edu.fiuba.algo3.modelo.Tarot.TarotManoPoker;
 
 public class FabricaDeTarot {
     public static Tarot crearTarot(TarotDTO tarotDTO){
