@@ -1,0 +1,14 @@
+@startuml
+skinparam classAttributeIconSize 0
+exception DescarteError
+
+class Descarte {
+    -limiteDescartes: int
+    -descartesRealizados: int
+    +{static}Descarte(limiteDescartes: int)
+    +permitirDescarte():boolean
+    +descartesRestantes(): int
+}
+
+Descarte ..> DescarteError
+@enduml

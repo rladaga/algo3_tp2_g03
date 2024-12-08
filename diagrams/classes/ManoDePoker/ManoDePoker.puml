@@ -1,0 +1,27 @@
+@startuml
+skinparam classAttributeIconSize 0
+
+class Carta
+
+class MejoraMano {
+    -puntuacionAgregada: int
+    -multiplicadorAgregado: int
+    +{static}MejoraMano()
+    +mejorarMano(unaPuntuacion: int, unMultiplicador: int): void
+    +agregarPuntuacionBase(unaPuntuacion: int): int
+    +agregarMultiplicadorBase(unMultiplicador: int): int
+}
+
+abstract class ManoDePoker {
+    +{abstract}esValida(mano: ArrayList<Carta>): boolean
+    +{abstract}calcularPuntos(): int
+    +{abstract}calcularMultiplicador(): int
+    +{abstract} esIgual(mano: ManoDePoker): boolean
+    #cuentaRepeticiones(mano: ArrayList<Carta>, repeticionesDeseadas: int): int
+    +agregarMejora(puntuacion: int, multiplicador: int): void
+}
+
+ManoDePoker "1" --> "1" MejoraMano
+ManoDePoker ..> Carta
+
+@enduml

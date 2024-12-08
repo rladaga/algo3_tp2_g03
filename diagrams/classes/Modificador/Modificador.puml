@@ -1,0 +1,21 @@
+@startuml
+skinparam classAttributeIconSize 0
+
+abstract class Modificador {
+    #valorModificacion: float
+    +{static}Modificador(valorModificacion: float)
+    +{abstract}modificar(puntos: int): int
+}
+
+class Multiplicar {
+    +modificar(puntos: int): int
+}
+class Sumar {
+    +modificar(puntos: int): int
+}
+
+Modificador <|-- Multiplicar
+Modificador <|-- Sumar
+
+
+@enduml

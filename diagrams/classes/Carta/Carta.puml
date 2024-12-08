@@ -5,13 +5,13 @@ abstract class Palo
 abstract class Valor
 
 class Carta {
-+obtenerIndice(): int
-+modificarPuntuacion(puntuacion : PuntuacionTirada): void
-+aplicarTaror(modificador : Modificador, estrategia : EstrategiaModificacion): void
-+puntosBase(): int
-+compararValor(otraCarta : Carta): boolean
-+compararPalo(otraCarta : Carta): boolean
-+void()
+    +obtenerIndice(): int
+    +modificarPuntuacion(puntuacion : PuntuacionTirada): void
+    +aplicarTaror(modificador : Modificador, estrategia : EstrategiaModificacion): void
+    +puntosBase(): int
+    +compararValor(otraCarta : Carta): boolean
+    +compararPalo(otraCarta : Carta): boolean
+    +void()
 }
 
 interface Estado {
@@ -20,13 +20,13 @@ interface Estado {
 }
 
 abstract class Palo{
-{abstract}+compararCon(unPalo : Palo) : boolean
+    {abstract}+compararCon(unPalo : Palo) : boolean
 }
 
 abstract class Valor{
--int puntosBase
-{abstract}+nueracion() : int
-{abstract}+compararCon(unValor : Valor) : boolean
+    -int puntosBase
+    {abstract}+nueracion() : int
+    {abstract}+compararCon(unValor : Valor) : boolean
 }
 
 Carta *-- Valor

@@ -1,0 +1,28 @@
+@startuml
+skinparam classAttributeIconSize 0
+abstract class ManoDePoker
+
+class Tarot {
+    #nombre: String
+    #descripcion: String
+    +Tarot(nombre: String, descripcion: String)
+}
+
+class TarotCarta {
+    +aplicarEfecto(carta: Carta): void
+}
+class TarotManoPoker {
+    -puntuacion: int
+    -multiplicacion: int
+    +aplicarEfecto(manoDePoker: ManoDePoker): void
+}
+
+Tarot <|-- TarotCarta
+Tarot <|-- TarotManoPoker
+
+TarotCarta "1"--> "1" Modificador
+TarotCarta "1"--> "1" EstrategiaModificacion
+TarotCarta ..> Carta: <<use>>
+
+TarotManoPoker "1"--> "1" ManoDePoker
+@enduml
