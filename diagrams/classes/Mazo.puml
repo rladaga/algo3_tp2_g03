@@ -1,0 +1,24 @@
+@startuml
+skinparam classAttributeIconSize 0
+
+interface IMezclador {
+    +{abstract}mezclar(cartas: ArrayList<Carta>): void
+}
+class MezcladorMazo {
+    +mezclar(cartas: ArrayList<Carta>): void
+}
+
+class Mazo {
+    -cartasEnMazo: ArrayList<Carta>
+    -cartasFueraDeMazo: ArrayList<Carta>
+    +{static}Mazo(cartas: ArrayList<Carta>, mezclador: IMezclador)
+    +repartir(cantidad: int): ArrayList<Carta>
+    +mezclarCartas(): void
+    +agregarCartaAlMazo(carta: Carta): void
+}
+
+Mazo "1" *-- "*" Carta
+Mazo "1" --> "1" IMezclador
+
+IMezclador <|.. MezcladorMazo
+@enduml

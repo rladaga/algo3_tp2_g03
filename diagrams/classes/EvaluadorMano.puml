@@ -1,0 +1,18 @@
+@startuml
+skinparam classAttributeIconSize 0
+abstract class ManoDePoker
+
+class EvaluadorMano {
+    -tiposDeMano: List<ManoDePoker>
+    +{static}EvaluadorMano()
+    -aplicarValorCartas(mano: ArrayList<Carta>, puntuacion: PuntuacionTirada): void
+    -aplicarJokers(jokers: ArrayList<Joker>, tipo: ManoDePoker, puntuacion: PuntuacionTirada, descarte: Descarte): void
+    -calcularPuntuacionTotal(mano: ArrayList<Carta>, tipo: ManoDePoker, jokers: ArrayList<Joker>, descarte: Descarte): int
+    +evaluar(mano: ArrayList<Carta>, jokers: ArrayList<Joker>, descarte: Descarte): int
+}
+
+EvaluadorMano ..> ManoDePoker
+EvaluadorMano ..> Carta
+EvaluadorMano ..> PuntuacionTirada
+EvaluadorMano ..> Descarte
+@enduml

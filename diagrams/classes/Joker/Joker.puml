@@ -1,0 +1,19 @@
+@startuml
+'https://plantuml.com/class-diagram
+skinparam classAttributeIconSize 0
+
+abstract class Joker {
+    -nombre: String
+    -descripcion: String
+    +{static}Joker(nombre: String, descripcion: String, estrategiaModificacion: EstrategiaModificacion, modificacion: Modificador)
+    +{abstract}modificarPuntuacion(puntuacion: PuntuacionTirada, manoJugada: ManoDePoker, descarte: Descarte): void
+    +agregarJoker(joker: Joker): void
+}
+
+Joker --> "1" Joker
+Joker ..> EstrategiaModificacion
+Joker ..> Descarte
+Joker ..> Modificador
+Joker ..> ManoDePoker
+
+@enduml

@@ -1,0 +1,23 @@
+@startuml
+skinparam classAttributeIconSize 0
+
+abstract class ManoDePoker {
+    +{abstract}esValida(mano: ArrayList<Carta>): boolean
+    +{abstract}calcularPuntos(): int
+    +{abstract}calcularMultiplicador(): int
+    +{abstract} esIgual(mano: ManoDePoker): boolean
+    #cuentaRepeticiones(mano: ArrayList<Carta>, repeticionesDeseadas: int): int
+    +agregarMejora(puntuacion: int, multiplicador: int): void
+}
+
+ManoDePoker <|-- CartaAlta
+ManoDePoker <|-- Color
+ManoDePoker <|-- DoblePar
+ManoDePoker <|-- Escalera
+ManoDePoker <|-- EscaleraColor
+ManoDePoker <|-- EscaleraReal
+ManoDePoker <|-- FullHouse
+ManoDePoker <|-- Par
+ManoDePoker <|-- Poker
+ManoDePoker <|-- Trio
+@enduml

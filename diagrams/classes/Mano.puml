@@ -1,0 +1,14 @@
+@startuml
+skinparam classAttributeIconSize 0
+exception ManoError
+
+class Mano {
+    -limiteManos: int
+    -manosRealizadas: int
+    +{static}Mano(limiteDescartes: int)
+    +permitirTirada():boolean
+    +manosRestantes(): int
+}
+
+Mano ..> ManoError
+@enduml
