@@ -5,6 +5,7 @@ import edu.fiuba.algo3.controllers.ControladorJugarMano;
 import edu.fiuba.algo3.modelo.Balatro;
 import edu.fiuba.algo3.vistas.CajaGenerica;
 import edu.fiuba.algo3.vistas.CrearBoton;
+import edu.fiuba.algo3.vistas.ReproductorMusica;
 import edu.fiuba.algo3.vistas.VistaPartida;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
@@ -12,18 +13,28 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.StackPane;
+import javafx.scene.media.MediaPlayer;
+import javafx.stage.Stage;
 
 public class VistaPrincipalMesa extends AnchorPane {
+
     private Balatro modelo;
     private VistaCartas vistaCartas;
     public VistaPartida vistaPartida;
     public VistaComodines vistaComodines;
+    private Stage stage;
+    private ReproductorMusica reproductor;
+    private String nombreJugador;
 
 
-    public VistaPrincipalMesa(Balatro modelo, VistaPartida vistaPartida) {
+    public VistaPrincipalMesa(Balatro modelo, VistaPartida vistaPartida, StackPane root, Stage stage, ReproductorMusica reproductor, String nombreJugador) {
 
         this.modelo = modelo;
         this.vistaPartida = vistaPartida;
+        this.stage = stage;
+        this.reproductor = reproductor;
+        this.nombreJugador = nombreJugador;
 
         VistaComodines areaComodines = new VistaComodines(modelo);
         this.vistaComodines = areaComodines;
@@ -52,7 +63,7 @@ public class VistaPrincipalMesa extends AnchorPane {
 
         Button botonJugarMano = new CrearBoton("JUGAR MANO", estiloBotonJugar);
         botonJugarMano.setDisable(true);
-        botonJugarMano.setOnAction(new ControladorJugarMano(modelo, vistaPartida));
+        botonJugarMano.setOnAction(new ControladorJugarMano(modelo, vistaPartida, root, stage, reproductor, nombreJugador));
 
         Button botonDescartar = new CrearBoton("DESCARTAR", estiloBotonDescartar);
         botonDescartar.setDisable(true);

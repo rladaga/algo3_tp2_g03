@@ -24,7 +24,7 @@ public class VistaPartida extends BorderPane {
     private VistaTienda vistaTienda;
     private Balatro modelo;
 
-    public VistaPartida(Stage stagePrimario, MediaPlayer mediaPlayer, MenuBar menuBar, String nombreJugador, Balatro modelo) {
+    public VistaPartida(Stage stagePrimario, ReproductorMusica reproductorMusica, MenuBar menuBar, String nombreJugador, Balatro modelo) {
 
         this.root = new StackPane();
         this.vistaTienda = new VistaTienda(modelo, this);
@@ -72,9 +72,9 @@ public class VistaPartida extends BorderPane {
         cajaGeneralInfo.getChildren().addAll(manoCaja, rondaCaja, descartesCaja);
         cajaInterna5.getChildren().add(cajaGeneralInfo);
 
-        cajaGris.getChildren().addAll(cajaInterna2, cajaInterna3, cajaInterna4, cajaInterna5);
+        cajaGris.getChildren().addAll(cajaInterna2, cajaInterna3, cajaInterna5);
 
-        this.vistaPrincipalMesa = new VistaPrincipalMesa(modelo, this);
+        this.vistaPrincipalMesa = new VistaPrincipalMesa(modelo, this, root, stagePrimario, reproductorMusica, nombreJugador);
 
         StackPane.setMargin(cajaGris, new Insets(0, 0, 0, 20));
         StackPane.setAlignment(cajaGris, Pos.CENTER_LEFT);

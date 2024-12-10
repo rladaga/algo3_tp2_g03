@@ -21,14 +21,14 @@ public class VistaMenuInicial extends BorderPane {
 
     private String nombreJugador;
 
-    public VistaMenuInicial(Stage stagePrimario, MediaPlayer mediaPlayer, Balatro modelo) {
+    public VistaMenuInicial(Stage stagePrimario, ReproductorMusica reproductorMusica, Balatro modelo, String nombreJugadorExistente) {
+
+        this.nombreJugador = nombreJugadorExistente;
 
         StackPane root = new StackPane();
         root.setStyle("-fx-background-color: linear-gradient(to right, #8B0000, #000080);");
 
-        MenuBar menuBar = new BarraDeMenu(stagePrimario, mediaPlayer);
-
-        Dialog<String> dialog = new PromptNombre();
+        MenuBar menuBar = new BarraDeMenu(stagePrimario, reproductorMusica);
 
         VBox menuInicial = new VBox(30);
         menuInicial.setAlignment(Pos.CENTER);
@@ -59,14 +59,20 @@ public class VistaMenuInicial extends BorderPane {
 
         root.getChildren().addAll(menuInicial);
 
-        Platform.runLater(() -> {
-            Optional<String> result = dialog.showAndWait();
-            result.ifPresent(nombre -> {
-                nombreJugador = nombre;
-                botonJugar.setOnAction(new ControladorJugar(stagePrimario, mediaPlayer, menuBar, nombreJugador, modelo));
-                menuInicial.setVisible(true);
+        if (nombreJugador != null && !nombreJugador.isEmpty()) {
+            botonJugar.setOnAction(new ControladorJugar(stagePrimario, reproductorMusica, menuBar, nombreJugador, modelo));
+            menuInicial.setVisible(true);
+        } else {
+            Dialog<String> dialog = new PromptNombre();
+            Platform.runLater(() -> {
+                Optional<String> result = dialog.showAndWait();
+                result.ifPresent(nombre -> {
+                    nombreJugador = nombre;
+                    botonJugar.setOnAction(new ControladorJugar(stagePrimario, reproductorMusica, menuBar, nombreJugador, modelo));
+                    menuInicial.setVisible(true);
+                });
             });
-        });
+        }
 
         this.setTop(menuBar);
         this.setCenter(root);

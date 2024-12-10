@@ -5,6 +5,7 @@ import edu.fiuba.algo3.modelo.Carta.Carta;
 import edu.fiuba.algo3.modelo.Mazo;
 import edu.fiuba.algo3.modelo.Mezclador.IMezclador;
 import edu.fiuba.algo3.modelo.Mezclador.MezcladorMazo;
+import edu.fiuba.algo3.vistas.ReproductorMusica;
 import edu.fiuba.algo3.vistas.VistaPartida;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
@@ -20,14 +21,14 @@ import java.util.ArrayList;
 public class ControladorJugar implements EventHandler<ActionEvent> {
 
     Stage stage;
-    MediaPlayer mediaPlayer;
+    ReproductorMusica reproductor;
     MenuBar menuBar;
     String nombreJugador;
     Balatro modelo;
 
-    public ControladorJugar(Stage stagePrimario, MediaPlayer mediaPlayer, MenuBar menuBar, String nombreJugador, Balatro modelo) {
+    public ControladorJugar(Stage stagePrimario, ReproductorMusica reproductor, MenuBar menuBar, String nombreJugador, Balatro modelo) {
         this.stage = stagePrimario;
-        this.mediaPlayer = mediaPlayer;
+        this.reproductor = reproductor;
         this.menuBar = menuBar;
         this.nombreJugador = nombreJugador;
         this.modelo = modelo;
@@ -38,7 +39,7 @@ public class ControladorJugar implements EventHandler<ActionEvent> {
 
         boolean estabaEnPantallaCompleta = stage.isFullScreen();
 
-        VistaPartida vistaMesa = new VistaPartida(stage, mediaPlayer, menuBar, nombreJugador, modelo);
+        VistaPartida vistaMesa = new VistaPartida(stage, reproductor, menuBar, nombreJugador, modelo);
 
         Platform.runLater(() -> {
             stage.getScene().setRoot(vistaMesa);
