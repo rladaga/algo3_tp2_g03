@@ -1,0 +1,92 @@
+@startuml
+skinparam classAttributeIconSize 0
+
+
+class Mazo {
+    -cartasEnMazo: ArrayList<Carta>
+    -cartasFueraDeMazo: ArrayList<Carta>
+    +{static}Mazo(cartas: ArrayList<Carta>, mezclador: IMezclador)
+    +repartir(cantidad: int): ArrayList<Carta>
+    +mezclarCartas(): void
+    +agregarCartaAlMazo(carta: Carta): void
+}
+
+
+class Carta {
+    +obtenerIndice(): int
+    +modificarPuntuacion(puntuacion : PuntuacionTirada): void
+    +aplicarTaror(modificador : Modificador, estrategia : EstrategiaModificacion): void
+    +puntosBase(): int
+    +compararValor(otraCarta: Carta): boolean
+    +compararPalo(otraCarta: Carta): boolean
+    +compararValor(unValor: Valor): boolean
+    +compararPalo(unPalo: Palo): boolean
+}
+
+interface Estado {
+{abstract}+modificarPuntuacionpuntuacion : PuntuacionTirada): void
+{abstract}+puntosBase(puntuacionValor : int): int
+}
+
+abstract class Palo{
+    {abstract}+compararCon(unPalo : Palo) : boolean
+}
+
+abstract class Valor{
+    -int puntosBase
+    {abstract}+nueracion() : int
+    {abstract}+compararCon(unValor : Valor) : boolean
+}
+
+class Tarot {
+    #nombre: String
+    #descripcion: String
+    +Tarot(nombre: String, descripcion: String)
+}
+
+class TarotCarta {
+    +aplicarEfecto(carta: Carta): void
+}
+
+class Ronda {
+    -numeroRonda: int
+    -puntajeObjetivo: int
+    -puntajeActual: int
+    +{static}Ronda(numeroRonda: int, descartes: Descarte, manos: Mano, puntajeObjetivo: int, tienda: Tienda)
+    +jugarRonda(cartasAJugar: ArrayList<Carta>, jokers: ArrayList<Joker>, evaluadorMano: EvaluadorMano): void
+    +permitirDescarte(): boolean
+    +permitirJugar(): boolean
+}
+
+class Balatro {
+    +{static}Balatro(rondas: ArrayList<Ronda>, mazo: Mazo)
+    +cartasEnMazo(): int
+    +iniciarTurno(): void
+    +repartirCartas(): void
+    +cantidadCartasEnMano(): int
+    +descartar(): void
+    +seleccionarCarta(carta: Carta): void
+    +deseleccionarCarta(carta: Carta): void
+    +jugarMano(): void
+    +siguienteRonda(): void
+    +agregarCarta(carta: Carta): void
+    +agregarJoker(carta: Carta): void
+}
+
+Balatro "1" *-- "*" Carta
+
+Carta "1" *-- "1" Valor
+Carta "1" *-- "1" Palo
+Carta "1" *-- "1" Estado
+
+Mazo "1" o-- "*" Carta
+
+Tarot <|-- TarotCarta
+
+Ronda ..> Carta: <<use>>
+
+TarotCarta ..> Carta: <<use>>
+
+
+Tienda "1" --> "1" Carta
+@enduml

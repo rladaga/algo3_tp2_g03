@@ -1,0 +1,33 @@
+@startuml
+skinparam classAttributeIconSize 0
+
+class PuntuacionTirada
+abstract class Modificador
+
+interface EstrategiaModificacion {
+    {abstract}+modificar(puntuacion: PuntuacionTirada, modificador: Modificador): void
+    {abstract}+sumarValorCarta(puntuacion: PuntuacionTirada, valorCarta: int): void
+    {abstract}+puntosCarta(valorCarta: int, modificador: Modificador): int
+}
+
+abstract class Modificador {
+    #valorModificacion: float
+    +{static}Modificador(valorModificacion: float)
+    +{abstract}modificar(puntos: int): int
+}
+
+class Multiplicar {
+    +modificar(puntos: int): int
+}
+class Sumar {
+    +modificar(puntos: int): int
+}
+
+Modificador <|-- Multiplicar
+Modificador <|-- Sumar
+Modificador o-- EstrategiaModificacion
+
+EstrategiaModificacion <|.. ModificarMultiplicador
+EstrategiaModificacion <|.. ModificarPuntos
+EstrategiaModificacion ..> PuntuacionTirada: <<use>>
+@enduml
