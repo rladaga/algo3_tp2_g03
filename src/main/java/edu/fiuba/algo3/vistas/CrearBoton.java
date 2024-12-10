@@ -4,6 +4,7 @@ import javafx.scene.control.Button;
 
 public class CrearBoton extends Button {
     public CrearBoton(String texto, String estilo) {
+
         this.setText(texto);
         String estiloBase = "-fx-background-color: #2C3E50; " +
                 "-fx-text-fill: white; " +

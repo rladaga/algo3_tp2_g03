@@ -33,7 +33,7 @@ import java.util.Optional;
 public class App extends Application {
 
     private Stage stage;
-    private MediaPlayer mediaPlayer;
+    private ReproductorMusica reproductorMusica;
     private Font customFont;
 
     @Override
@@ -44,17 +44,14 @@ public class App extends Application {
         ParserBalatro parser = new ParserBalatro();
         Balatro modelo = parser.pasearBalatro();
 
-        String mediaPath = getClass().getResource("/audio/wii.mp3").toExternalForm();
-        Media media = new Media(mediaPath);
-        mediaPlayer = new MediaPlayer(media);
-        mediaPlayer.setCycleCount(MediaPlayer.INDEFINITE);
+        reproductorMusica = new ReproductorMusica();
 
         customFont = Font.loadFont(
                 getClass().getResourceAsStream("/tipografia/balatro.ttf"),
                 20
         );
 
-        VistaMenuInicial menuVisual = new VistaMenuInicial(stagePrimario, mediaPlayer, modelo);
+        VistaMenuInicial menuVisual = new VistaMenuInicial(stagePrimario, reproductorMusica, modelo, null);
         Scene escenaMenu = new Scene(menuVisual, 1366, 768);
 
         String fontFamily = "Balatro";

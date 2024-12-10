@@ -11,7 +11,6 @@ import java.util.Collections;
 
 public class Balatro {
     private ArrayList<Ronda> rondas;
-    private int rondaActual;
     private Mazo mazo;
     private ArrayList<Joker> jokers;
     private ArrayList<Tarot> tarots;
@@ -50,7 +49,7 @@ public class Balatro {
         if(cartasAJugar.size()<5) {
             Carta carta = cartasEnMano.get(posicion);
             cartasAJugar.add(carta);
-        }// else throw excepcion
+        }
     }
 
     public void descartar() {
@@ -118,13 +117,8 @@ public class Balatro {
         evaluadorMano.aplicarMejoraManoDePoker(tarotManoPoker);
     }
 
-    /*public void iniciarJuego(){
-        boolean resultado;
-        for(Ronda ronda: rondas){
-            resultado = ronda.resolverRonda(jugador);
-        }
+    public boolean ultimaRonda() {
+        return rondas.size() == 1;
     }
-*/
-
 
 }

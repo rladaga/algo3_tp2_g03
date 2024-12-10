@@ -26,14 +26,24 @@ public class PromptNombre extends Dialog<String> {
 
         TextField nombre_jugador = new TextField();
         nombre_jugador.setPromptText("Nombre");
+
+        TextFormatter<String> textFormatter = new TextFormatter<>(change -> {
+            if (change.getControlNewText().length() > 15) {
+                return null;
+            }
+            return change;
+        });
+        nombre_jugador.setTextFormatter(textFormatter);
+
+
         nombre_jugador.textProperty().addListener((observable, oldValue, newValue) -> {
-            boolean esValido = newValue.length() >= 3 && newValue.length() <= 15;
+            boolean esValido = newValue.length() >= 1 && newValue.length() <= 15;
             botonGuardar.setDisable(!esValido);
         });
 
         grid.add(new Label("Nombre:"), 0, 0);
         grid.add(nombre_jugador, 1, 0);
-        grid.add(botonGuardar, 1, 1);
+        grid.add(botonGuardar, 2, 0);
 
         this.getDialogPane().setContent(grid);
 

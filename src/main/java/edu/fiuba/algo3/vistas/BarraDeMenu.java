@@ -1,9 +1,6 @@
 package edu.fiuba.algo3.vistas;
 
-import edu.fiuba.algo3.controllers.ControladorApagarMusica;
-import edu.fiuba.algo3.controllers.ControladorInformacionJuego;
-import edu.fiuba.algo3.controllers.ControladorManosPoker;
-import edu.fiuba.algo3.controllers.ControladorPantallaCompleta;
+import edu.fiuba.algo3.controllers.*;
 import javafx.scene.media.MediaPlayer;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
@@ -11,15 +8,17 @@ import javafx.scene.control.Menu;
 import javafx.scene.control.MenuBar;
 import javafx.scene.control.MenuItem;
 
+import java.util.ArrayList;
+
 public class BarraDeMenu extends MenuBar {
 
     private Stage stage;
-    private MediaPlayer mediaPlayer;
+    private ReproductorMusica reproductorMusica;
     private Font customFont;
 
-    public BarraDeMenu(Stage stage, MediaPlayer mediaPlayer) {
+    public BarraDeMenu(Stage stage, ReproductorMusica reproductorMusica) {
         this.stage = stage;
-        this.mediaPlayer = mediaPlayer;
+        this.reproductorMusica = reproductorMusica;
 
         inicializarMenu();
 
@@ -34,9 +33,14 @@ public class BarraDeMenu extends MenuBar {
 
         Menu menuMusica = new Menu("Musica");
         MenuItem itemApagar = new MenuItem("OFF");
-        itemApagar.setOnAction(new ControladorApagarMusica(mediaPlayer, menuMusica));
-        mediaPlayer.play();
-        menuMusica.getItems().addAll(itemApagar);
+        MenuItem itemSiguiente = new MenuItem("Siguiente");
+        MenuItem itemAnterior = new MenuItem("Anterior");
+        itemApagar.setOnAction(new ControladorApagarMusica(reproductorMusica, menuMusica));
+        itemSiguiente.setOnAction(e -> reproductorMusica.siguienteCancion());
+        itemAnterior.setOnAction(e -> reproductorMusica.anteriorCancion());
+
+        reproductorMusica.play();
+        menuMusica.getItems().addAll(itemApagar, itemSiguiente, itemAnterior);
 
         Menu menuAyuda = new Menu("Ayuda");
         MenuItem informacionJuego = new MenuItem("Informacion del juego");
