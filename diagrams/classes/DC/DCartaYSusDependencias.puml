@@ -1,0 +1,48 @@
+@startuml
+skinparam classAttributeIconSize 0
+
+class Carta {
+    +{static}Carta(palo: Palo, valor: Valor)
+    +obtenerIndice(): int
+    +modificarPuntuacion(puntuacion : PuntuacionTirada): void
+    +aplicarTarot(modificador : Modificador, estrategia : EstrategiaModificacion): void
+    +puntosBase(): int
+    +compararValor(otraCarta: Carta): boolean
+    +compararPalo(otraCarta: Carta): boolean
+    +compararValor(unValor: Valor): boolean
+    +compararPalo(unPalo: Palo): boolean
+}
+
+interface Estado {
+    {abstract}+modificarPuntuacion(puntuacion : PuntuacionTirada): void
+    {abstract}+puntosBase(puntuacionValor : int): int
+}
+
+abstract class Palo{
+    {abstract}+compararCon(unPalo : Palo) : boolean
+}
+
+abstract class Valor{
+    -int puntosBase
+    {abstract}+nueracion() : int
+    {abstract}+compararCon(unValor : Valor) : boolean
+}
+
+class Base{
+    +modificarPuntuacion(puntuacion : PuntuacionTirada): void
+    +puntosBase(puntuacionValor : int): int
+}
+
+class Modificado{
+    -int puntosBase
+    {abstract}+numeracion() : int
+    {abstract}+compararCon(unValor : Valor) : boolean
+}
+
+Carta "1" *-- "1" Valor
+Carta "1" *-- "1" Palo
+Carta "1" *-- "1" Estado
+
+Estado <|.. Base
+Estado <|.. Modificado
+@enduml

@@ -1,6 +1,11 @@
 @startuml
-'https://plantuml.com/class-diagram
 skinparam classAttributeIconSize 0
+
+abstract class ManoDePoker
+
+interface GeneradorRandom {
+    +{abstract}validar(): boolean
+}
 
 abstract class Joker {
     -nombre: String
@@ -10,10 +15,15 @@ abstract class Joker {
     +agregarJoker(joker: Joker): void
 }
 
+Joker <|-- JokerAleatorio
+Joker <|-- JokerCombinado
+Joker <|-- JokerDescarte
+Joker <|-- JokerMano
+Joker <|-- JokerNormal
+Joker <|-- JokerNulo
 Joker --> "1" Joker
-Joker ..> EstrategiaModificacion
-Joker ..> Descarte
-Joker ..> Modificador
-Joker ..> ManoDePoker
+
+JokerAleatorio "1" o-- "1" GeneradorRandom
+JokerMano "1" o-- "1" ManoDePoker
 
 @enduml

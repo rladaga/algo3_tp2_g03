@@ -1,7 +1,0 @@
-@startuml
-'https://plantuml.com/class-diagram
-
-exception DescarteError
-exception ManoError
-
-@enduml
