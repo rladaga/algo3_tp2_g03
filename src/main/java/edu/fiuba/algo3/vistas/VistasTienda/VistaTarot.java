@@ -24,7 +24,7 @@ public class VistaTarot extends StackPane {
         this.tarot = tarot;
 
 
-        ImageView tarotImagen = new ImageView(new Image(getClass().getResourceAsStream("/imagenes/" + (tarot.getClass().equals(TarotCarta.class) ? "tarot_emperador.png" : "tarot_mago.png"))));
+        ImageView tarotImagen = new ImageView(new Image(getClass().getResourceAsStream("/imagenes/Tarots/" + (tarot.getClass().equals(TarotCarta.class) ? "tarot_emperador.png" : "tarot_mago.png"))));
         tarotImagen.setFitHeight(120);
         tarotImagen.setFitWidth(90);
         tarotImagen.setPreserveRatio(true);

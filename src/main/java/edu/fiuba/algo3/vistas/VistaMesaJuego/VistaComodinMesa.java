@@ -57,15 +57,15 @@ public class VistaComodinMesa extends StackPane {
 
         switch(this.joker.getTipo()){
             case "Normal":
-                return "/imagenes/" + jokerImagenes[0];
+                return "/imagenes/Jokers/" + jokerImagenes[0];
             case "Descarte":
-                return "/imagenes/" + jokerImagenes[1];
+                return "/imagenes/Jokers/" + jokerImagenes[1];
             case "Aleatorio":
-                return "/imagenes/" + jokerImagenes[2];
+                return "/imagenes/Jokers/" + jokerImagenes[2];
             case "Mano":
-                return "/imagenes/" + jokerImagenes[3];
+                return "/imagenes/Jokers/" + jokerImagenes[3];
             case "Combinado":
-                return "/imagenes/" + jokerImagenes[4];
+                return "/imagenes/Jokers/" + jokerImagenes[4];
             default:
                 return "";
         }
