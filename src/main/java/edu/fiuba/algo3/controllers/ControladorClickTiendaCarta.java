@@ -14,13 +14,15 @@ public class ControladorClickTiendaCarta implements EventHandler<MouseEvent> {
     private final int[] contador;
     private final Carta carta;
     private final Balatro modelo;
+    private final ControladorAgregarTienda controlador;
 
-    public ControladorClickTiendaCarta(ImageView cartaImagen, boolean[] estaSeleccionada, int[] contador, Carta carta, Balatro modelo) {
+    public ControladorClickTiendaCarta(ImageView cartaImagen, boolean[] estaSeleccionada, int[] contador, Carta carta, Balatro modelo, ControladorAgregarTienda controlador) {
         this.cartaImagen = cartaImagen;
         this.estaSeleccionada = estaSeleccionada;
         this.contador = contador;
         this.carta = carta;
         this.modelo = modelo;
+        this.controlador = controlador;
     }
 
     @Override
@@ -30,11 +32,14 @@ public class ControladorClickTiendaCarta implements EventHandler<MouseEvent> {
             cartaImagen.setScaleX(1.2);
             cartaImagen.setScaleY(1.2);
             contador[0]++;
+            controlador.agregarCarta(carta);
+
         } else if (estaSeleccionada[0]){
             estaSeleccionada[0] = !estaSeleccionada[0];
             cartaImagen.setScaleX(1.0);
             cartaImagen.setScaleY(1.0);
             contador[0]--;
+            controlador.removerCarta();
         }
     }
 }
