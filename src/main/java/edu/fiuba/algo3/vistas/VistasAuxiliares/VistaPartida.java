@@ -1,6 +1,7 @@
 package edu.fiuba.algo3.vistas.VistasAuxiliares;
 
 import edu.fiuba.algo3.modelo.Balatro;
+import edu.fiuba.algo3.vistas.AvisosYAlertas.AvisoRondaSuperada;
 import edu.fiuba.algo3.vistas.Cajas.*;
 import edu.fiuba.algo3.vistas.ElementosAuxiliares.ReproductorMusica;
 import edu.fiuba.algo3.vistas.VistaMesaJuego.VistaPrincipalMesa;
@@ -96,6 +97,7 @@ public class VistaPartida extends BorderPane {
     }
 
     public void mostrarTienda() {
+        new AvisoRondaSuperada();
         root.getChildren().remove(vistaPrincipalMesa);
         this.vistaTienda = new VistaTienda(modelo, this);
         root.getChildren().add(vistaTienda);
