@@ -1,11 +1,9 @@
-package edu.fiuba.algo3.vistas;
+package edu.fiuba.algo3.vistas.ElementosAuxiliares;
 
 
 import edu.fiuba.algo3.controllers.ControladorNombreJugador;
 import javafx.geometry.Insets;
 import javafx.scene.control.*;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
 
 public class PromptNombre extends Dialog<String> {

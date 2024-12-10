@@ -3,10 +3,10 @@ package edu.fiuba.algo3.vistas.VistaMesaJuego;
 import edu.fiuba.algo3.controllers.ControladorDescartar;
 import edu.fiuba.algo3.controllers.ControladorJugarMano;
 import edu.fiuba.algo3.modelo.Balatro;
-import edu.fiuba.algo3.vistas.CajaGenerica;
-import edu.fiuba.algo3.vistas.CrearBoton;
-import edu.fiuba.algo3.vistas.ReproductorMusica;
-import edu.fiuba.algo3.vistas.VistaPartida;
+import edu.fiuba.algo3.vistas.Cajas.CajaGenerica;
+import edu.fiuba.algo3.vistas.ElementosAuxiliares.CrearBoton;
+import edu.fiuba.algo3.vistas.ElementosAuxiliares.ReproductorMusica;
+import edu.fiuba.algo3.vistas.VistasAuxiliares.VistaPartida;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.image.Image;
@@ -14,7 +14,6 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
-import javafx.scene.media.MediaPlayer;
 import javafx.stage.Stage;
 
 public class VistaPrincipalMesa extends AnchorPane {

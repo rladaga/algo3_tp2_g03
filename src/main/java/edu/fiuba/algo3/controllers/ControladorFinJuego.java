@@ -2,13 +2,11 @@ package edu.fiuba.algo3.controllers;
 
 import edu.fiuba.algo3.modelo.Balatro;
 import edu.fiuba.algo3.modelo.parser.ParserBalatro;
-import edu.fiuba.algo3.vistas.ReproductorMusica;
-import edu.fiuba.algo3.vistas.VistaMenuInicial;
+import edu.fiuba.algo3.vistas.ElementosAuxiliares.ReproductorMusica;
+import edu.fiuba.algo3.vistas.VistasAuxiliares.VistaMenuInicial;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.Scene;
-import javafx.scene.media.MediaPlayer;
-import javafx.scene.text.Font;
 import javafx.stage.Stage;
 
 public class ControladorFinJuego implements EventHandler<ActionEvent> {

@@ -1,14 +1,11 @@
-package edu.fiuba.algo3.vistas;
+package edu.fiuba.algo3.vistas.ElementosAuxiliares;
 
 import edu.fiuba.algo3.controllers.*;
-import javafx.scene.media.MediaPlayer;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
 import javafx.scene.control.Menu;
 import javafx.scene.control.MenuBar;
 import javafx.scene.control.MenuItem;
-
-import java.util.ArrayList;
 
 public class BarraDeMenu extends MenuBar {
 

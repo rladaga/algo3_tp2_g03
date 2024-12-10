@@ -1,14 +1,13 @@
 package edu.fiuba.algo3.controllers;
 
 import edu.fiuba.algo3.modelo.Balatro;
-import edu.fiuba.algo3.vistas.ReproductorMusica;
-import edu.fiuba.algo3.vistas.VistaPartida;
-import edu.fiuba.algo3.vistas.VistaPopupDerrota;
-import edu.fiuba.algo3.vistas.VistaPopupVictoria;
+import edu.fiuba.algo3.vistas.ElementosAuxiliares.ReproductorMusica;
+import edu.fiuba.algo3.vistas.VistasAuxiliares.VistaPartida;
+import edu.fiuba.algo3.vistas.VistasAuxiliares.VistaPopupDerrota;
+import edu.fiuba.algo3.vistas.VistasAuxiliares.VistaPopupVictoria;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.layout.StackPane;
-import javafx.scene.media.MediaPlayer;
 import javafx.stage.Stage;
 
 public class ControladorJugarMano implements EventHandler<ActionEvent> {

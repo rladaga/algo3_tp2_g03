@@ -1,4 +1,4 @@
-package edu.fiuba.algo3.vistas;
+package edu.fiuba.algo3.vistas.Cajas;
 
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;

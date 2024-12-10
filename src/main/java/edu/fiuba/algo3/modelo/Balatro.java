@@ -1,8 +1,8 @@
 package edu.fiuba.algo3.modelo;
 
 import edu.fiuba.algo3.modelo.Carta.Carta;
+import edu.fiuba.algo3.modelo.Excepcion.EspacioJokersLlenoExcepction;
 import edu.fiuba.algo3.modelo.Joker.Joker;
-import edu.fiuba.algo3.modelo.PuntuacionTirada.PuntuacionTirada;
 import edu.fiuba.algo3.modelo.Tarot.Tarot;
 import edu.fiuba.algo3.modelo.Tarot.TarotManoPoker;
 

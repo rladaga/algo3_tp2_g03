@@ -1,29 +1,27 @@
-package edu.fiuba.algo3.vistas;
+package edu.fiuba.algo3.vistas.VistasAuxiliares;
 
 import edu.fiuba.algo3.controllers.ControladorCierreJuego;
 import edu.fiuba.algo3.controllers.ControladorFinJuego;
-import javafx.application.Platform;
-import javafx.geometry.Insets;
-import javafx.geometry.Pos;
-import javafx.scene.Scene;
+import edu.fiuba.algo3.vistas.ElementosAuxiliares.CrearBoton;
+import edu.fiuba.algo3.vistas.ElementosAuxiliares.ReproductorMusica;
 import javafx.scene.control.Button;
-import javafx.scene.control.ButtonType;
-import javafx.scene.control.Dialog;
 import javafx.scene.control.Label;
-import javafx.scene.layout.GridPane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
-import javafx.scene.media.MediaPlayer;
+import javafx.geometry.Insets;
+import javafx.geometry.Pos;
 import javafx.stage.Stage;
 
-public class VistaPopupDerrota {
+
+public class VistaPopupVictoria {
+
     private Stage stage;
-    private ReproductorMusica reproductor;
+    private ReproductorMusica reproductorMusica;
     private String nombreJugador;
 
-    public VistaPopupDerrota(Stage stage, ReproductorMusica reproductor, String nombreJugador) {
+    public VistaPopupVictoria(Stage stage, ReproductorMusica reproductorMusica, String nombreJugador) {
         this.stage = stage;
-        this.reproductor = reproductor;
+        this.reproductorMusica = reproductorMusica;
         this.nombreJugador = nombreJugador;
     }
 
@@ -40,7 +38,7 @@ public class VistaPopupDerrota {
         recuadroPopup.setMaxWidth(500);
         recuadroPopup.setMaxHeight(300);
 
-        Label labelMensaje = new Label("Fin del juego, no has alcanzado el puntaje necesario");
+        Label labelMensaje = new Label("Ganaste el juego, ¡felicitaciones!");
         labelMensaje.setStyle("-fx-font-size: 16px; -fx-font-weight: bold; -fx-text-alignment: center; -fx-text-fill: white;");
 
         String estiloBoton = "-fx-background-color: #2C3E50; " +
@@ -55,7 +53,7 @@ public class VistaPopupDerrota {
                 "-fx-background-radius: 5px;";
 
         Button botonContinuar = new CrearBoton("Volver al menu principal", estiloBoton);
-        botonContinuar.setOnAction(new ControladorFinJuego(stage, reproductor, nombreJugador));
+        botonContinuar.setOnAction(new ControladorFinJuego(stage, reproductorMusica, nombreJugador));
 
         Button botonCerrar = new CrearBoton("Cerrar juego", estiloBoton);
         botonCerrar.setOnAction(new ControladorCierreJuego());
@@ -68,4 +66,3 @@ public class VistaPopupDerrota {
         rootPrincipal.getChildren().add(overlay);
     }
 }
-

@@ -1,22 +1,13 @@
 package edu.fiuba.algo3.controllers;
 
 import edu.fiuba.algo3.modelo.Balatro;
-import edu.fiuba.algo3.modelo.Carta.Carta;
-import edu.fiuba.algo3.modelo.Mazo;
-import edu.fiuba.algo3.modelo.Mezclador.IMezclador;
-import edu.fiuba.algo3.modelo.Mezclador.MezcladorMazo;
-import edu.fiuba.algo3.vistas.ReproductorMusica;
-import edu.fiuba.algo3.vistas.VistaPartida;
+import edu.fiuba.algo3.vistas.ElementosAuxiliares.ReproductorMusica;
+import edu.fiuba.algo3.vistas.VistasAuxiliares.VistaPartida;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
-import javafx.scene.Scene;
 import javafx.scene.control.MenuBar;
-import javafx.scene.media.MediaPlayer;
 import javafx.stage.Stage;
-
-
-import java.util.ArrayList;
 
 public class ControladorJugar implements EventHandler<ActionEvent> {
 

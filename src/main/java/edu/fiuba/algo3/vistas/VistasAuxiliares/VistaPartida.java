@@ -1,6 +1,8 @@
-package edu.fiuba.algo3.vistas;
+package edu.fiuba.algo3.vistas.VistasAuxiliares;
 
 import edu.fiuba.algo3.modelo.Balatro;
+import edu.fiuba.algo3.vistas.Cajas.*;
+import edu.fiuba.algo3.vistas.ElementosAuxiliares.ReproductorMusica;
 import edu.fiuba.algo3.vistas.VistaMesaJuego.VistaPrincipalMesa;
 import edu.fiuba.algo3.vistas.VistasTienda.VistaTienda;
 import javafx.geometry.Insets;
@@ -8,7 +10,6 @@ import javafx.geometry.Pos;
 import javafx.scene.control.Label;
 import javafx.scene.control.MenuBar;
 import javafx.scene.layout.*;
-import javafx.scene.media.MediaPlayer;
 import javafx.stage.Stage;
 
 public class VistaPartida extends BorderPane {

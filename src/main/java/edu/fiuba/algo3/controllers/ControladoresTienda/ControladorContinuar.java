@@ -1,7 +1,7 @@
 package edu.fiuba.algo3.controllers.ControladoresTienda;
 
 import edu.fiuba.algo3.modelo.Balatro;
-import edu.fiuba.algo3.vistas.VistaPartida;
+import edu.fiuba.algo3.vistas.VistasAuxiliares.VistaPartida;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 

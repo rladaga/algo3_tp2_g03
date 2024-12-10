@@ -1,11 +1,10 @@
 package edu.fiuba.algo3.controllers;
 
-import edu.fiuba.algo3.vistas.ReproductorMusica;
+import edu.fiuba.algo3.vistas.ElementosAuxiliares.ReproductorMusica;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.control.Menu;
 import javafx.scene.control.MenuItem;
-import javafx.scene.media.MediaPlayer;
 
 public class ControladorEncenderMusica implements EventHandler<ActionEvent> {
     private final ReproductorMusica reproductorMusica;

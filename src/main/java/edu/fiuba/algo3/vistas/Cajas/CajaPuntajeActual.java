@@ -1,4 +1,4 @@
-package edu.fiuba.algo3.vistas;
+package edu.fiuba.algo3.vistas.Cajas;
 
 import edu.fiuba.algo3.modelo.Balatro;
 import javafx.geometry.Insets;

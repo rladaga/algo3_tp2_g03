@@ -6,7 +6,7 @@ import edu.fiuba.algo3.modelo.ManoDePoker.ManoDePoker;
 import edu.fiuba.algo3.modelo.Tarot.*;
 import edu.fiuba.algo3.vistas.AvisosYAlertas.AvisoCartaTarot;
 import edu.fiuba.algo3.vistas.AvisosYAlertas.AvisoManoDePokerTarot;
-import edu.fiuba.algo3.vistas.VistaPartida;
+import edu.fiuba.algo3.vistas.VistasAuxiliares.VistaPartida;
 import edu.fiuba.algo3.vistas.VistasTienda.VistaTarot;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;

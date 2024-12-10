@@ -5,9 +5,9 @@ import edu.fiuba.algo3.controllers.ControladoresTienda.ControladorBotonUsar;
 import edu.fiuba.algo3.controllers.ControladoresTienda.ControladorContinuar;
 import edu.fiuba.algo3.modelo.Balatro;
 import edu.fiuba.algo3.modelo.Tienda;
-import edu.fiuba.algo3.vistas.CajaGenerica;
-import edu.fiuba.algo3.vistas.CrearBoton;
-import edu.fiuba.algo3.vistas.VistaPartida;
+import edu.fiuba.algo3.vistas.Cajas.CajaGenerica;
+import edu.fiuba.algo3.vistas.ElementosAuxiliares.CrearBoton;
+import edu.fiuba.algo3.vistas.VistasAuxiliares.VistaPartida;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.image.Image;
@@ -125,7 +125,5 @@ public class VistaTienda extends AnchorPane {
 
     }
 
-    public void actualizar() {
 
-    }
 }

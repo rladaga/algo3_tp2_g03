@@ -1,7 +1,11 @@
-package edu.fiuba.algo3.vistas;
+package edu.fiuba.algo3.vistas.VistasAuxiliares;
 
 import edu.fiuba.algo3.controllers.ControladorJugar;
 import edu.fiuba.algo3.modelo.Balatro;
+import edu.fiuba.algo3.vistas.ElementosAuxiliares.BarraDeMenu;
+import edu.fiuba.algo3.vistas.ElementosAuxiliares.CrearBoton;
+import edu.fiuba.algo3.vistas.ElementosAuxiliares.PromptNombre;
+import edu.fiuba.algo3.vistas.ElementosAuxiliares.ReproductorMusica;
 import javafx.application.Platform;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -9,10 +13,8 @@ import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.GridPane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
-import javafx.scene.media.MediaPlayer;
 import javafx.stage.Stage;
 
 import java.util.Optional;
