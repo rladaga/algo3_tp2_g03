@@ -27,6 +27,6 @@ public class ControladorEncenderMusica implements EventHandler<ActionEvent> {
         itemSiguiente.setOnAction(e -> reproductorMusica.siguienteCancion());
         itemAnterior.setOnAction(e -> reproductorMusica.anteriorCancion());
 
-        menuMusica.getItems().addAll(itemAnterior, itemApagar, itemSiguiente);
+        menuMusica.getItems().addAll(itemApagar, itemAnterior, itemSiguiente);
     }
 }

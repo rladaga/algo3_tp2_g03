@@ -4,7 +4,7 @@
             "nro": 1,
             "manos": 3,
             "descartes": 3,
-            "puntajeASuperar": 4,
+            "puntajeASuperar": 200,
             "tienda": {
                 "comodines": [
                     {
