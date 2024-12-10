@@ -1,4 +1,4 @@
-package edu.fiuba.algo3.vistas;
+package edu.fiuba.algo3.vistas.VistaMesaJuego;
 
 import edu.fiuba.algo3.controllers.ControladorClickCarta;
 import edu.fiuba.algo3.controllers.ControladorHoverCarta;

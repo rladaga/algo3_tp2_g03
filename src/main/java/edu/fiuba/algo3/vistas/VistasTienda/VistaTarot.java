@@ -1,5 +1,6 @@
-package edu.fiuba.algo3.vistas;
+package edu.fiuba.algo3.vistas.VistasTienda;
 
+import edu.fiuba.algo3.controllers.ControladoresTienda.ControladorBotonUsar;
 import edu.fiuba.algo3.controllers.ControladoresTienda.ControladorClickTiendaTarot;
 import edu.fiuba.algo3.modelo.Balatro;
 import edu.fiuba.algo3.modelo.Tarot.Tarot;
@@ -14,8 +15,10 @@ public class VistaTarot extends StackPane {
     private Balatro modelo;
     private Tarot tarot;
     private final boolean[] estaSeleccionada = {false};
+    BoxCartaSeleccionTarot vistaCartas;
+    VistaTienda vistaTienda;
 
-    public VistaTarot(Balatro modelo, Tarot tarot, int[] contador) {
+    public VistaTarot(Balatro modelo, Tarot tarot, int[] contador, VistaTienda vistaTienda, ControladorBotonUsar controladorBotonUsar, Runnable actualizarBotonUsar, BoxCartaSeleccionTarot vistaCartas) {
 
         this.modelo = modelo;
         this.tarot = tarot;
@@ -31,15 +34,28 @@ public class VistaTarot extends StackPane {
                 "-fx-padding: 20px;");
         Tooltip.install(tarotImagen, tooltip);
 
+        this.vistaTienda = vistaTienda;
+        this.vistaCartas = vistaCartas;
+
         tarotImagen.setOnMouseClicked(new ControladorClickTiendaTarot(
                 tarotImagen,
                 estaSeleccionada,
                 contador,
                 this.tarot,
-                modelo
+                modelo,
+                vistaTienda,
+                controladorBotonUsar,
+                actualizarBotonUsar,
+                vistaCartas,
+                this
         ));
 
 
         this.getChildren().add(tarotImagen);
+    }
+
+    public void esconderCartas(){
+        vistaTienda.getChildren().removeAll(vistaCartas);
+
     }
 }

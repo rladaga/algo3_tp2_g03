@@ -20,4 +20,8 @@ public class TarotManoPoker extends Tarot {
             manoDePoker.agregarMejora(puntuacion,multiplicador);
         }
     }
+
+    public ManoDePoker manoAAplicar() {
+        return mano;
+    }
 }

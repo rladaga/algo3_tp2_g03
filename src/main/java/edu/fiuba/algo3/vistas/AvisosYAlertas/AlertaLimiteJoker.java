@@ -1,12 +1,6 @@
-package edu.fiuba.algo3.vistas;
+package edu.fiuba.algo3.vistas.AvisosYAlertas;
 
-import edu.fiuba.algo3.controllers.ControladorNombreJugador;
-import javafx.geometry.Insets;
 import javafx.scene.control.Alert;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
-import javafx.scene.layout.GridPane;
 
 public class AlertaLimiteJoker  {
     public AlertaLimiteJoker() {

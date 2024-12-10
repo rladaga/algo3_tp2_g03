@@ -4,6 +4,7 @@ import edu.fiuba.algo3.modelo.Carta.Carta;
 import edu.fiuba.algo3.modelo.Joker.Joker;
 import edu.fiuba.algo3.modelo.PuntuacionTirada.PuntuacionTirada;
 import edu.fiuba.algo3.modelo.Tarot.Tarot;
+import edu.fiuba.algo3.modelo.Tarot.TarotManoPoker;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -76,6 +77,7 @@ public class Balatro {
     public void siguienteRonda() {
         mazo.restaurarMazo();
         rondas.remove(0);
+        cartasEnMano.clear();
     }
 
     public ArrayList<Carta> getCartasEnMano() {
@@ -106,6 +108,14 @@ public class Balatro {
 
     public ArrayList<Joker> getJokers() {
         return jokers;
+    }
+
+    public void reinicarMazo() {
+        mazo.restaurarMazo();
+    }
+
+    public void aplicarMejoraManoDePoker(TarotManoPoker tarotManoPoker) {
+        evaluadorMano.aplicarMejoraManoDePoker(tarotManoPoker);
     }
 
     /*public void iniciarJuego(){

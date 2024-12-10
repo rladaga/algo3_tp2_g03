@@ -1,4 +1,4 @@
-package edu.fiuba.algo3.vistas;
+package edu.fiuba.algo3.vistas.VistasTienda;
 
 import edu.fiuba.algo3.controllers.ControladoresTienda.ControladorBotonAgregar;
 import edu.fiuba.algo3.controllers.ControladoresTienda.ControladorClickTiendaJoker;

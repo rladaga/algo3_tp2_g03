@@ -2,6 +2,10 @@ package edu.fiuba.algo3.controllers.ControladoresTienda;
 
 import edu.fiuba.algo3.modelo.*;
 import edu.fiuba.algo3.modelo.Tarot.Tarot;
+import edu.fiuba.algo3.modelo.Tarot.TarotCarta;
+import edu.fiuba.algo3.vistas.VistasTienda.VistaTarot;
+import edu.fiuba.algo3.vistas.VistasTienda.VistaTienda;
+import edu.fiuba.algo3.vistas.VistasTienda.BoxCartaSeleccionTarot;
 import javafx.event.EventHandler;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
@@ -12,13 +16,23 @@ public class ControladorClickTiendaTarot implements EventHandler<MouseEvent> {
         private final int[] contador;
         private final Tarot tarot;
         private final Balatro modelo;
+        private final VistaTienda vistaTienda;
+        private final BoxCartaSeleccionTarot vistaCartas;
+        private final VistaTarot vistaTarot;
+        private final ControladorBotonUsar controlador;
+        private final Runnable actualizarBotonUsar;
 
-        public ControladorClickTiendaTarot(ImageView cartaImagen, boolean[] estaSeleccionada, int[] contador, Tarot tarot, Balatro modelo) {
+        public ControladorClickTiendaTarot(ImageView cartaImagen, boolean[] estaSeleccionada, int[] contador, Tarot tarot, Balatro modelo, VistaTienda vistaTienda, ControladorBotonUsar controladorBotonUsar, Runnable actualizarBotonUsar, BoxCartaSeleccionTarot vistaCartas, VistaTarot vistaTarot) {
             this.cartaImagen = cartaImagen;
             this.estaSeleccionada = estaSeleccionada;
             this.contador = contador;
             this.tarot = tarot;
             this.modelo = modelo;
+            this.controlador = controladorBotonUsar;
+            this.vistaTienda = vistaTienda;
+            this.vistaCartas = vistaCartas;
+            this.vistaTarot = vistaTarot;
+            this.actualizarBotonUsar = actualizarBotonUsar;
         }
 
         @Override
@@ -28,12 +42,23 @@ public class ControladorClickTiendaTarot implements EventHandler<MouseEvent> {
                 cartaImagen.setScaleX(1.2);
                 cartaImagen.setScaleY(1.2);
                 contador[0]++;
+                controlador.agregarTarot(tarot, vistaTarot, estaSeleccionada, contador);
+                if(tarot.getClass().equals(TarotCarta.class)) {
+                    vistaTienda.getChildren().addAll(vistaCartas);
+                }
+
             } else if (estaSeleccionada[0]){
                 estaSeleccionada[0] = !estaSeleccionada[0];
                 cartaImagen.setScaleX(1.0);
                 cartaImagen.setScaleY(1.0);
                 contador[0]--;
+                controlador.removerTarot();
+                if(tarot.getClass().equals(TarotCarta.class)) {
+                    vistaTienda.getChildren().removeAll(vistaCartas);
+                }
             }
+            actualizarBotonUsar.run();
+
         }
     }
 

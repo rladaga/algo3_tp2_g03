@@ -7,6 +7,7 @@ import edu.fiuba.algo3.modelo.Carta.Carta;
 import edu.fiuba.algo3.modelo.Joker.*;
 import edu.fiuba.algo3.modelo.ManoDePoker.*;
 import edu.fiuba.algo3.modelo.PuntuacionTirada.PuntuacionTirada;
+import edu.fiuba.algo3.modelo.Tarot.TarotManoPoker;
 
 
 public class EvaluadorMano {
@@ -58,5 +59,13 @@ public class EvaluadorMano {
         }
 
         return 0;
+    }
+
+    public void aplicarMejoraManoDePoker(TarotManoPoker tarotManoPoker) {
+        for (ManoDePoker tipo : tiposDeMano) {
+            if (tipo.esIgual(tarotManoPoker.manoAAplicar())) {
+                tarotManoPoker.aplicarEfecto(tipo);
+            }
+        }
     }
 }

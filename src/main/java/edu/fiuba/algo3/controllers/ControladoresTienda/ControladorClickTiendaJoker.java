@@ -2,7 +2,7 @@ package edu.fiuba.algo3.controllers.ControladoresTienda;
 
 import edu.fiuba.algo3.modelo.*;
 import edu.fiuba.algo3.modelo.Joker.Joker;
-import edu.fiuba.algo3.vistas.VistaComodinTienda;
+import edu.fiuba.algo3.vistas.VistasTienda.VistaComodinTienda;
 import javafx.event.EventHandler;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;

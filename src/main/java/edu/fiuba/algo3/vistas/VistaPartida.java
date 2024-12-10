@@ -1,6 +1,8 @@
 package edu.fiuba.algo3.vistas;
 
 import edu.fiuba.algo3.modelo.Balatro;
+import edu.fiuba.algo3.vistas.VistaMesaJuego.VistaPrincipalMesa;
+import edu.fiuba.algo3.vistas.VistasTienda.VistaTienda;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.Label;

@@ -1,6 +1,8 @@
-package edu.fiuba.algo3.vistas;
+package edu.fiuba.algo3.vistas.VistasTienda;
 
 import edu.fiuba.algo3.controllers.ControladoresTienda.ControladorBotonAgregar;
+import edu.fiuba.algo3.controllers.ControladoresTienda.ControladorBotonUsar;
+import edu.fiuba.algo3.controllers.ControladoresTienda.ControladorClickCartaTarot;
 import edu.fiuba.algo3.controllers.ControladoresTienda.ControladorClickTiendaCarta;
 import edu.fiuba.algo3.modelo.Balatro;
 import edu.fiuba.algo3.modelo.Carta.Carta;
@@ -8,13 +10,13 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.StackPane;
 
-public class VistaCartaTienda extends StackPane {
+public class VistaCartaSeleccionTarot extends StackPane {
 
     private Balatro modelo;
     private Carta carta;
     private final boolean[] estaSeleccionada = {false};
 
-    public VistaCartaTienda(Balatro modelo, Carta carta, int[] contador, ControladorBotonAgregar controladorAgregarTienda, Runnable actualizarBotones) {
+    public VistaCartaSeleccionTarot(Balatro modelo, Carta carta, int[] contadorCartaTarotizable, ControladorBotonUsar controladorBotonUsar, Runnable actualizarBotones) {
 
         this.modelo = modelo;
         this.carta = carta;
@@ -25,13 +27,13 @@ public class VistaCartaTienda extends StackPane {
         cartaImagen.setFitWidth(90);
         cartaImagen.setPreserveRatio(true);
 
-        cartaImagen.setOnMouseClicked(new ControladorClickTiendaCarta(
+        cartaImagen.setOnMouseClicked(new ControladorClickCartaTarot(
                 cartaImagen,
                 estaSeleccionada,
-                contador,
+                contadorCartaTarotizable,
                 this.carta,
                 modelo,
-                controladorAgregarTienda,
+                controladorBotonUsar,
                 actualizarBotones,
                 this
         ));
@@ -43,4 +45,5 @@ public class VistaCartaTienda extends StackPane {
     public void actualizarSeleccionado(){
         this.estaSeleccionada[0] = false;
     }
+
 }

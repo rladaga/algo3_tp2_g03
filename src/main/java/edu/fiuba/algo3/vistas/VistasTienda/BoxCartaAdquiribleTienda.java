@@ -1,4 +1,4 @@
-package edu.fiuba.algo3.vistas;
+package edu.fiuba.algo3.vistas.VistasTienda;
 
 import edu.fiuba.algo3.controllers.ControladoresTienda.ControladorBotonAgregar;
 import edu.fiuba.algo3.modelo.Balatro;
@@ -7,10 +7,10 @@ import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.layout.HBox;
 
-public class VistaCartasTienda extends HBox {
+public class BoxCartaAdquiribleTienda extends HBox {
     private Balatro modelo;
     private Carta carta;
-    public VistaCartasTienda(Balatro modelo, Carta carta, int[] contador, ControladorBotonAgregar controladorAgregarTienda, Runnable actualizarBotones) {
+    public BoxCartaAdquiribleTienda(Balatro modelo, Carta carta, int[] contador, ControladorBotonAgregar controladorAgregarTienda, Runnable actualizarBotones) {
         this.modelo = modelo;
         this.carta = carta;
 
@@ -22,7 +22,7 @@ public class VistaCartasTienda extends HBox {
         this.setMinWidth(150);
         this.setSpacing(100);
 
-        VistaCartaTienda vistaCarta = new VistaCartaTienda(modelo, carta, contador, controladorAgregarTienda, actualizarBotones);
+        VistaCartaAdquiribleTienda vistaCarta = new VistaCartaAdquiribleTienda(modelo, carta, contador, controladorAgregarTienda, actualizarBotones);
         this.getChildren().add(vistaCarta);
     }
 }

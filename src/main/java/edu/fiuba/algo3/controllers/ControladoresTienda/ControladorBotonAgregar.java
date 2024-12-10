@@ -4,7 +4,7 @@ import edu.fiuba.algo3.modelo.Balatro;
 import edu.fiuba.algo3.modelo.Carta.Carta;
 import edu.fiuba.algo3.modelo.EspacioJokersLlenoExcepction;
 import edu.fiuba.algo3.modelo.Joker.Joker;
-import edu.fiuba.algo3.vistas.AlertaLimiteJoker;
+import edu.fiuba.algo3.vistas.AvisosYAlertas.AlertaLimiteJoker;
 import edu.fiuba.algo3.vistas.VistaPartida;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
