@@ -27,4 +27,6 @@ public abstract class Joker {
     public void agregarJoker(Joker joker){
         this.otroJoker = joker;
     }
+
+    public abstract String getTipo();
 }
