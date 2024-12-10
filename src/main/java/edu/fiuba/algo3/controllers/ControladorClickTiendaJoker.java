@@ -31,6 +31,7 @@ public class ControladorClickTiendaJoker implements EventHandler<MouseEvent> {
             cartaImagen.setScaleY(1.2);
             contador[0]++;
         } else if (estaSeleccionada[0]){
+            estaSeleccionada[0] = !estaSeleccionada[0];
             cartaImagen.setScaleX(1.0);
             cartaImagen.setScaleY(1.0);
             contador[0]--;
