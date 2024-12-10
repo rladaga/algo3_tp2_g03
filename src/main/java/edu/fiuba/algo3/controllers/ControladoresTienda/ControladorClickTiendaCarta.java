@@ -1,9 +1,9 @@
-package edu.fiuba.algo3.controllers;
+package edu.fiuba.algo3.controllers.ControladoresTienda;
 
 
 import edu.fiuba.algo3.modelo.Carta.Carta;
 import edu.fiuba.algo3.modelo.*;
-import edu.fiuba.algo3.modelo.Tarot.Tarot;
+import edu.fiuba.algo3.vistas.VistaCartaTienda;
 import javafx.event.EventHandler;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
@@ -14,10 +14,11 @@ public class ControladorClickTiendaCarta implements EventHandler<MouseEvent> {
     private final int[] contador;
     private final Carta carta;
     private final Balatro modelo;
-    private final ControladorAgregarTienda controlador;
+    private final ControladorBotonAgregar controlador;
     private final Runnable actualizarBotones;
+    private final VistaCartaTienda vistaCarta;
 
-    public ControladorClickTiendaCarta(ImageView cartaImagen, boolean[] estaSeleccionada, int[] contador, Carta carta, Balatro modelo, ControladorAgregarTienda controlador, Runnable actualizarBotones) {
+    public ControladorClickTiendaCarta(ImageView cartaImagen, boolean[] estaSeleccionada, int[] contador, Carta carta, Balatro modelo, ControladorBotonAgregar controlador, Runnable actualizarBotones, VistaCartaTienda vistaCarta) {
         this.cartaImagen = cartaImagen;
         this.estaSeleccionada = estaSeleccionada;
         this.contador = contador;
@@ -25,6 +26,7 @@ public class ControladorClickTiendaCarta implements EventHandler<MouseEvent> {
         this.modelo = modelo;
         this.controlador = controlador;
         this.actualizarBotones = actualizarBotones;
+        this.vistaCarta = vistaCarta;
     }
 
     @Override
@@ -34,7 +36,8 @@ public class ControladorClickTiendaCarta implements EventHandler<MouseEvent> {
             cartaImagen.setScaleX(1.2);
             cartaImagen.setScaleY(1.2);
             contador[0]++;
-            controlador.agregarCarta(carta);
+            controlador.agregarCarta(carta, vistaCarta, estaSeleccionada, contador);
+            controlador.agregarVista(vistaCarta);
 
         } else if (estaSeleccionada[0]){
             estaSeleccionada[0] = !estaSeleccionada[0];

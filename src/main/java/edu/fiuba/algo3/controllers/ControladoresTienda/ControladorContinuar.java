@@ -1,4 +1,4 @@
-package edu.fiuba.algo3.controllers;
+package edu.fiuba.algo3.controllers.ControladoresTienda;
 
 import edu.fiuba.algo3.modelo.Balatro;
 import edu.fiuba.algo3.vistas.VistaPartida;

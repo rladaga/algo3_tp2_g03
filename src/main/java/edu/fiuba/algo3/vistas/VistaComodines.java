@@ -1,12 +1,9 @@
 package edu.fiuba.algo3.vistas;
 
-import edu.fiuba.algo3.controllers.ControladorAgregarTienda;
 import edu.fiuba.algo3.modelo.Balatro;
 import edu.fiuba.algo3.modelo.Joker.Joker;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 
 import java.util.ArrayList;

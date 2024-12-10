@@ -91,7 +91,13 @@ public class Balatro {
     }
 
     public void agregarJoker(Joker joker) {
-        jokers.add(joker);
+        if(jokers.size() == 5) {
+            throw new EspacioJokersLlenoExcepction(" ");
+        }
+        else{
+            jokers.add(joker);
+        }
+
     }
 
     public void agregarTarot(Tarot tarot) {

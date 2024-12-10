@@ -1,7 +1,5 @@
 package edu.fiuba.algo3.vistas;
 
-import edu.fiuba.algo3.controllers.ControladorAgregarTienda;
-import edu.fiuba.algo3.controllers.ControladorClickTiendaJoker;
 import edu.fiuba.algo3.controllers.ControladorHoverCarta;
 import edu.fiuba.algo3.modelo.Balatro;
 import edu.fiuba.algo3.modelo.Joker.Joker;

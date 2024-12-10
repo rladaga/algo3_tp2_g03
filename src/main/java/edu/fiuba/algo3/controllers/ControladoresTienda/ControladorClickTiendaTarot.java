@@ -1,6 +1,5 @@
-package edu.fiuba.algo3.controllers;
+package edu.fiuba.algo3.controllers.ControladoresTienda;
 
-import edu.fiuba.algo3.modelo.Carta.Carta;
 import edu.fiuba.algo3.modelo.*;
 import edu.fiuba.algo3.modelo.Tarot.Tarot;
 import javafx.event.EventHandler;

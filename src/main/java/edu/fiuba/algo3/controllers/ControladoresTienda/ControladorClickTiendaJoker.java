@@ -1,9 +1,8 @@
-package edu.fiuba.algo3.controllers;
+package edu.fiuba.algo3.controllers.ControladoresTienda;
 
-import edu.fiuba.algo3.modelo.Carta.Carta;
 import edu.fiuba.algo3.modelo.*;
 import edu.fiuba.algo3.modelo.Joker.Joker;
-import edu.fiuba.algo3.modelo.Tarot.Tarot;
+import edu.fiuba.algo3.vistas.VistaComodinTienda;
 import javafx.event.EventHandler;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
@@ -14,10 +13,11 @@ public class ControladorClickTiendaJoker implements EventHandler<MouseEvent> {
     private final int[] contador;
     private final Joker joker;
     private final Balatro modelo;
-    private final ControladorAgregarTienda controlador;
+    private final ControladorBotonAgregar controlador;
     private final Runnable actualizarBotones;
+    private final VistaComodinTienda vistaComodin;
 
-    public ControladorClickTiendaJoker(ImageView cartaImagen, boolean[] estaSeleccionada, int[] contador, Joker joker, Balatro modelo, ControladorAgregarTienda controlador, Runnable actualizarBotones) {
+    public ControladorClickTiendaJoker(ImageView cartaImagen, boolean[] estaSeleccionada, int[] contador, Joker joker, Balatro modelo, ControladorBotonAgregar controlador, Runnable actualizarBotones, VistaComodinTienda vistaComodin) {
         this.cartaImagen = cartaImagen;
         this.estaSeleccionada = estaSeleccionada;
         this.contador = contador;
@@ -25,6 +25,7 @@ public class ControladorClickTiendaJoker implements EventHandler<MouseEvent> {
         this.modelo = modelo;
         this.controlador = controlador;
         this.actualizarBotones = actualizarBotones;
+        this.vistaComodin = vistaComodin;
     }
 
     @Override
@@ -34,7 +35,9 @@ public class ControladorClickTiendaJoker implements EventHandler<MouseEvent> {
             cartaImagen.setScaleX(1.2);
             cartaImagen.setScaleY(1.2);
             contador[0]++;
-            controlador.agregarJoker(joker);
+            controlador.agregarJoker(joker, vistaComodin, estaSeleccionada, contador);
+            controlador.agregarVista(vistaComodin);
+
         } else if (estaSeleccionada[0]){
             estaSeleccionada[0] = !estaSeleccionada[0];
             cartaImagen.setScaleX(1.0);

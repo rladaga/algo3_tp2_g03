@@ -1,19 +1,16 @@
 package edu.fiuba.algo3.vistas;
 
-import edu.fiuba.algo3.controllers.ControladorAgregarTienda;
+import edu.fiuba.algo3.controllers.ControladoresTienda.ControladorBotonAgregar;
 import edu.fiuba.algo3.modelo.Balatro;
 import edu.fiuba.algo3.modelo.Carta.Carta;
-import edu.fiuba.algo3.modelo.Tarot.Tarot;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.layout.HBox;
 
-import java.util.ArrayList;
-
 public class VistaCartasTienda extends HBox {
     private Balatro modelo;
     private Carta carta;
-    public VistaCartasTienda(Balatro modelo, Carta carta, int[] contador, ControladorAgregarTienda controladorAgregarTienda, Runnable actualizarBotones) {
+    public VistaCartasTienda(Balatro modelo, Carta carta, int[] contador, ControladorBotonAgregar controladorAgregarTienda, Runnable actualizarBotones) {
         this.modelo = modelo;
         this.carta = carta;
 

@@ -1,24 +1,21 @@
 package edu.fiuba.algo3.vistas;
 
-import edu.fiuba.algo3.controllers.ControladorAgregarTienda;
-import edu.fiuba.algo3.controllers.ControladorClickCarta;
-import edu.fiuba.algo3.controllers.ControladorClickTiendaJoker;
-import edu.fiuba.algo3.controllers.ControladorHoverCarta;
+import edu.fiuba.algo3.controllers.ControladoresTienda.ControladorBotonAgregar;
+import edu.fiuba.algo3.controllers.ControladoresTienda.ControladorClickTiendaJoker;
 import edu.fiuba.algo3.modelo.Balatro;
-import edu.fiuba.algo3.modelo.Carta.Carta;
 import edu.fiuba.algo3.modelo.Joker.Joker;
 import javafx.scene.control.Tooltip;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.StackPane;
 
-public class VistaComodin extends StackPane {
+public class VistaComodinTienda extends StackPane {
 
     private Balatro modelo;
     private Joker joker;
     private final boolean[] estaSeleccionada = {false};
 
-    public VistaComodin(Balatro modelo, Joker joker, int[] contador, ControladorAgregarTienda controladorAgregarTienda, Runnable actualizarBotones) {
+    public VistaComodinTienda(Balatro modelo, Joker joker, int[] contador, ControladorBotonAgregar controladorAgregarTienda, Runnable actualizarBotones) {
 
         this.modelo = modelo;
         this.joker = joker;
@@ -40,19 +37,8 @@ public class VistaComodin extends StackPane {
                 this.joker,
                 modelo,
                 controladorAgregarTienda,
-                actualizarBotones
-        ));
-
-        jokerImagen.setOnMouseEntered(new ControladorHoverCarta(
-                jokerImagen,
-                estaSeleccionada,
-                true
-        ));
-
-        jokerImagen.setOnMouseExited(new ControladorHoverCarta(
-                jokerImagen,
-                estaSeleccionada,
-                false
+                actualizarBotones,
+                this
         ));
 
 

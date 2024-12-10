@@ -1,13 +1,10 @@
 package edu.fiuba.algo3.vistas;
 
-import edu.fiuba.algo3.controllers.ControladorAgregarTienda;
+import edu.fiuba.algo3.controllers.ControladoresTienda.ControladorBotonAgregar;
 import edu.fiuba.algo3.modelo.Balatro;
 import edu.fiuba.algo3.modelo.Joker.Joker;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
-import javafx.scene.control.Tooltip;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 
 import java.util.ArrayList;
@@ -15,7 +12,7 @@ import java.util.ArrayList;
 public class VistaComodinesTienda extends HBox {
     private Balatro modelo;
     private ArrayList<Joker> jokers;
-    public VistaComodinesTienda(Balatro modelo, ArrayList<Joker> jokers, int[] contador, ControladorAgregarTienda controladorAgregarTienda, Runnable actualizarBotones) {
+    public VistaComodinesTienda(Balatro modelo, ArrayList<Joker> jokers, int[] contador, ControladorBotonAgregar controladorAgregarTienda, Runnable actualizarBotones) {
         this.modelo = modelo;
         this.jokers = jokers;
 
@@ -28,7 +25,7 @@ public class VistaComodinesTienda extends HBox {
         this.setSpacing(100);
 
         for (Joker joker : jokers) {
-            VistaComodin vistaJoker = new VistaComodin(modelo, joker, contador, controladorAgregarTienda, actualizarBotones);
+            VistaComodinTienda vistaJoker = new VistaComodinTienda(modelo, joker, contador, controladorAgregarTienda, actualizarBotones);
             this.getChildren().add(vistaJoker);
         }
     }

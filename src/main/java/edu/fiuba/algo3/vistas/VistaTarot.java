@@ -1,10 +1,7 @@
 package edu.fiuba.algo3.vistas;
 
-import edu.fiuba.algo3.controllers.ControladorClickTiendaJoker;
-import edu.fiuba.algo3.controllers.ControladorClickTiendaTarot;
-import edu.fiuba.algo3.controllers.ControladorHoverCarta;
+import edu.fiuba.algo3.controllers.ControladoresTienda.ControladorClickTiendaTarot;
 import edu.fiuba.algo3.modelo.Balatro;
-import edu.fiuba.algo3.modelo.Joker.Joker;
 import edu.fiuba.algo3.modelo.Tarot.Tarot;
 import edu.fiuba.algo3.modelo.Tarot.TarotCarta;
 import javafx.scene.control.Tooltip;
@@ -40,18 +37,6 @@ public class VistaTarot extends StackPane {
                 contador,
                 this.tarot,
                 modelo
-        ));
-
-        tarotImagen.setOnMouseEntered(new ControladorHoverCarta(
-                tarotImagen,
-                estaSeleccionada,
-                true
-        ));
-
-        tarotImagen.setOnMouseExited(new ControladorHoverCarta(
-                tarotImagen,
-                estaSeleccionada,
-                false
         ));
 
 

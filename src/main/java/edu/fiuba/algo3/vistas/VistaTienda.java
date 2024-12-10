@@ -1,18 +1,14 @@
 package edu.fiuba.algo3.vistas;
 
-import edu.fiuba.algo3.controllers.*;
+import edu.fiuba.algo3.controllers.ControladoresTienda.ControladorBotonAgregar;
+import edu.fiuba.algo3.controllers.ControladoresTienda.ControladorContinuar;
 import edu.fiuba.algo3.modelo.Balatro;
 import edu.fiuba.algo3.modelo.Tienda;
-import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
-import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
-import javafx.scene.paint.Color;
-import javafx.scene.text.Font;
-import javafx.stage.Stage;
 
 public class VistaTienda extends AnchorPane {
     private Balatro modelo;
@@ -36,7 +32,7 @@ public class VistaTienda extends AnchorPane {
                 "-fx-background-radius: 5px; " +
                 "-fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.4), 5, 0, 3, 3);";
 
-        ControladorAgregarTienda controladorAgregarTienda = new ControladorAgregarTienda(modelo ,vistaPartida);
+        ControladorBotonAgregar controladorAgregarTienda = new ControladorBotonAgregar(modelo ,vistaPartida);
         Button botonJugarMano = new CrearBoton("AGREGAR", estiloBotonJugar);
         botonJugarMano.setDisable(true);
         botonJugarMano.setOnAction(controladorAgregarTienda);
@@ -44,6 +40,8 @@ public class VistaTienda extends AnchorPane {
         Runnable actualizarBotones = () -> {
             botonJugarMano.setDisable(!controladorAgregarTienda.haySeleccion());
         };
+
+        controladorAgregarTienda.agregarRunnable(actualizarBotones);
 
         HBox areaComodines = new VistaComodinesTienda(modelo, tienda.getJokers(), contador, controladorAgregarTienda, actualizarBotones);
         AnchorPane.setTopAnchor(areaComodines, 200.0);
@@ -90,6 +88,8 @@ public class VistaTienda extends AnchorPane {
         AnchorPane.setRightAnchor(imageView, 40.0);
 
         this.getChildren().addAll(imageView, areaComodines, areaTarots, areaCartaTienda, contenedorBotones);
+
+
     }
 
     public void actualizar() {

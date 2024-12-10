@@ -1,14 +1,9 @@
 package edu.fiuba.algo3.vistas;
 
-import edu.fiuba.algo3.controllers.ControladorAgregarTienda;
-import edu.fiuba.algo3.controllers.ControladorClickTiendaCarta;
-import edu.fiuba.algo3.controllers.ControladorClickTiendaTarot;
-import edu.fiuba.algo3.controllers.ControladorHoverCarta;
+import edu.fiuba.algo3.controllers.ControladoresTienda.ControladorBotonAgregar;
+import edu.fiuba.algo3.controllers.ControladoresTienda.ControladorClickTiendaCarta;
 import edu.fiuba.algo3.modelo.Balatro;
 import edu.fiuba.algo3.modelo.Carta.Carta;
-import edu.fiuba.algo3.modelo.Tarot.Tarot;
-import edu.fiuba.algo3.modelo.Tarot.TarotCarta;
-import javafx.scene.control.Tooltip;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.StackPane;
@@ -19,7 +14,7 @@ public class VistaCartaTienda extends StackPane {
     private Carta carta;
     private final boolean[] estaSeleccionada = {false};
 
-    public VistaCartaTienda(Balatro modelo, Carta carta, int[] contador, ControladorAgregarTienda controladorAgregarTienda, Runnable actualizarBotones) {
+    public VistaCartaTienda(Balatro modelo, Carta carta, int[] contador, ControladorBotonAgregar controladorAgregarTienda, Runnable actualizarBotones) {
 
         this.modelo = modelo;
         this.carta = carta;
@@ -37,22 +32,15 @@ public class VistaCartaTienda extends StackPane {
                 this.carta,
                 modelo,
                 controladorAgregarTienda,
-                actualizarBotones
-        ));
-
-        cartaImagen.setOnMouseEntered(new ControladorHoverCarta(
-                cartaImagen,
-                estaSeleccionada,
-                true
-        ));
-
-        cartaImagen.setOnMouseExited(new ControladorHoverCarta(
-                cartaImagen,
-                estaSeleccionada,
-                false
+                actualizarBotones,
+                this
         ));
 
 
         this.getChildren().add(cartaImagen);
+    }
+
+    public void actualizarSeleccionado(){
+        this.estaSeleccionada[0] = false;
     }
 }
