@@ -29,4 +29,12 @@ public abstract class Joker {
     }
 
     public abstract String getTipo();
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public String getDescripcion() {
+        return descripcion;
+    }
 }

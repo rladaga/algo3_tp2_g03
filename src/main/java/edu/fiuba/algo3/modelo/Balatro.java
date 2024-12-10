@@ -6,9 +6,11 @@ import edu.fiuba.algo3.modelo.PuntuacionTirada.PuntuacionTirada;
 import edu.fiuba.algo3.modelo.Tarot.Tarot;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
 public class Balatro {
     private ArrayList<Ronda> rondas;
+    private int rondaActual;
     private Mazo mazo;
     private ArrayList<Joker> jokers;
     private ArrayList<Tarot> tarots;
@@ -36,6 +38,7 @@ public class Balatro {
 
     public void repartirCartas(){
         cartasEnMano.addAll(mazo.repartir(8 - cartasEnMano.size()));
+        Collections.sort(cartasEnMano, new OrdenarCarta());
     }
 
     public int cantidadCartasEnMano(){
@@ -65,12 +68,14 @@ public class Balatro {
     }
 
     public void jugarMano(){
-        Ronda rondaActual = rondas.get(0);
-        if(rondaActual.permitirJugar()) {
-            rondaActual.jugarRonda(cartasAJugar, jokers, evaluadorMano);
-            cartasEnMano.removeAll(cartasAJugar);
-        }
+        rondas.get(0).jugarRonda(cartasAJugar, jokers, evaluadorMano, this);
+        cartasEnMano.removeAll(cartasAJugar);
         cartasAJugar.clear();
+    }
+
+    public void siguienteRonda() {
+        mazo.restaurarMazo();
+        rondas.remove(0);
     }
 
     public ArrayList<Carta> getCartasEnMano() {
@@ -91,6 +96,10 @@ public class Balatro {
 
     public void agregarTarot(Tarot tarot) {
         tarots.add(tarot);
+    }
+
+    public ArrayList<Joker> getJokers() {
+        return jokers;
     }
 
     /*public void iniciarJuego(){

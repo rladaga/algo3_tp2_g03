@@ -15,14 +15,16 @@ public class ControladorClickTiendaJoker implements EventHandler<MouseEvent> {
     private final Joker joker;
     private final Balatro modelo;
     private final ControladorAgregarTienda controlador;
+    private final Runnable actualizarBotones;
 
-    public ControladorClickTiendaJoker(ImageView cartaImagen, boolean[] estaSeleccionada, int[] contador, Joker joker, Balatro modelo, ControladorAgregarTienda controlador) {
+    public ControladorClickTiendaJoker(ImageView cartaImagen, boolean[] estaSeleccionada, int[] contador, Joker joker, Balatro modelo, ControladorAgregarTienda controlador, Runnable actualizarBotones) {
         this.cartaImagen = cartaImagen;
         this.estaSeleccionada = estaSeleccionada;
         this.contador = contador;
         this.joker = joker;
         this.modelo = modelo;
         this.controlador = controlador;
+        this.actualizarBotones = actualizarBotones;
     }
 
     @Override
@@ -40,5 +42,6 @@ public class ControladorClickTiendaJoker implements EventHandler<MouseEvent> {
             contador[0]--;
             controlador.removerJoker();
         }
+        actualizarBotones.run();
     }
 }

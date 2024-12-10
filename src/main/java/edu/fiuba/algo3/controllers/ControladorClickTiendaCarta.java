@@ -15,14 +15,16 @@ public class ControladorClickTiendaCarta implements EventHandler<MouseEvent> {
     private final Carta carta;
     private final Balatro modelo;
     private final ControladorAgregarTienda controlador;
+    private final Runnable actualizarBotones;
 
-    public ControladorClickTiendaCarta(ImageView cartaImagen, boolean[] estaSeleccionada, int[] contador, Carta carta, Balatro modelo, ControladorAgregarTienda controlador) {
+    public ControladorClickTiendaCarta(ImageView cartaImagen, boolean[] estaSeleccionada, int[] contador, Carta carta, Balatro modelo, ControladorAgregarTienda controlador, Runnable actualizarBotones) {
         this.cartaImagen = cartaImagen;
         this.estaSeleccionada = estaSeleccionada;
         this.contador = contador;
         this.carta = carta;
         this.modelo = modelo;
         this.controlador = controlador;
+        this.actualizarBotones = actualizarBotones;
     }
 
     @Override
@@ -41,5 +43,6 @@ public class ControladorClickTiendaCarta implements EventHandler<MouseEvent> {
             contador[0]--;
             controlador.removerCarta();
         }
+        actualizarBotones.run();
     }
 }

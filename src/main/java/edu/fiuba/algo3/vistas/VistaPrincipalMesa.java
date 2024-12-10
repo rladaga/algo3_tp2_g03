@@ -17,19 +17,18 @@ public class VistaPrincipalMesa extends AnchorPane {
     private Balatro modelo;
     private VistaCartas vistaCartas;
     public VistaPartida vistaPartida;
+    public VistaComodines vistaComodines;
+
 
     public VistaPrincipalMesa(Balatro modelo, VistaPartida vistaPartida) {
 
         this.modelo = modelo;
         this.vistaPartida = vistaPartida;
 
-        HBox areaComodines = new VistaComodines();
+        VistaComodines areaComodines = new VistaComodines(modelo);
+        this.vistaComodines = areaComodines;
         AnchorPane.setTopAnchor(areaComodines, 20.0);
         AnchorPane.setLeftAnchor(areaComodines, 350.0);
-
-        HBox areaTarots = new VistaTarots();
-        AnchorPane.setTopAnchor(areaTarots, 20.0);
-        AnchorPane.setLeftAnchor(areaTarots, 950.0);
 
         HBox contenedorBotones = new CajaGenerica(20, Pos.CENTER);
 
@@ -79,7 +78,7 @@ public class VistaPrincipalMesa extends AnchorPane {
         AnchorPane.setBottomAnchor(imageView, 100.0);
         AnchorPane.setRightAnchor(imageView, 40.0);
 
-        this.getChildren().addAll(imageView, areaComodines, areaTarots, areaCartas, contenedorBotones);
+        this.getChildren().addAll(imageView, areaComodines, areaCartas, contenedorBotones);
     }
 
     public void actualizarMano() {
@@ -90,4 +89,7 @@ public class VistaPrincipalMesa extends AnchorPane {
         }
     }
 
+    public void actualizarJokers() {
+        vistaComodines.actualizar();
+    }
 }

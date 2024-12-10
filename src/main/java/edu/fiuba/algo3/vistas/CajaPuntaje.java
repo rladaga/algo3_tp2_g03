@@ -31,4 +31,8 @@ public class CajaPuntaje extends HBox {
         puntajeLabel.setPadding(new Insets(0, 5, 0, 5));
         this.getChildren().add(puntajeLabel);
     }
+
+    public void actualizar() {
+        puntajeLabel.setText(modelo.getRonda().getPuntajeObjetivo().toString());
+    }
 }

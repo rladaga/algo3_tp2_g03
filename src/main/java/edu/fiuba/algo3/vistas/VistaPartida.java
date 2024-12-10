@@ -12,25 +12,36 @@ import javafx.stage.Stage;
 public class VistaPartida extends BorderPane {
 
     private CajaPuntajeActual cajaPuntajeActual;
+    private CajaPuntaje cajaPuntaje;
     private CajaInfoInterna cajaManos;
     private CajaInfoInterna cajaDescartes;
+    private CajaInfoInterna cajaRonda;
+    private StackPane root;
+    private VBox cajaGris;
     private VistaPrincipalMesa vistaPrincipalMesa;
+    private VistaTienda vistaTienda;
+    private Balatro modelo;
 
     public VistaPartida(Stage stagePrimario, MediaPlayer mediaPlayer, MenuBar menuBar, String nombreJugador, Balatro modelo) {
 
-        StackPane root = new StackPane();
+        this.root = new StackPane();
+        this.vistaTienda = new VistaTienda(modelo, this);
+        this.modelo = modelo;
+
         root.setStyle("-fx-background-color: #356C54");
 
-        VBox cajaGris = new VistaInformacion(nombreJugador);
+        VBox cajaVistaInfo = new VistaInformacion(nombreJugador);
+        this.cajaGris = cajaVistaInfo;
 
         VBox cajaInterna2 = new CajaInterna("#9D6400", "PUNTAJE \nNECESARIO", 147, 120);
         VBox cajaInterna3 = new CajaInterna("#242B2C", "PUNTOS DE\nLA RONDA", 150, 120);
         VBox cajaInterna4 = new CajaInterna("#242B2C", "PUNTUACION TIRADA", 136, 120);
         VBox cajaInterna5 = new CajaInterna("#242B2C", "", 124, 120);
 
-        HBox fichaPuntajeCaja = new CajaPuntaje(modelo, "#dc3545");
+        CajaPuntaje fichaPuntajeCaja = new CajaPuntaje(modelo, "#dc3545");
         cajaInterna2.getChildren().add(fichaPuntajeCaja);
         VBox.setMargin(fichaPuntajeCaja, new Insets(20, 0, 0, 0));
+        this.cajaPuntaje = fichaPuntajeCaja;
 
         CajaPuntajeActual fichaPuntajeCaja2 = new CajaPuntajeActual(modelo, "white");
         cajaInterna3.getChildren().add(fichaPuntajeCaja2);
@@ -50,9 +61,10 @@ public class VistaPartida extends BorderPane {
         HBox cajaGeneralInfo = new CajaGenerica(10, Pos.BOTTOM_CENTER);
 
         CajaInfoInterna manoCaja = new CajaInfoInterna("MANO", modelo.getRonda().getManos().getManosRestantes(), "#007bff");
-        VBox rondaCaja = new CajaInfoInterna("RONDA", modelo.getRonda().getNumeroRonda(), "#FBA000");
+        CajaInfoInterna rondaCaja = new CajaInfoInterna("RONDA", modelo.getRonda().getNumeroRonda(), "#FBA000");
         CajaInfoInterna descartesCaja = new CajaInfoInterna("DESCARTES", modelo.getRonda().getDescartes().getDescartesRestantes(), "#dc3545");
         this.cajaDescartes = descartesCaja;
+        this.cajaRonda = rondaCaja;
         this.cajaManos = manoCaja;
 
         cajaGeneralInfo.getChildren().addAll(manoCaja, rondaCaja, descartesCaja);
@@ -60,13 +72,12 @@ public class VistaPartida extends BorderPane {
 
         cajaGris.getChildren().addAll(cajaInterna2, cajaInterna3, cajaInterna4, cajaInterna5);
 
-        VistaPrincipalMesa anchor = new VistaPrincipalMesa(modelo, this);
+        this.vistaPrincipalMesa = new VistaPrincipalMesa(modelo, this);
 
         StackPane.setMargin(cajaGris, new Insets(0, 0, 0, 20));
         StackPane.setAlignment(cajaGris, Pos.CENTER_LEFT);
 
-        root.getChildren().addAll(cajaGris, anchor);
-        this.vistaPrincipalMesa = anchor;
+        root.getChildren().addAll(cajaGris, vistaPrincipalMesa);
 
         this.setTop(menuBar);
         this.setCenter(root);
@@ -81,7 +92,30 @@ public class VistaPartida extends BorderPane {
         this.cajaPuntajeActual.actualizar();
     }
 
+    public void mostrarTienda() {
+        root.getChildren().remove(vistaPrincipalMesa);
+        this.vistaTienda = new VistaTienda(modelo, this);
+        root.getChildren().add(vistaTienda);
+    }
+
+    public void mostrarMesa() {
+        root.getChildren().remove(vistaTienda);
+        actualizar();
+        vistaPrincipalMesa.actualizarMano();
+        vistaPrincipalMesa.actualizarJokers();
+        root.getChildren().add(vistaPrincipalMesa);
+    }
+
+    public void actualizar() {
+        this.cajaPuntaje.actualizar();
+        actualizarPuntajeActual();
+        actualizarCajaManos(modelo.getRonda().getManos().getManosRestantes());
+        actualizarCajaDescartes(modelo.getRonda().getDescartes().getDescartesRestantes());
+        actualizarCajaRonda(modelo.getRonda().getNumeroRonda());
+    }
+
     public void actualizarCajaDescartes(int valor) {this.cajaDescartes.actualizar(valor);}
+    public void actualizarCajaRonda(int valor) {this.cajaRonda.actualizar(valor);}
 
     public void actualizarCajaManos(int valor) {this.cajaManos.actualizar(valor);}
 

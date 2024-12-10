@@ -20,7 +20,11 @@ public class ControladorJugarMano implements EventHandler<ActionEvent> {
     public void handle(ActionEvent actionEvent) {
         modelo.jugarMano();
         vistaPartida.actualizarPuntajeActual();
-        vistaPartida.actualizarCajaManos(modelo.getRonda().getManos().getManosRestantes());
-        vistaPartida.actualizarCartasEnMano();
+        if (modelo.getRonda().getPuntajeActual() >= modelo.getRonda().getPuntajeObjetivo()) {
+            vistaPartida.mostrarTienda();
+        } else {
+            vistaPartida.actualizarCajaManos(modelo.getRonda().getManos().getManosRestantes());
+            vistaPartida.actualizarCartasEnMano();
+        }
     }
 }
