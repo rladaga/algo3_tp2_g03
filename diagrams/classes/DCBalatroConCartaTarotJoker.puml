@@ -1,0 +1,50 @@
+@startuml
+!theme vibrant
+skinparam classAttributeIconSize 0
+
+abstract class Joker {
+    -nombre: String
+    -descripcion: String
+    +{static}Joker(nombre: String, descripcion: String, estrategiaModificacion: EstrategiaModificacion, modificacion: Modificador)
+    +{abstract}modificarPuntuacion(puntuacion: PuntuacionTirada, manoJugada: ManoDePoker, descarte: Descarte): void
+    +agregarJoker(joker: Joker): void
+}
+
+class Carta {
+    +obtenerIndice(): int
+    +modificarPuntuacion(puntuacion : PuntuacionTirada): void
+    +aplicarTaror(modificador : Modificador, estrategia : EstrategiaModificacion): void
+    +puntosBase(): int
+    +compararValor(otraCarta: Carta): boolean
+    +compararPalo(otraCarta: Carta): boolean
+    +compararValor(unValor: Valor): boolean
+    +compararPalo(unPalo: Palo): boolean
+}
+
+
+class Tarot {
+    #nombre: String
+    #descripcion: String
+    +Tarot(nombre: String, descripcion: String)
+}
+
+
+class Balatro {
+    +{static}Balatro(rondas: ArrayList<Ronda>, mazo: Mazo)
+    +cartasEnMazo(): int
+    +iniciarTurno(): void
+    +repartirCartas(): void
+    +cantidadCartasEnMano(): int
+    +descartar(): void
+    +seleccionarCarta(carta: Carta): void
+    +deseleccionarCarta(carta: Carta): void
+    +jugarMano(): void
+    +siguienteRonda(): void
+    +agregarCarta(carta: Carta): void
+    +agregarJoker(carta: Carta): void
+}
+
+Balatro "1" *-- "*" Joker
+Balatro "1" *-- "*" Tarot
+Balatro "1" *-- "*" Carta
+@enduml

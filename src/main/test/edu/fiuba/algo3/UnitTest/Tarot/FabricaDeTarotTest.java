@@ -1,5 +1,7 @@
 package edu.fiuba.algo3.UnitTest.Tarot;
 
+import edu.fiuba.algo3.modelo.DTOs.TarotDTO;
+import edu.fiuba.algo3.modelo.Fabricas.FabricaDeTarot;
 import edu.fiuba.algo3.modelo.Tarot.*;
 import org.junit.jupiter.api.Test;
 

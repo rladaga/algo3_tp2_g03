@@ -1,0 +1,29 @@
+@startuml
+skinparam classAttributeIconSize 0
+
+abstract class ManoDePoker
+
+interface GeneradorRandom {
+    +{abstract}validar(): boolean
+}
+
+abstract class Joker {
+    -nombre: String
+    -descripcion: String
+    +{static}Joker(nombre: String, descripcion: String, estrategiaModificacion: EstrategiaModificacion, modificacion: Modificador)
+    +{abstract}modificarPuntuacion(puntuacion: PuntuacionTirada, manoJugada: ManoDePoker, descarte: Descarte): void
+    +agregarJoker(joker: Joker): void
+}
+
+Joker <|-- JokerAleatorio
+Joker <|-- JokerCombinado
+Joker <|-- JokerDescarte
+Joker <|-- JokerMano
+Joker <|-- JokerNormal
+Joker <|-- JokerNulo
+Joker --> "1" Joker
+
+JokerAleatorio "1" o-- "1" GeneradorRandom
+JokerMano "1" o-- "1" ManoDePoker
+
+@enduml

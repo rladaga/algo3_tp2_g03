@@ -18,4 +18,9 @@ public class JokerNormal extends Joker {
         estrategiaModificacion.modificar(puntuacion, modificador);
         this.otroJoker.modificarPuntuacion(puntuacion, manoJugada, descarte);
     }
+
+    @Override
+    public String getTipo(){
+        return "Normal";
+    }
 }

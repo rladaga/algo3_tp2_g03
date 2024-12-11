@@ -18,4 +18,8 @@ public class JokerCombinado extends Joker {
     public void modificarPuntuacion(PuntuacionTirada puntuacion, ManoDePoker manoJugada, Descarte descarte) {
         this.otroJoker.modificarPuntuacion(puntuacion, manoJugada, descarte);
     }
+    @Override
+    public String getTipo(){
+        return "Combinado";
+    }
 }

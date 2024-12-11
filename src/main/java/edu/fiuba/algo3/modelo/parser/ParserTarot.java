@@ -4,6 +4,8 @@ import com.google.gson.Gson;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
+import edu.fiuba.algo3.modelo.DTOs.TarotDTO;
+import edu.fiuba.algo3.modelo.Fabricas.FabricaDeTarot;
 import edu.fiuba.algo3.modelo.Tarot.*;
 
 import java.io.*;

@@ -4,10 +4,10 @@ import com.google.gson.Gson;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
-import edu.fiuba.algo3.modelo.Carta.FabricaDeCarta;
+import edu.fiuba.algo3.modelo.Fabricas.FabricaDeCarta;
 import edu.fiuba.algo3.modelo.Carta.Carta;
-import edu.fiuba.algo3.modelo.Carta.Palo.FabricaDePalo;
-import edu.fiuba.algo3.modelo.Carta.Valor.FabricaDeValor;
+import edu.fiuba.algo3.modelo.Fabricas.FabricaDePalo;
+import edu.fiuba.algo3.modelo.Fabricas.FabricaDeValor;
 import edu.fiuba.algo3.modelo.Mazo;
 import edu.fiuba.algo3.modelo.Mezclador.MezcladorMazo;
 

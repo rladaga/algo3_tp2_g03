@@ -21,4 +21,9 @@ public class JokerDescarte extends Joker{
         this.otroJoker.modificarPuntuacion(puntuacionTirada, manoDePoker, descarte);
     }
 
+    @Override
+    public String getTipo(){
+        return "Descarte";
+    }
+
 }

@@ -23,8 +23,10 @@ public class Ronda{
         this.puntajeActual = 0;
     }
 
-    public void jugarRonda(ArrayList<Carta> cartasAJugar, ArrayList<Joker> jokers, EvaluadorMano evaluadorMano) {
-        puntajeActual += evaluadorMano.evaluar(cartasAJugar, jokers, descartes);
+    public void jugarRonda(ArrayList<Carta> cartasAJugar, ArrayList<Joker> jokers, EvaluadorMano evaluadorMano, Balatro balatro) {
+        if (manos.permitirTirada()) {
+            puntajeActual += evaluadorMano.evaluar(cartasAJugar, jokers, descartes);
+        }
     }
 
 
@@ -45,6 +47,10 @@ public class Ronda{
 
     public Mano getManos() {
         return manos;
+    }
+
+    public Tienda getTienda() {
+        return this.tienda;
     }
 
     public boolean permitirDescarte() {

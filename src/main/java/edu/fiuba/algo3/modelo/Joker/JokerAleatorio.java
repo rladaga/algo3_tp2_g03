@@ -23,4 +23,10 @@ public class JokerAleatorio extends Joker {
         }
         this.otroJoker.modificarPuntuacion(puntuacionTirada, manoDePoker, descarte);
     }
+
+    @Override
+    public String getTipo(){
+        return "Aleatorio";
+    }
 }
+

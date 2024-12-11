@@ -1,31 +1,17 @@
 package edu.fiuba.algo3.vistas;
 
 import edu.fiuba.algo3.modelo.Balatro;
-import edu.fiuba.algo3.modelo.Carta.Carta;
-import edu.fiuba.algo3.modelo.Mazo;
-import edu.fiuba.algo3.modelo.Mezclador.IMezclador;
-import edu.fiuba.algo3.modelo.Mezclador.MezcladorMazo;
 import edu.fiuba.algo3.modelo.parser.ParserBalatro;
+import edu.fiuba.algo3.vistas.ElementosAuxiliares.ReproductorMusica;
+import edu.fiuba.algo3.vistas.VistasAuxiliares.VistaMenuInicial;
 import javafx.application.Application;
-import javafx.application.Platform;
-import javafx.geometry.Insets;
-import javafx.geometry.Pos;
 import javafx.scene.Scene;
-import javafx.scene.control.*;
 import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
-import javafx.scene.layout.*;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
 
-import javafx.scene.media.Media;
-import javafx.scene.media.MediaPlayer;
-
 
 import java.io.FileNotFoundException;
-import java.util.ArrayList;
-import java.util.Objects;
-import java.util.Optional;
 
 /**
  * JavaFX App
@@ -33,7 +19,7 @@ import java.util.Optional;
 public class App extends Application {
 
     private Stage stage;
-    private MediaPlayer mediaPlayer;
+    private ReproductorMusica reproductorMusica;
     private Font customFont;
 
     @Override
@@ -44,17 +30,14 @@ public class App extends Application {
         ParserBalatro parser = new ParserBalatro();
         Balatro modelo = parser.pasearBalatro();
 
-        String mediaPath = getClass().getResource("/audio/wii.mp3").toExternalForm();
-        Media media = new Media(mediaPath);
-        mediaPlayer = new MediaPlayer(media);
-        mediaPlayer.setCycleCount(MediaPlayer.INDEFINITE);
+        reproductorMusica = new ReproductorMusica();
 
         customFont = Font.loadFont(
                 getClass().getResourceAsStream("/tipografia/balatro.ttf"),
                 20
         );
 
-        VistaMenuInicial menuVisual = new VistaMenuInicial(stagePrimario, mediaPlayer, modelo);
+        VistaMenuInicial menuVisual = new VistaMenuInicial(stagePrimario, reproductorMusica, modelo, null);
         Scene escenaMenu = new Scene(menuVisual, 1366, 768);
 
         String fontFamily = "Balatro";

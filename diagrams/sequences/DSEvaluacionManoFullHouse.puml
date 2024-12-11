@@ -1,0 +1,52 @@
+@startuml Diagrama de Secuencia
+
+actor "Jugador" as jug
+jug -> "parser: ParserBalatro" as parser: <<create>>
+jug -> "balatro:Balatro" as balatro: parser.parsearBalatro()
+jug -> balatro: iniciarTurno()
+balatro -> "mazo:Mazo" as mazo: repartir(8)
+jug -> balatro: seleccionarCarta(carta(As-♥))
+balatro -> "cartasAJugar: ArrayList<Carta>" as cartjug: add(carta)
+jug -> balatro: seleccionarCarta(carta(As-♠))
+balatro -> cartjug: add(carta)
+jug -> balatro: seleccionarCarta(carta(As-♦))
+balatro -> cartjug: add(carta)
+jug -> balatro: seleccionarCarta(carta(K-♦))
+balatro -> cartjug: add(carta)
+jug -> balatro: seleccionarCarta(carta(K-♣))
+balatro -> cartjug: add(carta)
+jug -> balatro: jugarMano()
+balatro -> "ronda:Ronda" as ronda: jugarRonda(cartasAJugar, jokers, evaluadorMano, balatro)
+ronda -> "mano:Mano" as mano: permitirTirada()
+mano -> ronda: true
+ronda -> "evaluador:EvaluadorMano" as eval: evaluar(cartasAJugar, jokers, descartes);
+activate eval
+loop por cada tipo de mano de poker
+    eval -> "manoDePoker:ManoDePoker" as manoPoker: esValida()
+    activate eval
+    manoPoker --> eval: true
+end
+    eval -> eval: calcularPuntuacionTotal(mano, tipo, jokers, descarte)
+    eval -> "puntuacion:PuntuacionTirada" as puntaje: PuntuacionTirada(40, 4)
+    eval -> eval: aplicarValorCartas(mano, puntuacion)
+    loop por cada carta de la mano a jugar
+        eval -> "carta:Carta" as carta: modificarPuntuacion(puntuacion)
+        carta -> "estadoCarta:Estado" as estado: modificarPuntuacion(puntuacion, valor.puntosBase())
+        estado -> "puntuacion:PuntuacionTirada" as puntTirada: modificarPuntos(new Sumar(puntuacionCarta))
+        puntTirada -> "puntos:Puntos" as puntos: modificar(modificador)
+        puntos -> "modificador:Modificador" as modi: modificar(this.valorPuntos)
+        modi --> puntos: valorPuntos = valor + (int)valorModificacion
+    end
+    eval -> eval: aplicarJokers(jokers, tipo, puntuacion, descarte)
+    loop por cada joker en el mazo
+    eval -> "joker:Joker" as joker: modificarPuntuacion(puntuacion, tipo, descarte)
+    end
+    eval -> puntTirada: obtenerPuntuacion()
+    puntTirada -> puntos: multiplicarCon(this.multiplicador)
+    puntos -> "multiplicador:Multiplicador" as multi: multiplicarCon(this.valorPuntos)
+    multi --> puntos: puntuacion = this.valorMultiplicador*valorPuntos
+    puntos --> puntTirada: puntuacion = 360
+    puntTirada --> eval: puntuacion = 360
+    deactivate eval
+
+@enduml

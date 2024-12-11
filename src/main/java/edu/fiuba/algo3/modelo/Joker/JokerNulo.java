@@ -15,4 +15,9 @@ public class JokerNulo extends Joker {
 
     @Override
     public void modificarPuntuacion(PuntuacionTirada puntuacion, ManoDePoker manoJugada, Descarte descarte){};
+
+    @Override
+    public String getTipo(){
+        return "Nulo";
+    }
 }

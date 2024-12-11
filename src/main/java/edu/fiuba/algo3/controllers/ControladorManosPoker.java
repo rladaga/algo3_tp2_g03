@@ -49,16 +49,16 @@ public class ControladorManosPoker implements EventHandler<ActionEvent> {
         listaItems.setStyle(cssBackground);
 
         String[][] manos = {
-                {"Royal Flush (Escalera Real)", "100", "8", "/imagenes/escalera_real.png"},
-                {"Straight Flush (Escalera de Color)", "100", "8", "/imagenes/escalera_color.png"},
-                {"Four of a Kind (Poker)", "60", "7", "/imagenes/poker.png"},
-                {"Full House", "40", "4", "/imagenes/full_house.png"},
-                {"Flush (Color)", "35", "4", "/imagenes/color.png"},
-                {"Straight (Escalera)", "30", "4", "/imagenes/escalera.png"},
-                {"Three of a Kind (Trio)", "30", "3", "/imagenes/trio.png"},
-                {"Two Pair (Doble Par)", "20", "2", "/imagenes/doble_par.png"},
-                {"Pair (Par)", "10", "2", "/imagenes/par.png"},
-                {"High Card (Carta Alta)", "5", "1", "/imagenes/carta_alta.png"}
+                {"Royal Flush (Escalera Real)", "100", "8", "/imagenes/CartasAyuda/escalera_real.png"},
+                {"Straight Flush (Escalera de Color)", "100", "8", "/imagenes/CartasAyuda/escalera_color.png"},
+                {"Four of a Kind (Poker)", "60", "7", "/imagenes/CartasAyuda/poker.png"},
+                {"Full House", "40", "4", "/imagenes/CartasAyuda/full_house.png"},
+                {"Flush (Color)", "35", "4", "/imagenes/CartasAyuda/color.png"},
+                {"Straight (Escalera)", "30", "4", "/imagenes/CartasAyuda/escalera.png"},
+                {"Three of a Kind (Trio)", "30", "3", "/imagenes/CartasAyuda/trio.png"},
+                {"Two Pair (Doble Par)", "20", "2", "/imagenes/CartasAyuda/doble_par.png"},
+                {"Pair (Par)", "10", "2", "/imagenes/CartasAyuda/par.png"},
+                {"High Card (Carta Alta)", "5", "1", "/imagenes/cartas/carta_alta.png"}
         };
 
         for (String[] mano : manos) {

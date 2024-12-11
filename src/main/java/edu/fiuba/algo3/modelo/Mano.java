@@ -17,9 +17,10 @@ public class Mano {
 
         if(manosRealizadas >= limiteManos){
             throw new ManoError("No quedan manos suficientes");
+        }else {
+            validacion = true;
+            manosRealizadas++;
         }
-        validacion = true;
-        manosRealizadas++;
         return validacion;
     }
 

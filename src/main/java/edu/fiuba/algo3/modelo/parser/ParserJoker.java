@@ -1,7 +1,8 @@
 package edu.fiuba.algo3.modelo.parser;
 
 import com.google.gson.*;
-import edu.fiuba.algo3.modelo.Joker.FabricaDeJokers;
+import edu.fiuba.algo3.modelo.DTOs.JokerDTO;
+import edu.fiuba.algo3.modelo.Fabricas.FabricaDeJokers;
 import edu.fiuba.algo3.modelo.Joker.*;
 
 import java.io.*;

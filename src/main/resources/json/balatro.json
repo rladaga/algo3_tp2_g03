@@ -4,7 +4,7 @@
             "nro": 1,
             "manos": 3,
             "descartes": 3,
-            "puntajeASuperar": 3000,
+            "puntajeASuperar": 200,
             "tienda": {
                 "comodines": [
                     {
@@ -61,7 +61,7 @@
             "nro": 2,
             "manos": 4,
             "descartes": 4,
-            "puntajeASuperar": 3600,
+            "puntajeASuperar": 650,
             "tienda": {
                 "comodines": [
                     {
@@ -118,7 +118,7 @@
             "nro": 3,
             "manos": 4,
             "descartes": 4,
-            "puntajeASuperar": 4320,
+            "puntajeASuperar": 1200,
             "tienda": {
                 "comodines": [
                     {
@@ -175,7 +175,7 @@
             "nro": 4,
             "manos": 4,
             "descartes": 4,
-            "puntajeASuperar": 5184,
+            "puntajeASuperar": 2500,
             "tienda": {
                 "comodines": [   
                     {
@@ -232,7 +232,7 @@
             "nro": 5,
             "manos": 4,
             "descartes": 5,
-            "puntajeASuperar": 6220,
+            "puntajeASuperar": 4000,
             "tienda": {
                 "comodines": [      
                     {
@@ -289,7 +289,7 @@
             "nro": 6,
             "manos": 4,
             "descartes": 6,
-            "puntajeASuperar": 7465,
+            "puntajeASuperar": 6500,
             "tienda": {
                 "comodines": [
                     {
