@@ -1,0 +1,42 @@
+@startuml Diagrama de Secuencia
+
+actor "Jugador" as jug
+jug -> "evaluador:EvaluadorMano" as eval: evaluar(cartasAJugar, jokers, descartes);
+note right: Evaluó una Mano Full House
+activate eval
+loop por cada tipo de mano de poker
+    eval -> "manoDePoker:ManoDePoker" as manoPoker: esValida()
+    activate eval
+    manoPoker --> eval: true
+end
+    eval -> eval: calcularPuntuacionTotal(mano, tipo, jokers, descarte)
+    eval -> "puntuacion:PuntuacionTirada" as puntaje: PuntuacionTirada(40, 4)
+    puntaje --> eval
+    eval -> eval: aplicarValorCartas(mano, puntuacion)
+    loop por cada carta de la mano a jugar
+        eval -> "carta:Carta" as carta: modificarPuntuacion(puntuacion)
+    end
+    eval -> eval: aplicarJokers(jokers, tipo, puntuacion, descarte)
+    loop por cada joker en el mazo
+    note right: Comodín Abundante: +8 al multiplicador si la mano jugada contiene un full
+    eval -> "joker:Joker" as joker: modificarPuntuacion(puntuacion, tipo, descarte)
+    activate joker
+    joker -> "manoPoker:ManoDePoker" as mano: esIgual(manoDePoker)
+    mano --> joker: true
+    joker -> "estrategia:EstrategiaModificacion" as strategy: modificar(puntuacionTirada, modificador)
+    strategy -> "puntuacion:PuntuacionTirada" as puntTirada: modificarMultiplicador(modificador)
+    puntTirada -> "multiplicador:Multiplicador" as multi: modificar(modificador)
+    multi -> "modificador:Modificador" as modi: modificar(this.valorMultiplicador)
+    modi -> multi: valor = valorMultiplicador(4) + (int)valorModificacion(+8)
+    deactivate joker
+    joker -> "jokerNulo:Joker" as nulo: modificarPuntuacion(puntuacionTirada, manoDePoker, descarte)
+    end
+    eval -> "puntuacion:PuntuacionTirada" as puntTirada: obtenerPuntuacion()
+    puntTirada -> "puntos:Puntos" as puntos: multiplicarCon(this.multiplicador)
+    puntos -> "multiplicador:Multiplicador" as multi2: multiplicarCon(this.multiplicador)
+    multi2 --> puntos: puntuacion = this.valorMultiplicador(12)*valorPuntos(90)
+    puntos --> puntTirada: puntuacion = 1080
+    puntTirada --> eval: puntuacion = 1080
+    deactivate eval
+
+@enduml
